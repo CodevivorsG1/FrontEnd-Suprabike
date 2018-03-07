@@ -8,9 +8,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Bienvenido a SupraBikes</h1>
         </header>
         <p className="App-intro">
+        <h1 >Bienvenido a SupraBikes</h1>
            <code></code> 
         </p>
       </div>
