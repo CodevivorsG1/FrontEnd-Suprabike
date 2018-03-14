@@ -1,10 +1,10 @@
 import React from 'react';
 
-var AppHeaderComponent = React.createClass ({
-    render: function() {
-        return (
-            <div>{this.props.message}</div>
-        );
-    }
-});
+class AppHeaderComponent extends React.Component{
+  render() {
+    return(
+      <div>Basic divs</div>
+    );
+  }
+}
 
