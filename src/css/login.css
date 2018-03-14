@@ -1,0 +1,45 @@
+.login-square {
+	width: 680px;
+	height: 500px;
+	margin: auto;
+	position: absolute;
+}
+
+.panel-heading{
+	background-color: #0084b4;
+	color: white;
+}
+
+.spacing {
+
+	padding-top:7px;
+
+	padding-bottom:7px;
+
+}
+
+.row {
+	padding: 10px;
+
+}
+
+.icon-pos {
+	float: left;
+}
+
+
+.btn {
+	color: white;
+}
+
+.google-btn {
+	background-color: #d62d20;
+}
+
+.facebook-btn {
+	background-color: #3b5998;
+}
+
+.twitter-btn {
+	background-color: #00aced;
+}
