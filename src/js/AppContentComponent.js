@@ -1,12 +1,13 @@
 import React from 'react';
-import testImg from '../img/test.jpg';
+import testImg from '../img/scott-bike.jpg';
 import "../css/AppContentComponent.css";
 
 class AppContentComponent extends React.Component{
   render() {
     return(
-      <div>
-        <img src={testImg} className="Content-square"/>
+      <div className="Content-square">
+        <h3>I am the content</h3>
+        <img src={testImg} alt="Bike"className="picture"/>
       </div>
 
     );

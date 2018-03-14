@@ -14,4 +14,7 @@ h3 {
 .CustomTable {
   border: 1px solid blue;
   width: 30%;
+  padding: 10px 10px;
+  margin: 10px;
+  float: left;
 }
