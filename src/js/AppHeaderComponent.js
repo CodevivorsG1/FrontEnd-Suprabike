@@ -38,7 +38,7 @@ class AppHeaderComponent extends React.Component{
               </button>
             </form>
             <form class="form-inline my-2 my-lg-0">
-              <button class="btn btn-primary my-2 my-sm-0 mr-sm-2" type="submit">Iniciar Sesion
+              <button class="btn btn-primary my-2 my-sm-0 mr-sm-2" type="submit"> <i class="fas fa-user"></i> Iniciar Sesion
                 </button>
             </form>
           </div>
