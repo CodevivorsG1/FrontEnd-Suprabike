@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import logo from '../img/logoSupraBIKES.PNG';
 import '../css/App.css';
 import AppBodyComponent from './AppBodyComponent.js'
+import AppHeaderComponent from './AppHeaderComponent.js'
+//import {Button} from 'react-bootstrap'
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        
+        <AppHeaderComponent />
+        
+        
         <p className="App-intro">
-        <h1 >Bienvenido a SupraBikes</h1>
            <code></code>
         </p>
         <AppBodyComponent />
