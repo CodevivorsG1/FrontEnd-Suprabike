@@ -1,9 +1,27 @@
 import React from 'react';
+import AppNavigationComponent from './AppNavigationComponent.js'
+import AppContentComponent from './AppContentComponent.js'
+import Landing from './Landing.js'
+import '../css/AppBodyComponent.css';
 
-var AppBodyComponent = React.createClass({
-   render: function () {
+class AppBodyComponent extends React.Component{
+   render() {
        return (
-            <div>{this.props.message}</div>   
+            <div className="Body-square">
+              <div class="row">
+                <div class="col-sm-12">
+                  <Landing />
+                </div>
+                <div class="col-sm-3">
+                  <AppNavigationComponent  />
+                </div>
+                <div class="col-sm-9">
+                  <AppContentComponent />
+                </div>
+              </div>
+            </div>
         );
-   } 
-});
+   }
+}
+
+export default AppBodyComponent;
