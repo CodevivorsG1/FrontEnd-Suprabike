@@ -1,0 +1,29 @@
+.banner{
+	background-image: url("../img/bici.jpg");
+	color:#fff;
+	height: 400px;
+}
+
+.item{
+	margin: 20px;
+	padding: 20px;
+	border-width:2px;
+border-style:solid;
+border-color:#00448B;
+border-radius:18px;
+-moz-border-radius:18px;
+-webkit-border-radius:18px;
+}
+
+.item i {
+    color: #172556;
+    border: 1px solid #172556;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    transition: .5s;
+}

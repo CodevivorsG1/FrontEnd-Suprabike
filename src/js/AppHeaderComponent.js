@@ -34,13 +34,12 @@ class AppHeaderComponent extends React.Component{
               
             <form class="form-inline my-2 my-lg-0 mr-sm-2">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
-              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar
+              <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Buscar
               </button>
+              
             </form>
-            <form class="form-inline my-2 my-lg-0">
-              <button class="btn btn-primary my-2 my-sm-0 mr-sm-2" type="submit"> <i class="fas fa-user"></i> Iniciar Sesion
+            <button class="btn btn-primary my-2 my-sm-0 mr-sm-2" type="submit"> <i class="fas fa-user"></i> Iniciar Sesion
                 </button>
-            </form>
           </div>
         </nav>
         
