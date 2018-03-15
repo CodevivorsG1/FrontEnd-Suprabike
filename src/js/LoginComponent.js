@@ -16,9 +16,9 @@ class LoginComponent extends React.Component {
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-block google-btn"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
-              <button class="btn btn-block facebook-btn"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
-              <button class="btn btn-block twitter-btn"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+              <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
+              <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
+              <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
             </div>
 
             <div class="col-md-6">
