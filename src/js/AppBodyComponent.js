@@ -8,10 +8,14 @@ class AppBodyComponent extends React.Component{
    render() {
        return (
             <div className="Body-square">
-              <h2>This is app body component</h2>
-              <div>
-                <AppNavigationComponent  />
-                <AppContentComponent />
+              
+              <div class="row">
+                <div class="col-sm-3">
+                  <AppNavigationComponent  />
+                </div>
+                <div class="col-sm-9">
+                  <AppContentComponent />
+                </div>
               </div>
             </div>
         );

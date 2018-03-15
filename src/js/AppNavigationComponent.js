@@ -4,32 +4,17 @@ import '../css/AppNavigationComponent.css';
 class AppNavigationComponent extends React.Component{
   render(){
       return (
-        <div>
-
-          <div className="CustomTable">
-            <h3> I am the nav-bar</h3>
-            <table>
-              <tr>
-                <th>MI CUENTA</th>
-              </tr>
-              <tr>
-                <th>MIS COMPRAS</th>
-              </tr>
-              <tr>
-                <th>ENSAMBLADAS</th>
-              </tr>
-              <tr>
-                <th>ARMAR BICI</th>
-              </tr>
-              <tr>
-                <th>SOLICITAR TECNICO</th>
-              </tr>
-              <tr>
-                <th>SALIR CUENTA</th>
-              </tr>
-            </table>
-          </div>
-      </div>
+        
+        <div class="list-group text-left">
+          <a href="#" class="list-group-item active">
+            <i class="fas fa-user-circle"></i> Mi cuenta
+          </a>
+          <a href="#" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
+          <a href="#" class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
+          <a href="#" class="list-group-item"><i class="fas fa-wrench"></i> Servicio técnico</a>
+          <a href="#" class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+          
+        </div>
     );
   }
 }
