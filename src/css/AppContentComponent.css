@@ -1,14 +1,12 @@
 .Content-square {
   width: 60%;
   height: auto;
-  border: 1px solid blue;
   float: left;
   padding: 10px;
 }
 
 .picture {
   width: 80%;
-  border: 2px solid black;
 
 }
 h3{
