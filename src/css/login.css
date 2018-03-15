@@ -5,6 +5,10 @@
 	position: absolute;
 }
 
+.panel {
+	border: 1px solid gray;
+}
+
 .panel-heading{
 	background-color: #0084b4;
 	color: white;
