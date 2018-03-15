@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/login.css';
+import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
 
 class LoginComponent extends React.Component {
@@ -8,8 +9,8 @@ class LoginComponent extends React.Component {
 
       <div>
       <AppHeaderComponent />
-      <div class="container login-square">
-        <div class="panel">
+      <div class="container-fluid">
+        <div class="panel login-square">
           <div class="panel-heading">
             <h3 class="panel-heading">Ingrese por favor ...</h3>
           </div>
@@ -26,7 +27,8 @@ class LoginComponent extends React.Component {
                 <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" /><small> Recordarme</small>
               </div>
               <input id="textinput" name="textinput" type="password" placeholder="Clave" class="form-control input-md" />
-              <div class="spacing"><a href="#"><small> Olvidaste la clave?</small></a><br/></div>
+              <div class="spacing"><a href="#"><small> Olvidaste la clave?</small></a><br/>
+                <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
                 <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
             </div>
 
