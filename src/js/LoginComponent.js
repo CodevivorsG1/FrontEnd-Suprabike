@@ -1,11 +1,13 @@
 import React from 'react';
 import '../css/login.css';
+import AppHeaderComponent from './AppHeaderComponent.js';
 
 class LoginComponent extends React.Component {
   render() {
     return(
 
       <div>
+      <AppHeaderComponent />
       <div class="container login-square">
         <div class="panel">
           <div class="panel-heading">
