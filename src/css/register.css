@@ -1,22 +1,26 @@
-.container-fluid {
-	width: 1000px;
-	height: 700px;
+.register-square {
+	width: 600px;
+	height: 350px;
 }
 
 .panel-heading{
 	background-color: #0084b4;
 	color: white;
 	padding: 5px 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
-.container .panel {
+.panel {
 	position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-	border: 1px solid gray;
 	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+	border-radius: 10px;
+	border: 1px solid gray;
+
 }
 
 .spacing {
@@ -36,16 +40,5 @@
 
 .btn {
 	color: white;
-}
-
-.google-btn {
-	background-color: #d62d20;
-}
-
-.facebook-btn {
-	background-color: #3b5998;
-}
-
-.twitter-btn {
-	background-color: #00aced;
+  float:left;
 }
