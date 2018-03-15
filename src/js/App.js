@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AppHomeComponent from './AppHomeComponent.js'
 import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
+import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -12,9 +13,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={AppHomeComponent}/>
+          <Route exact path='/' component={AppHomeLandingComponent}/>
           <Route path='/login' component={LoginComponent}/>
           <Route path='/register' component={RegisterComponent} />
+          <Route path='/main' component={AppHomeComponent} />
         </Switch>
       </BrowserRouter>
     );
