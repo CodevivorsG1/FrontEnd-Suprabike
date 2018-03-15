@@ -6,7 +6,6 @@ import '../css/landing.css';
 //import '../js/jquery-3.3.1.min.js';
 
 
-import '../fonts/glyphicons-halflings-regular.eot';
 
 class Landing extends React.Component{
    render() {
