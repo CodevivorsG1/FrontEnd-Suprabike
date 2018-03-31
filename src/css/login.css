@@ -1,6 +1,6 @@
 .login-square {
 	width: 900px;
-	height: 300px;
+	height: auto;
 }
 
 .panel-heading{
@@ -28,6 +28,20 @@
 	padding-bottom:7px;
 }
 
+input.active:valid {
+  box-shadow: 0 0 5px 1px green;
+}
+
+input.active:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .row {
 	padding: 10px;
 }
@@ -52,4 +66,8 @@
 
 .twitter-btn {
 	background-color: #00aced;
+}
+
+label{
+	display: none;
 }
