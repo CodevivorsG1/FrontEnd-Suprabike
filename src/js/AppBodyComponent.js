@@ -9,9 +9,6 @@ class AppBodyComponent extends React.Component{
        return (
             <div className="Body-square">
               <div class="row">
-                <div class="col-sm-12">
-                  <Landing />
-                </div>
                 <div class="col-sm-3">
                   <AppNavigationComponent  />
                 </div>
