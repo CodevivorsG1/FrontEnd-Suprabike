@@ -2,8 +2,28 @@ import React from 'react';
 import '../css/login.css';
 import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
+import store from './store'
 
 class LoginComponent extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      token: " vacio"
+    }
+    store.subscribe(() => {
+      this.setState({
+        token: store.getState().token
+      })
+    });
+  }
+  login(){
+    console.log('token'+ this.state.token)
+    var tok = 'ds5f4da5fd'
+    store.dispatch({
+      type: 'ADD_TOKEN',
+      token: tok
+    })
+  }
   render() {
     return(
 
@@ -29,7 +49,7 @@ class LoginComponent extends React.Component {
               <input id="textinput" name="textinput" type="password" placeholder="Clave" class="form-control input-md" />
               <div class="spacing"><a href="#"><small> Olvidaste la clave?</small></a><br/>
                 <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+                <button id="singlebutton" name="singlebutton" onClick={ ()=> this.login() } class="btn btn-info btn-sm pull-right">Entrar</button>
             </div>
 
           </div>

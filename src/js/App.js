@@ -16,7 +16,7 @@ class App extends Component {
           <Route exact path='/' component={AppHomeLandingComponent}/>
           <Route path='/login' component={LoginComponent}/>
           <Route path='/register' component={RegisterComponent} />
-          <Route path='/main' component={AppHomeComponent} />
+          <Route path='/home/:section' component={AppHomeComponent} />
         </Switch>
       </BrowserRouter>
     );
