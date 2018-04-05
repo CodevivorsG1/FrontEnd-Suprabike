@@ -7,7 +7,6 @@ import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
 
 //import {Button} from 'react-bootstrap'
-
 //DB_Components/UsersComponent.js
 class App extends Component {
   render() {
