@@ -5,56 +5,155 @@ import AppHeaderComponent from './AppHeaderComponent.js';
 import store from './store'
 
 class LoginComponent extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      token: " vacio"
+      email: '',
+      password: '',
+      role:'user'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSmallChange = this.handleSmallChange.bind(this);
+  }
+
+  handleChange (e){
+    e.target.classList.add('active');
+
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    if (e.target.name !== 'role'){
+      this.showInputError(e.target);
     }
-    store.subscribe(() => {
-      this.setState({
-        token: store.getState().token
-      })
+  }
+
+  handleSmallChange (e){
+    this.setState({
+      [e.target.name]: e.target.value
     });
   }
-  login(){
-    console.log('token'+ this.state.token)
-    var tok = 'ds5f4da5fd'
-    store.dispatch({
-      type: 'ADD_TOKEN',
-      token: tok
-    })
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    console.log('Component state:', JSON.stringify(this.state));
+
+    if (!this.showFormErrors()) {
+      console.log('Form is invalid: do not submit');
+    } else {
+      console.log('Form is valid: submit');
+    }
   }
+
+  showFormErrors() {
+    const inputs = document.querySelectorAll('.getIt');
+    let isFormValid = true;
+
+    inputs.forEach(input => {
+      input.classList.add('active');
+
+      const isInputValid = this.showInputError(input);
+
+      if (!isInputValid) {
+        isFormValid = false;
+      }
+    });
+
+    return isFormValid;
+  }
+
+  showInputError(input) {
+    const name = input.name;
+    const validity = input.validity;
+    const label = document.getElementById(`${name}Label`).textContent;
+    const error = document.getElementById(`${name}Error`);
+
+    const isPassword = name.indexOf('password') !== -1;
+    const isPasswordConfirm = name === 'passwordConfirm';
+    if (isPasswordConfirm) {
+      if (this.password.value !== this.passwordConfirm.value) {
+        this.passwordConfirm.setCustomValidity('Passwords do not match');
+      } else {
+        this.passwordConfirm.setCustomValidity('');
+      }
+    }
+
+    if (!validity.valid) {
+      if (validity.valueMissing) {
+        error.textContent = `${label} es un campo requerido`;
+      } else if (validity.typeMismatch) {
+        error.textContent = `${label} debe ser una dirección valida`;
+      } else if (isPassword && validity.patternMismatch) {
+        error.textContent = `${label} debe tener más de 4 caracteres`;
+      }
+      return false;
+    }
+
+    error.textContent = '';
+    return true;
+  }
+
   render() {
     return(
-
       <div>
       <AppHeaderComponent />
-      <div class="container-fluid">
-        <div class="panel login-square">
-          <div class="panel-heading">
-            <h3 class="panel-heading">Ingrese por favor ...</h3>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
-              <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
-              <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+      <form onSubmit={this.handleSubmit} noValidate>
+        <div class="container-fluid">
+          <div class="panel login-square">
+            <div class="panel-heading">
+              <h3 class="panel-heading">Ingrese por favor ...</h3>
             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
+                <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
+                <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+              </div>
 
-            <div class="col-md-6">
-              <input id="textinput" name="textinput" type="text" placeholder="Ingrese Nombre de Usuario" class="form-control input-md" />
-              <div class="spacing">
-                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" /><small> Recordarme</small>
+              <div class="col-md-6">
+                <label id="emailLabel">Email</label>
+                <input id="email" name="email"
+                   type="email" class="form-control input-md getIt"
+                   placeholder="Email"
+                   value={this.state.email} onChange={this.handleChange}
+                   required/>
+                 <div className="error" id="emailError" />
+                <div class="spacing"></div>
+
+                <label id="passwordLabel">Contraseña</label>
+                <input id="password" name="password"
+                   type="password" placeholder="Contraseña"
+                   class="form-control input-md getIt"
+                   value={this.state.password} onChange={this.handleChange}
+                   pattern=".{5,}" required/>
+                <div className="error" id="passwordError" />
+                <div class="spacing">
+                  <label id="checkboxLabel">Check</label>
+
+                  <select name="role" id="role-list"
+                    defaultValue={this.state.role} onChange={this.handleSmallChange}>
+                    <option value="user">Usuario</option>
+                    <option value="store">Tienda</option>
+                    <option value="tech">Técnico</option>
+
+                  </select>
+
+                  <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
+                  <div className="error" id="checkboxError" />
+                  <a href="#"><small> Olvidaste la clave?</small></a><br/>
+                  <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
+                  <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
               </div>
               <input id="textinput" name="textinput" type="password" placeholder="Clave" class="form-control input-md" />
               <div class="spacing"><a href="#"><small> Olvidaste la clave?</small></a><br/>
                 <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                <button id="singlebutton" name="singlebutton" onClick={ ()=> this.login() } class="btn btn-info btn-sm pull-right">Entrar</button>
+                <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
             </div>
-
           </div>
         </div>
-      </div>
+      </form>
       </div>
     );
   }
