@@ -18,6 +18,7 @@ class App extends Component {
           <Route path='/login' component={LoginComponent}/>
           <Route path='/register' component={RegisterComponent} />
           <Route path='/home/:section' component={AppHomeComponent} />
+          <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
         </Switch>
       </BrowserRouter>

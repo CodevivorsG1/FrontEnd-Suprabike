@@ -2,6 +2,12 @@ import React from 'react';
 import '../css/AppNavigationComponent.css';
 
 class AppNavigationComponent extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+
+    }
+  }
   render(){
       return (
         
@@ -11,7 +17,8 @@ class AppNavigationComponent extends React.Component{
           </a>
           <a href="/home/productList" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
           <a href="#" class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
-          <a href="#" class="list-group-item"><i class="fas fa-wrench"></i> Servicio técnico</a>
+          <a href="/home/technician" class="list-group-item"><i class="fas fa-wrench"></i> Servicio técnico</a>
+          <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
           <a href="#" class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
           
         </div>
