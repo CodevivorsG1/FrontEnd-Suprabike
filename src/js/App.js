@@ -7,6 +7,7 @@ import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
 
 //import {Button} from 'react-bootstrap'
+
 //DB_Components/UsersComponent.js
 class App extends Component {
   render() {
@@ -16,7 +17,7 @@ class App extends Component {
           <Route exact path='/' component={AppHomeLandingComponent}/>
           <Route path='/login' component={LoginComponent}/>
           <Route path='/register' component={RegisterComponent} />
-          <Route path='/main' component={AppHomeComponent} />
+          <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
         </Switch>
       </BrowserRouter>
