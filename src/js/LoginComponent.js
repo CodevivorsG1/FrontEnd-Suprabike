@@ -8,11 +8,13 @@ class LoginComponent extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      role:'user'
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSmallChange = this.handleSmallChange.bind(this);
   }
 
   handleChange (e){
@@ -21,8 +23,15 @@ class LoginComponent extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    if (e.target.name !== 'role'){
+      this.showInputError(e.target);
+    }
+  }
 
-    this.showInputError(e.target);
+  handleSmallChange (e){
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleSubmit(e) {
@@ -39,7 +48,7 @@ class LoginComponent extends React.Component {
 
   showFormErrors() {
     const inputs = document.querySelectorAll('.getIt');
-    let isFormValid = true;   
+    let isFormValid = true;
 
     inputs.forEach(input => {
       input.classList.add('active');
@@ -121,7 +130,16 @@ class LoginComponent extends React.Component {
                 <div className="error" id="passwordError" />
                 <div class="spacing">
                   <label id="checkboxLabel">Check</label>
-                  <input type="checkbox" name="checkbox" id="checkboxes" value="1" /><small> Recordarme</small><br/>
+
+                  <select name="role" id="role-list"
+                    defaultValue={this.state.role} onChange={this.handleSmallChange}>
+                    <option value="user">Usuario</option>
+                    <option value="store">Tienda</option>
+                    <option value="tech">Técnico</option>
+
+                  </select>
+
+                  <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
                   <div className="error" id="checkboxError" />
                   <a href="#"><small> Olvidaste la clave?</small></a><br/>
                   <Link to="/register"><small>No te has registrado?</small></Link><br/></div>

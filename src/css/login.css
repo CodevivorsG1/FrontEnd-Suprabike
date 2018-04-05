@@ -75,3 +75,12 @@ label{
 #checkboxError{
 	display: none;
 }
+
+#checkbox {
+	margin-left: 10%;
+}
+
+#role-list {
+	background-color: white;
+	padding: 0 4px;
+}
