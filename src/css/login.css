@@ -71,3 +71,7 @@ input.active:invalid {
 label{
 	display: none;
 }
+
+#checkboxError{
+	display: none;
+}
