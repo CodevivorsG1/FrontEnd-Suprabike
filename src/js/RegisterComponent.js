@@ -1,6 +1,7 @@
 import React from 'react';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import '../css/register.css';
+import axios from 'axios';
 
 class RegisterComponent extends React.Component {
   constructor(props) {
@@ -46,6 +47,18 @@ class RegisterComponent extends React.Component {
       console.log('Form is invalid: do not submit');
     } else {
       console.log('Form is valid: submit');
+
+      var new_user = this.state
+
+      axios.post('http://localhost:3000/users',
+                  {new_user})
+                  .then(function(response){
+                    console.log('Success ...(?)')
+                    console.log(response)
+                  })
+                  .catch(function(error){
+                    console.log('Failed miserably :(')
+                  })
     }
   }
 
@@ -74,7 +87,7 @@ class RegisterComponent extends React.Component {
 
     const isPassword = name.indexOf('password') !== -1;
     const isPasswordConfirm = name === 'passwordConfirm';
-    if (isPasswordConfirm) {      
+    if (isPasswordConfirm) {
       if (this.password.value !== this.passwordConfirm.value) {
         this.passwordConfirm.setCustomValidity('Las contraseñas no coinciden.');
       } else {
