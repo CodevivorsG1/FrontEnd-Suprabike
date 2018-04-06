@@ -44,6 +44,19 @@ class LoginComponent extends React.Component {
       console.log('Form is invalid: do not submit');
     } else {
       console.log('Form is valid: submit');
+
+      var new_user = this.state
+
+      axios.post('https://suprabikes-backend.herokuapp.com/sessions/',
+                  {new_user})
+                  .then(function(response){
+                    console.log('Authenticated ...(?)')
+                    console.log(response)
+                  })
+                  .catch(function(error){
+                    console.log('Failed miserably :(')
+                  })
+
     }
   }
 
