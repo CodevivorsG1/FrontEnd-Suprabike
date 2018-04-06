@@ -146,10 +146,7 @@ class LoginComponent extends React.Component {
                   <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
                   <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
               </div>
-              <input id="textinput" name="textinput" type="password" placeholder="Clave" class="form-control input-md" />
-              <div class="spacing"><a href="#"><small> Olvidaste la clave?</small></a><br/>
-                <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+
             </div>
           </div>
         </div>

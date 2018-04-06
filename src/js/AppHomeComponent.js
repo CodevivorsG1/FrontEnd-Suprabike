@@ -5,6 +5,7 @@ import AppHeaderComponent from './AppHeaderComponent.js'
 import AppFooterComponent from './AppFooterComponent.js'
 import store from './store'
 
+
 class AppHomeComponent extends React.Component {
 	constructor(){
 		super();
