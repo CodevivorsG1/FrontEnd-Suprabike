@@ -1,17 +1,28 @@
 import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import '../../css/forum.css'
+import axios from 'axios';
 
 
 class ForumComponent extends React.Component {
 	constructor() {
     super();
     
-
     this.state = {
       forums: []
-    }
+    }   
     
+  }
+  componentDidMount(){
+    axios.get('https://suprabikes-backend.herokuapp.com/forums')
+              .then((response) =>{
+              	this.state.forums = response;
+                
+                console.log(this.state);
+              })
+              .catch((error) => {
+                console.log("fuck")
+              })
   }
   render(){
     return(
