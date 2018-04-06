@@ -1,7 +1,7 @@
-# SPRINT_REVISION_1 [IS2_SUPRABIKES_FE](http://suprabikes-front-end-dulfrey.c9users.io/) 
+# SPRINT_REVISION_2 [IS2_SUPRABIKES_FE](http://suprabikes-front-end-dulfrey.c9users.io/) 
 
 
-Versión 1.0 del Front-End de [Suprabikes](http://suprabikes-front-end-dulfrey.c9users.io/) visible en este => [link](http://suprabikes-front-end-dulfrey.c9users.io/).
+Versión 2.0 del Front-End de [Suprabikes](http://suprabikes-front-end-dulfrey.c9users.io/) visible en este => [link](http://suprabikes-front-end-dulfrey.c9users.io/).
 
 ## Features
 
