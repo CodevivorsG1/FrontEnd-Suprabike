@@ -6,6 +6,8 @@ import ShoppingCart from './ShoppingCart.js'
 import User from './User.js'
 import store from './store'
 import UserComponent from './DB_Components/UsersComponent.js';
+import ForumComponent from './DB_Components/ForumComponent.js';
+
 
 
 class AppContentComponent extends React.Component{
@@ -55,7 +57,7 @@ class AppContentComponent extends React.Component{
   		return(
 	      <div>
 	        <h3>Foros</h3>
-	        <TechnicianList />
+	        <ForumComponent />
 	      </div>
 	    );	
   	}

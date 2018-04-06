@@ -5,7 +5,6 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
-import ForumComponent from './DB_Components/ForumComponent.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -21,7 +20,6 @@ class App extends Component {
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          <Route path='/forum'component={ForumComponent}/>
         </Switch>
       </BrowserRouter>
     );
