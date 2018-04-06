@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/login.css';
 import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
+import store from './store'
 
 class LoginComponent extends React.Component {
   constructor(props){
