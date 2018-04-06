@@ -1,36 +1,36 @@
-# SPRINT_REVISION_2 [IS2_SUPRABIKES_FE](http://suprabikes-front-end-dulfrey.c9users.io/) 
+# SPRINT_REVISION_2 [IS2_SUPRABIKES_FE](https://suprabikes.herokuapp.com) 
 
+![alt text](http://suprabikes-front-end-dulfrey.c9users.io/static/media/logoSupraBIKES.d5717e52.png "Logo SupraBikes")
 
-Versión 2.0 del Front-End de [Suprabikes](http://suprabikes-front-end-dulfrey.c9users.io/) visible en este => [link](http://suprabikes-front-end-dulfrey.c9users.io/).
+Versión 2.0 del Front-End de [Suprabikes](https://suprabikes.herokuapp.com) visible en este => [link](https://suprabikes.herokuapp.com).
 
 ## Features
 
 ### Diego Rodríguez 
 
-* Integracion de componentes AppContentComponent, AppNavigationComponent y AppHeaderComponent en AppBodyComponent
+* Integracion de componentes BicycleComponent, TransactionComponent, CommentComponent y StoreComponent
 
-* Configuración de las rutas / a [AppHomeLandingComponent](http://suprabikes-front-end-dulfrey.c9users.io/main), /login a [LoginComponent](http://suprabikes-front-end-dulfrey.c9users.io/login) y /register a [RegisterComponent](http://suprabikes-front-end-dulfrey.c9users.io/register)
+* Validaciones correspondientes a nivel de vistas
 
-* Creacion componentes(html y css) [LoginComponent](http://suprabikes-front-end-dulfrey.c9users.io/login) y [RegisterComponent](http://suprabikes-front-end-dulfrey.c9users.io/register)
+* Implementación de servicios UserComponent, LoginComponent y RegisterComponent
+
+* Creacion componentes(html y css) [ForumComponent]
 
 
 ### Dulfrey Hernández
 
-* Creacion e integración de los componentes(html y css) [Landing](http://suprabikes-front-end-dulfrey.c9users.io/), AppHeaderComponent y AppFooterComponent.
+* Despliegue en Heroku de [Suprabikes](https://suprabikes.herokuapp.com)
 
-* Ajuste de los estilos AppContentComponent y AppNavigationComponent entre otros.
+* Creacion componentes(html y css) [ProductList](https://suprabikes.herokuapp.com/home/productList) [UserComponent] y [TechnicianList]
 
-* Configuración de la ruta /main [AppHomeComponent](http://suprabikes-front-end-dulfrey.c9users.io/main) y  / a [AppHomeLandingComponent](http://suprabikes-front-end-dulfrey.c9users.io/)
+* Implementación de Redux para el carrito de compras y manejo de token
 
-* Diseño del logo de SupraBikes
-
-![alt text](http://suprabikes-front-end-dulfrey.c9users.io/static/media/logoSupraBIKES.d5717e52.png "Logo SupraBikes")
+* Configuración de la ruta /home/forums [ForumComponent](https://suprabikes.herokuapp.com/home/forums) ,  /productlist a [ProductList](https://suprabikes.herokuapp.com/home/technician) y  /productlist a [ProductList](https://suprabikes.herokuapp.com/home/productList)
 
 ---
 
 ## Futuras Features
 
-* Desarrollar componente de "Mi cuenta" (muestra historial y perfil del usuario)
-* Tener un login y registro funcionales
+* Desarrollar componente de "Armar bici" 
 * Mostrar resultados de busquedas
-* Desarrollar el componente de servicio tecnico
+* Hacer busquedas en foros
