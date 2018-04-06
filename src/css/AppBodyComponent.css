@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .Body-square {
   border: 2px solid black;
   width: 100%;
@@ -7,5 +11,5 @@
 
 
 h2 {
-  
+
 }
