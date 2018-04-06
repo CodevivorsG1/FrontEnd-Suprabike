@@ -50,7 +50,7 @@ class RegisterComponent extends React.Component {
 
       var new_user = this.state
 
-      axios.post('http://localhost:3000/users',
+      axios.post('https://suprabikes-backend.herokuapp.com/user/',
                   {new_user})
                   .then(function(response){
                     console.log('Success ...(?)')
