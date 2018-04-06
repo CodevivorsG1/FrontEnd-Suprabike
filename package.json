@@ -12,10 +12,11 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-react-session": "^2.3.1"
   },
   "scripts": {
-    "start": "PORT=3006 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
