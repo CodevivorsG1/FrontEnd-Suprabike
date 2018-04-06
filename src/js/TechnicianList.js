@@ -9,7 +9,7 @@ class TechnicianList extends React.Component {
 
 		this.state = {
 			bikes: [
-				{ id: 1 , name: 'Javier Gómez', price: 1000000 , image: '../img/javier.jpg' , stars:3},
+				{ id: 1 , name: 'Javier Gómez', price: 1000000 , image: '../img/javier.JPG' , stars:3},
 				{ id: 2 , name: 'Jose Díaz', price: 300000 , image: '../img/jose.jpg' , stars:2}
 			]
 		}
