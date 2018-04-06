@@ -51,7 +51,7 @@ class LoginComponent extends React.Component {
       axios.post('https://suprabikes-backend.herokuapp.com/sessions/',
                   {new_user})
                   .then(function(response){
-                    console.log('Authenticated ...(?)')
+                    this.token = response.token;
                     console.log(response)
                   })
                   .catch(function(error){
