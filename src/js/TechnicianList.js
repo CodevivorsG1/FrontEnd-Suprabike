@@ -9,8 +9,8 @@ class TechnicianList extends React.Component {
 
 		this.state = {
 			bikes: [
-				{ id: 1 , name: 'Mountain', price: 1000000 , image: '../img/bici.jpg'},
-				{ id: 2 , name: 'Bike', price: 300000 , image: '../img/scott-bike.jpg'}
+				{ id: 1 , name: 'Javier Gómez', price: 1000000 , image: '../img/javier.jpg' , stars:3},
+				{ id: 2 , name: 'Jose Díaz', price: 300000 , image: '../img/jose.jpg' , stars:2}
 			]
 		}
 	}
@@ -25,10 +25,11 @@ class TechnicianList extends React.Component {
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
-					    	<button href="#" class="btn btn-danger btn-sm" onClick={() => this.addToCart(product)} role="button">Comprar</button>
+					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(product)} role="button">Contactar</button>
 				    	</div>
 				    	<div class="pricetext">
-				    		£  {product.price}
+				    		 {(product)  => this.renderStars(product.stars)}
+				    		 					    		 
 				    	</div>	
 			    	</div>
 				</div>
@@ -42,6 +43,15 @@ class TechnicianList extends React.Component {
 	      bike: bike
 	    })
   	}
+	  	renderStars(stars) {
+	  		console.log(stars)
+			let htmlStars = [];
+			for (var i = 0; i < 5; i++) {
+				htmlStars.push(<span className="busterCards" key={i}>♦</span>);
+			}
+	    	return htmlStars
+	    ;
+	}
 }
 
 export default TechnicianList;

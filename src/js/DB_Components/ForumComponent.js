@@ -4,17 +4,23 @@ import '../../css/forum.css'
 
 
 class ForumComponent extends React.Component {
+	constructor() {
+    super();
+    
+
+    this.state = {
+      forums: []
+    }
+    
+  }
   render(){
     return(
       <div>
-        <AppHeaderComponent />
-        <p>
-
-</p>
+    
 <table class=" stretch">
 	<tbody>
-		<tr class="forum-list-header">
-			<th class="header-forum">
+		<tr class="card-header mb-3">
+			<th class="">
 				Directorio
 			</th>
 			<th class="header-topics">
@@ -27,7 +33,7 @@ class ForumComponent extends React.Component {
 				Ultimo Post
 			</th>
 		</tr>
-		<tr id="forum3" class="category-header">
+		<tr id="forum3" class="bg-primary text-white ml-4">
 			<td colspan="4">
 				Foros Principales
 			</td>
@@ -136,7 +142,7 @@ class ForumComponent extends React.Component {
 			</td>
 		</tr>
 
-		<tr id="forum17" class="category-header">
+		<tr id="forum17" class="bg-primary text-white">
 			<td colspan="4">
 					Foros Recientes
 			</td>
