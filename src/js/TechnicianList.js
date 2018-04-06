@@ -1,27 +1,56 @@
 import React from 'react';
 import "../css/TechnicianList.css";
 import store from './store'
+import axios from 'axios';
 
 class TechnicianList extends React.Component {
 	constructor(){
 		super();
 		this.addToCart = this.addToCart.bind(this);
+		this.handleImg = this.handleImg.bind(this);
 
 		this.state = {
 			bikes: [
-				{ id: 1 , name: 'Javier Gómez', price: 1000000 , image: '../img/javier.jpg' , stars:3},
-				{ id: 2 , name: 'Jose Díaz', price: 300000 , image: '../img/jose.jpg' , stars:2}
+
 			]
 		}
 	}
+
+	handleImg(product){
+		if(product.hasOwnProperty('img')){
+			return product.image;
+		}else{
+			console.log("no img")
+			return '../img/unknown.jpg'
+		}
+	}
+
+	componentDidMount(){
+    axios.get('http://localhost:3000/technicians/')
+              .then((response) =>{
+								for(var x in response.data){
+									this.state.bikes.push(response.data[x])
+								}
+								this.setState({});
+								console.log(this.state);
+              })
+              .catch((error) => {
+                console.log("fuck")
+              })
+  }
+
+
+
+
 	 render() {
 	    return (
 	      <div class="row ">
 	        {this.state.bikes.map(product =>
 	        	<div class="col-md-3 productbox">
-				    <img  class="img-responsive thumbnail" src={product.image} alt={product.name} />
+				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
-				    	{product.name}
+				    	{product.NameTec + " " + product.SurnameTec}
+							
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
@@ -29,8 +58,8 @@ class TechnicianList extends React.Component {
 				    	</div>
 				    	<div class="pricetext">
 				    		 {(product)  => this.renderStars(product.stars)}
-				    		 					    		 
-				    	</div>	
+
+				    	</div>
 			    	</div>
 				</div>
 	        )}

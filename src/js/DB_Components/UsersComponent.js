@@ -18,23 +18,15 @@ class UserComponent extends React.Component {
     }
   }
 
-  handleData(data){
-    console.log(data);
-    for(var x in data){
-      console.log(x);
-    }
-  }
-
   componentDidMount(){
     axios.get('https://api.github.com/users/maecapozzi')
               .then((response) =>{
                 for(var x in this.state){
                   if( response.data.hasOwnProperty(x)){
-                    this.setState({
-                        [x] : response.data[x]
-                    })
+                    this.state[x] = response.data[x];
                   }
                 }
+                this.setState({})                
                 console.log(this.state);
               })
               .catch((error) => {
@@ -65,7 +57,7 @@ class UserComponent extends React.Component {
 			                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">user: {this.state.login}</a>
 			                            <br />
 			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-			                        
+
 			                        <div class="btn-group">
 			                            <button type="button" class="btn btn-primary">
 			                                Social</button>
