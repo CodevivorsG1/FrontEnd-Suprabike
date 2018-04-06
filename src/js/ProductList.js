@@ -28,7 +28,7 @@ class ProductList extends React.Component {
 					    	<button href="#" class="btn btn-danger btn-sm" onClick={() => this.addToCart(product)} role="button">Comprar</button>
 				    	</div>
 				    	<div class="pricetext">
-				    		£  {product.price}
+				    		$  {product.price}
 				    	</div>	
 			    	</div>
 				</div>
