@@ -1,4 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { loadState, saveState } from './storage';
 
 const reducer = ( state, action) => {
 	if (action.type === "ADD_TOKEN") {
@@ -36,4 +37,17 @@ const reducer = ( state, action) => {
 	return state
 };
 
-export default createStore(reducer , { token : "" , sectionView : "" , cart:[]});
+const persistedState = () =>{
+    console.log("deberia ser el estado guardado",loadState())
+    return loadState();
+}
+
+const logger = store => next => action => {
+    console.log('Realizó método dispatch para: ', action);
+    let result = next(action);
+    saveState(store.getState())
+    console.log('El estado es ahora: ', store.getState());
+    return result;
+}
+
+export default createStore(reducer , persistedState(), applyMiddleware(logger));
