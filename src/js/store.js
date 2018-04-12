@@ -2,6 +2,7 @@ import { createStore } from 'redux'
 
 const reducer = ( state, action) => {
 	if (action.type === "ADD_TOKEN") {
+		console.log('token store'+action.token)
 		return{
 			...state,
 			token: action.token
@@ -17,6 +18,12 @@ const reducer = ( state, action) => {
 		return{
 			...state,
 			sectionView: action.sectionView
+		}
+	}
+	if (action.type === "CLOSE_SESSION") {
+		return{
+			...state,
+			token: ""
 		}
 	}
 	if (action.type === "REMOVE_BIKE") {

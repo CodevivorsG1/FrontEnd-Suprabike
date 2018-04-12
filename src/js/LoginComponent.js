@@ -1,7 +1,10 @@
 import React from 'react';
+import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
 import '../css/login.css';
 import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
+import AppHomeComponent from './AppHomeComponent.js'
+import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
 
@@ -11,9 +14,14 @@ class LoginComponent extends React.Component {
     this.state = {
       email: '',
       password: '',
-      role:'user'
+      role:'user',
+      token: '',
+      redirect: false
     };
 
+    store.subscribe(() => {
+        this.state.token = store.getState().token
+      });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSmallChange = this.handleSmallChange.bind(this);
@@ -29,7 +37,7 @@ class LoginComponent extends React.Component {
       this.showInputError(e.target);
     }
   }
-
+  
   handleSmallChange (e){
     this.setState({
       [e.target.name]: e.target.value
@@ -48,14 +56,32 @@ class LoginComponent extends React.Component {
 
       var new_user = this.state
 
-      axios.post('https://suprabikes-backend.herokuapp.com/sessions/',
-                  {new_user})
-                  .then(function(response){
-                    this.token = response.token;
+      axios.post('http://localhost:4000/users_sessions',
+                  {
+                    'password': new_user.password,
+                    'email': new_user.email
+                  }
+              , 
+              {headers: {
+                'Content-type': 'application/json'
+              }
+            })
+                  .then((response)=>{
                     console.log(response)
+                    store.dispatch({
+                      type: 'ADD_TOKEN',
+                      token: response.data.authentication_token
+                    })
+                    this.state.token = response.data.authentication_token;
+                    this.setState({ redirect: true });
+
+                    //window.location.reload()
+                    //ReactDOM.render(<AppHomeComponent /> , document.getElementById('root'))
+                    
                   })
-                  .catch(function(error){
+                  .catch((error) =>{
                     console.log('Failed miserably :(')
+                    console.log(error)
                   })
 
     }
@@ -110,8 +136,18 @@ class LoginComponent extends React.Component {
   }
 
   render() {
+     const { redirect } = this.state;
+     const section = store.getState().sectionView
+     if (redirect) {
+       return <Redirect to={'/home/'+section} />;
+     }
+    console.log(this.state.token)
+    var match = { params:{section:''}};
     return(
-      <div>
+      this.state.token != '' ?
+      <AppHomeComponent  match={match}/>  
+           :
+           <div>
       <AppHeaderComponent />
       <form onSubmit={this.handleSubmit} noValidate>
         <div class="container-fluid">
@@ -165,7 +201,7 @@ class LoginComponent extends React.Component {
           </div>
         </div>
       </form>
-      </div>
+      </div>      
     );
   }
 }
