@@ -15,7 +15,7 @@ class ShoppingCart extends Component {
     this.removeFromCart = this.removeFromCart.bind(this);
 
     this.state = {
-      cart: []
+      cart: store.getState().cart
     }
     store.subscribe(() => {
         this.setState({
