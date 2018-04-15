@@ -1,6 +1,9 @@
 import React from 'react';
 import "../css/TechnicianList.css";
-import store from './store'
+import "../css/loader.css";
+
+
+import store from './store';
 import axios from 'axios';
 
 class TechnicianList extends React.Component {
@@ -11,8 +14,8 @@ class TechnicianList extends React.Component {
 
 		this.state = {
 			bikes: [
-
-			]
+			],
+			isLoading: false
 		}
 	}
 
@@ -26,26 +29,31 @@ class TechnicianList extends React.Component {
 	}
 
 	componentDidMount(){
-    axios.get('http://localhost:3000/technicians/')
+	this.setState({isLoading: true})
+    axios.get('http://localhost:4000/technicians/')
               .then((response) =>{
+								this.setState({isLoading: false});
 								for(var x in response.data){
 									this.state.bikes.push(response.data[x])
 								}
 								this.setState({});
 								console.log(this.state);
-              })
+			  })
               .catch((error) => {
-                console.log("fuck")
+				console.log("fuck")
+				this.setState({ isLoading: false})
               })
   }
-
-
-
-
-	 render() {
-	    return (
-	      <div class="row ">
-	        {this.state.bikes.map(product =>
+	loadData =({bike}) => {
+		console.log("spinner", bike)
+		console.log("entro al spinner", bike.length)
+		if (this.state.isLoading){
+			console.log("entro al spinner", bike.length)
+			return(
+				<div className="loader"></div>
+			);
+		}else{
+			return (bike.map(product =>
 	        	<div class="col-md-3 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
@@ -62,9 +70,20 @@ class TechnicianList extends React.Component {
 				    	</div>
 			    	</div>
 				</div>
-	        )}
+			))
+		}
+	}
+
+
+
+	 render() {
+	    return (
+	      <div class="row ">
+			{
+			<this.loadData bike={this.state.bikes}/>	
+			}
 	      </div>
-	    );
+		);
 	  }
 	  addToCart(bike) {
 	  	store.dispatch({
