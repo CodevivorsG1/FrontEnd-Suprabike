@@ -26,7 +26,8 @@ const reducer = ( state, action) => {
 	if (action.type === "CLOSE_SESSION") {
 		return{
 			...state,
-			token: ""
+			token: "",
+			userType: ""
 		}
 	}
 	if (action.type === "REMOVE_BIKE") {
