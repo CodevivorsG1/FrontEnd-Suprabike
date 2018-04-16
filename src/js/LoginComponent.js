@@ -16,7 +16,8 @@ class LoginComponent extends React.Component {
       password: '',
       role:'user',
       token: '',
-      redirect: false
+      redirect: false,
+      isLoading: false
     };
 
     store.subscribe(() => {
@@ -45,6 +46,7 @@ class LoginComponent extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({isLoading: true})
     e.preventDefault();
 
     console.log('Component state:', JSON.stringify(this.state));
@@ -73,7 +75,7 @@ class LoginComponent extends React.Component {
                       token: response.data.authentication_token
                     })
                     this.state.token = response.data.authentication_token;
-                    this.setState({ redirect: true });
+                    this.setState({ redirect: true, isLoading: false });
 
                     //window.location.reload()
                     //ReactDOM.render(<AppHomeComponent /> , document.getElementById('root'))
@@ -82,6 +84,7 @@ class LoginComponent extends React.Component {
                   .catch((error) =>{
                     console.log('Failed miserably :(')
                     console.log(error)
+                    this.setState({isLoading: false})
                   })
 
     }
@@ -143,66 +146,78 @@ class LoginComponent extends React.Component {
      }
     console.log(this.state.token)
     var match = { params:{section:''}};
-    return(
-      this.state.token != '' ?
-      <AppHomeComponent  match={match}/>  
-           :
-           <div>
-      <AppHeaderComponent />
-      <form onSubmit={this.handleSubmit} noValidate>
-        <div class="container-fluid">
-          <div class="panel login-square">
-            <div class="panel-heading">
-              <h3 class="panel-heading">Ingrese por favor ...</h3>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
-                <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
-                <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+    if (this.state.isLoading){
+      return (
+        this.state.token != '' ?
+        <AppHomeComponent  match={match}/>  
+            :
+        <div>
+          <AppHeaderComponent />        
+          <div className="loader position-middle"/>
+        </div>
+      );
+    }else{
+      return(
+        this.state.token != '' ?
+        <AppHomeComponent  match={match}/>  
+            :
+            <div>
+        <AppHeaderComponent />
+        <form onSubmit={this.handleSubmit} noValidate>
+          <div class="container-fluid">
+            <div class="panel login-square">
+              <div class="panel-heading">
+                <h3 class="panel-heading">Ingrese por favor ...</h3>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
+                  <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
+                  <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+                </div>
 
-              <div class="col-md-6">
-                <label id="emailLabel">Email</label>
-                <input id="email" name="email"
-                   type="email" class="form-control input-md getIt"
-                   placeholder="Email"
-                   value={this.state.email} onChange={this.handleChange}
-                   required/>
-                 <div className="error" id="emailError" />
-                <div class="spacing"></div>
+                <div class="col-md-6">
+                  <label id="emailLabel">Email</label>
+                  <input id="email" name="email"
+                    type="email" class="form-control input-md getIt"
+                    placeholder="Email"
+                    value={this.state.email} onChange={this.handleChange}
+                    required/>
+                  <div className="error" id="emailError" />
+                  <div class="spacing"></div>
 
-                <label id="passwordLabel">Contraseña</label>
-                <input id="password" name="password"
-                   type="password" placeholder="Contraseña"
-                   class="form-control input-md getIt"
-                   value={this.state.password} onChange={this.handleChange}
-                   pattern=".{5,}" required/>
-                <div className="error" id="passwordError" />
-                <div class="spacing">
-                  <label id="checkboxLabel">Check</label>
+                  <label id="passwordLabel">Contraseña</label>
+                  <input id="password" name="password"
+                    type="password" placeholder="Contraseña"
+                    class="form-control input-md getIt"
+                    value={this.state.password} onChange={this.handleChange}
+                    pattern=".{5,}" required/>
+                  <div className="error" id="passwordError" />
+                  <div class="spacing">
+                    <label id="checkboxLabel">Check</label>
 
-                  <select name="role" id="role-list"
-                    defaultValue={this.state.role} onChange={this.handleSmallChange}>
-                    <option value="user">Usuario</option>
-                    <option value="store">Tienda</option>
-                    <option value="tech">Técnico</option>
+                    <select name="role" id="role-list"
+                      defaultValue={this.state.role} onChange={this.handleSmallChange}>
+                      <option value="user">Usuario</option>
+                      <option value="store">Tienda</option>
+                      <option value="tech">Técnico</option>
 
-                  </select>
+                    </select>
 
-                  <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
-                  <div className="error" id="checkboxError" />
-                  <a href="#"><small> Olvidaste la clave?</small></a><br/>
-                  <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                  <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+                    <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
+                    <div className="error" id="checkboxError" />
+                    <a href="#"><small> Olvidaste la clave?</small></a><br/>
+                    <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
+                    <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+                </div>
+
               </div>
-
             </div>
           </div>
-        </div>
-      </form>
-      </div>      
-    );
+        </form>
+        </div>      
+      );
+    }
   }
 }
 

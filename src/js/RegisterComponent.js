@@ -14,7 +14,8 @@ class RegisterComponent extends React.Component {
       passwordConfirm: '',
       cellphone: '',
       telephone: '',
-      gender: ''
+      gender: '',
+      isLoading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,8 +40,9 @@ class RegisterComponent extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({ isLoading: true })
     e.preventDefault();
-
+    
     console.log('Component state:', JSON.stringify(this.state));
 
     if (!this.showFormErrors()) {
@@ -50,15 +52,18 @@ class RegisterComponent extends React.Component {
 
       var new_user = this.state
 
-      axios.post('https://suprabikes-backend.herokuapp.com/user/',
+      axios.post('http://localhost:4000/users/',
                   {new_user})
-                  .then(function(response){
+                  .then((response)=>{
                     console.log('Success ...(?)')
                     console.log(response)
+                    this.setState({ isLoading: false})
                   })
-                  .catch(function(error){
+                  .catch((error)=>{
                     console.log('Failed miserably :(')
+                    this.setState({ isLoading: false})
                   })
+                  
     }
   }
 
@@ -111,145 +116,150 @@ class RegisterComponent extends React.Component {
     error.textContent = '';
     return true;
   }
-
-
+  
   render() {
-    return (
-      <div>
-        <AppHeaderComponent />
-          <form onSubmit={this.handleSubmit} noValidate>
-          <div class="container-fluid">
-            <div class="panel register-square">
-              <div class="panel-heading">
-                <h3 class="panel-heading">Registrese en SupraBikes</h3>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="namesLabel">Nombres</label>
-                    <input type="text" name="names"
-                     id="first_name" class="form-control input-sm getIt"
-                     value={this.state.names} onChange={this.handleChange}
-                     placeholder="Nombres" required/>
-                   <div className="error" id="namesError" />
+    if (this.state.isLoading){
+      return(
+        <div>
+          <AppHeaderComponent />
+          <div className="loader position-middle"/>
+        </div>
+      )
+    }else{
+      return (
+        <div>
+          <AppHeaderComponent />
+            <form onSubmit={this.handleSubmit} noValidate>
+            <div class="container-fluid">
+              <div class="panel register-square">
+                <div class="panel-heading">
+                  <h3 class="panel-heading">Registrese en SupraBikes</h3>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="namesLabel">Nombres</label>
+                      <input type="text" name="names"
+                       id="first_name" class="form-control input-sm getIt"
+                       value={this.state.names} onChange={this.handleChange}
+                       placeholder="Nombres" required/>
+                     <div className="error" id="namesError" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="surnamesLabel">Apellidos</label>
+                      <input type="text" name="surnames"
+                       id="last_name" class="form-control input-sm getIt"
+                       value={this.state.surnames} onChange={this.handleChange}
+                       placeholder="Apellidos" required/>
+                     <div className="error" id="surnamesError" />
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="surnamesLabel">Apellidos</label>
-                    <input type="text" name="surnames"
-                     id="last_name" class="form-control input-sm getIt"
-                     value={this.state.surnames} onChange={this.handleChange}
-                     placeholder="Apellidos" required/>
-                   <div className="error" id="surnamesError" />
+  
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label id="emailLabel">Email</label>
+                      <input type="email" name="email"
+                       class="form-control input-sm getIt"
+                       value={this.state.email} onChange={this.handleChange}
+                       placeholder="Email" required/>
+                     <div className="error" id="emailError"/>
+                    </div>
+  
                   </div>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label id="emailLabel">Email</label>
-                    <input type="email" name="email"
-                     class="form-control input-sm getIt"
-                     value={this.state.email} onChange={this.handleChange}
-                     placeholder="Email" required/>
-                   <div className="error" id="emailError"/>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="passwordLabel">Contraseña</label>
+                      <input type="password" name="password"
+                       class="form-control input-sm getIt" pattern=".{5,}"
+                       ref={password => this.password = password}
+                       value={this.state.password} onChange={this.handleChange}
+                       placeholder="Contraseña" required/>
+                      <div className="error" id="passwordError" />
+                    </div>
+  
                   </div>
-
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="passwordLabel">Contraseña</label>
-                    <input type="password" name="password"
-                     class="form-control input-sm getIt" pattern=".{5,}"
-                     ref={password => this.password = password}
-                     value={this.state.password} onChange={this.handleChange}
-                     placeholder="Contraseña" required/>
-                    <div className="error" id="passwordError" />
-                  </div>
-
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="passwordConfirmLabel">Confirma Contraseña</label>
-                    <input type="password" name="passwordConfirm"
-                     class="form-control input-sm required"
-                     ref={passwordConfirm => this.passwordConfirm = passwordConfirm}
-                     value={this.state.passwordConfirm} onChange={this.handleChange}
-                     placeholder="Confirma Contraseña" required/>
-                    <div className="error" id="passwordConfirmError" />
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="passwordConfirmLabel">Confirma Contraseña</label>
+                      <input type="password" name="passwordConfirm"
+                       class="form-control input-sm required"
+                       ref={passwordConfirm => this.passwordConfirm = passwordConfirm}
+                       value={this.state.passwordConfirm} onChange={this.handleChange}
+                       placeholder="Confirma Contraseña" required/>
+                      <div className="error" id="passwordConfirmError" />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="row gen_part">
-                <div class="col-md-3">
-                  Género
-                </div>
-                <div class="col-md-3">
-                  <input type="radio" name="gender"
-                     value="hombre" checked={this.state.gender === "hombre"}
-                     onChange={this.handleSmallChange} /> Hombre
-                </div>
-                <div class="col-md-3">
-                  <input type="radio" name="gender"
-                     value="mujer" checked={this.state.gender === "mujer"}
-                     onChange={this.handleSmallChange} /> Mujer
-                </div>
-                <div class="col-md-3">
-                  <input type="radio" name="gender"
-                     value="otro" checked={this.state.gender === "otro"}
-                     onChange={this.handleSmallChange} /> Otro
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="cellphoneLabel">Celular</label>
-                    <input type="tel" name="cellphone"
-                     class="form-control input-sm getIt"
-                     value={this.state.cellphone} onChange={this.handleChange}
-                     placeholder="Celular"
-                     maxlength="10" required/>
-                   <div className="error" id="cellphoneError" />
+  
+                <div class="row gen_part">
+                  <div class="col-md-3">
+                    Género
                   </div>
-
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label id="telephoneLabel">Telefono</label>
-                    <input type="tel" name="telephone"
-                     class="form-control input-sm"
-                     value={this.state.telephone} onChange={this.handleChange}
-                     maxlength="7"
-                     placeholder="Telefono"/>
-                   <div className="error" id="telephoneError" />
+                  <div class="col-md-3">
+                    <input type="radio" name="gender"
+                       value="hombre" checked={this.state.gender === "hombre"}
+                       onChange={this.handleSmallChange} /> Hombre
+                  </div>
+                  <div class="col-md-3">
+                    <input type="radio" name="gender"
+                       value="mujer" checked={this.state.gender === "mujer"}
+                       onChange={this.handleSmallChange} /> Mujer
+                  </div>
+                  <div class="col-md-3">
+                    <input type="radio" name="gender"
+                       value="otro" checked={this.state.gender === "otro"}
+                       onChange={this.handleSmallChange} /> Otro
                   </div>
                 </div>
-              </div>
-
-
-              <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4 col-md-offset-4">
-                  <input type="submit" value="Registrarse" class="btn btn-info btn-block"/>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="cellphoneLabel">Celular</label>
+                      <input type="tel" name="cellphone"
+                       class="form-control input-sm getIt"
+                       value={this.state.cellphone} onChange={this.handleChange}
+                       placeholder="Celular"
+                       maxlength="10" required/>
+                     <div className="error" id="cellphoneError" />
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="telephoneLabel">Telefono</label>
+                      <input type="tel" name="telephone"
+                       class="form-control input-sm"
+                       value={this.state.telephone} onChange={this.handleChange}
+                       maxlength="7"
+                       placeholder="Telefono"/>
+                     <div className="error" id="telephoneError" />
+                    </div>
+                  </div>
                 </div>
+  
+  
+                <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4 col-md-offset-4">
+                    <input type="submit" value="Registrarse" class="btn btn-info btn-block"/>
+                  </div>
+                </div>
+  
               </div>
-
+  
             </div>
-
-          </div>
-        </form>
-      </div>
-
-
-
-    );
+          </form>
+        </div>
+      );
+    }
   }
 }
 
