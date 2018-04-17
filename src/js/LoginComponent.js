@@ -14,7 +14,7 @@ class LoginComponent extends React.Component {
     this.state = {
       email: '',
       password: '',
-      role:'user',
+      role:'users',
       token: '',
       redirect: false,
       isLoading: false
@@ -55,10 +55,11 @@ class LoginComponent extends React.Component {
       console.log('Form is invalid: do not submit');
     } else {
       console.log('Form is valid: submit');
+      console.log("role", this.state.role)
 
       var new_user = this.state
 
-      axios.post('http://localhost:4000/users_sessions',
+      axios.post(`http://localhost:4000/${this.state.role}_sessions`,
                   {
                     'password': new_user.password,
                     'email': new_user.email
@@ -73,7 +74,7 @@ class LoginComponent extends React.Component {
                     store.dispatch({
                       type: 'ADD_TOKEN',
                       token: response.data.authentication_token,
-                      userType: "user"
+                      userType: this.state.role 
                     })
                     this.state.token = response.data.authentication_token;
                     this.setState({ redirect: true, isLoading: false });
@@ -199,9 +200,9 @@ class LoginComponent extends React.Component {
 
                     <select name="role" id="role-list"
                       defaultValue={this.state.role} onChange={this.handleSmallChange}>
-                      <option value="user">Usuario</option>
-                      <option value="store">Tienda</option>
-                      <option value="tech">Técnico</option>
+                      <option value="users">Usuario</option>
+                      <option value="stores">Tienda</option>
+                      <option value="technicians">Técnico</option>
 
                     </select>
 
