@@ -50,17 +50,28 @@ class RegisterComponent extends React.Component {
     } else {
       console.log('Form is valid: submit');
 
-      var new_user = this.state
+      const new_user = {
+        email: this.state.email,
+	      password: this.state.password,
+        password_confirmation: this.state.passwordConfirm,
+	      idUser: "456",
+	      nameUser: this.state.names,
+	      surnameUser: this.state.surnames, 
+	      genderUser: this.state.gender, 
+	      phonenumUser: this.state.telephone, 
+	      celphoneUser: this.state.cellphone,
+	      city_id: "1"
+      }
 
       axios.post('http://localhost:4000/users/',
-                  {new_user})
+      new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
                     console.log(response)
                     this.setState({ isLoading: false})
                   })
                   .catch((error)=>{
-                    console.log('Failed miserably :(')
+                    console.log('Failed miserably :(', new_user)
                     this.setState({ isLoading: false})
                   })
                   
