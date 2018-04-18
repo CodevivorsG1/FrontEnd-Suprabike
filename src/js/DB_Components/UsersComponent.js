@@ -14,11 +14,13 @@ class UserComponent extends React.Component {
       surnames:'',
       gender:'',
       cellphone:'',
-      telephone:''
+      telephone:'',
+      isLoading: false
     }
   }
 
   componentDidMount(){
+    this.setState({isLoading: true})
     axios.get('http://localhost:4000/users')
               .then((response) =>{
                   console.info(response)
@@ -27,10 +29,12 @@ class UserComponent extends React.Component {
                     this.state = response.data[0];
                     this.setState(response.data[0])                
                   }
+                this.setState({ isLoading: false})
                 console.log(this.state);
               })
               .catch((error) => {
-                console.log("fuck")
+                console.log("fuck user")
+                this.setState({ isLoading: false})
               })
       axios.get('http://localhost:4000/cities')
               .then((response) =>{
@@ -50,6 +54,12 @@ class UserComponent extends React.Component {
 
 
   render(){
+    if (this.state.isLoading){
+      
+      return(
+        <div className="loader"></div>
+      );
+    }else{
     return (
 			<div class="container">
 			    <div class="row">
@@ -82,7 +92,7 @@ class UserComponent extends React.Component {
 			    </div>
 			</div>
 
-	    );
+	    );}
     return(
       <div>
         <AppHeaderComponent />
