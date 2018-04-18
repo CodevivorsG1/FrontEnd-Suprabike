@@ -14,6 +14,7 @@ store.subscribe( throttle(() => {
     saveState({
         token:store.getState().token,
         sectionView:store.getState().sectionView,
+        userType: store.getState().userType,
         cart: store.getState().cart
     });
 }, 1000))

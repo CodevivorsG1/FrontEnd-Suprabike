@@ -21,7 +21,7 @@ class App extends Component {
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          
+          {/*<Route path='/up'component={UploadZone}/>*/}
         </Switch>
       </BrowserRouter>
     );
