@@ -32,6 +32,19 @@ class UserComponent extends React.Component {
               .catch((error) => {
                 console.log("fuck")
               })
+      axios.get('http://localhost:4000/cities')
+              .then((response) =>{
+                  console.info(response)
+                  if( response.statusText == 'OK'){
+                    console.info(response.data[0])
+                    this.state.city = response.data[0].name_city;
+                    this.setState(response.data[0])                
+                  }
+                console.log(this.state);
+              })
+              .catch((error) => {
+                console.log("fuck")
+              })
   }
 
 
@@ -48,30 +61,20 @@ class UserComponent extends React.Component {
 			                    </div>
 			                    <div class="col-sm-6 col-md-8">
 			                        <h4>
-			                            {this.state.name}</h4>
-			                        <small><cite title="San Francisco, USA">{this.state.location} <i class="glyphicon glyphicon-map-marker">
+			                            {this.state.nameUser}</h4>
+			                        <small><cite title="San Francisco, USA"> {this.state.city} <i class="glyphicon glyphicon-map-marker">
 			                        </i></cite></small>
 			                        <p>
-			                            <i class="glyphicon glyphicon-envelope"></i>{this.state.email}
+                                  <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">Usuario: {this.state.nameUser}</a>
+                                  <br />
+			                            <i class="fas fa-envelope"></i> { this.state.email}
 			                            <br />
-			                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">user: {this.state.nameUser}</a>
-			                            <br />
+			                            
 			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-
-			                        <div class="btn-group">
-			                            <button type="button" class="btn btn-primary">
-			                                Social</button>
-			                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			                                <span class="caret"></span><span class="sr-only">Social</span>
-			                            </button>
-			                            <ul class="dropdown-menu" role="menu">
-			                                <li><a href="#">Twitter</a></li>
-			                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-			                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-			                                <li class="divider"></li>
-			                                <li><a href="#">Github</a></li>
-			                            </ul>
-			                        </div>
+                              <button type="button" class="btn btn-primary">
+                                      <i class="far fa-edit"></i> Editar
+                              </button>          
+			                        
 			                    </div>
 			                </div>
 			            </div>
