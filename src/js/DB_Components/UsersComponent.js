@@ -6,9 +6,9 @@ class UserComponent extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      avatar_url:'',
+      avatar_url:'/img/unknown.jpg',
       created_at:'',
-      location: '',
+      location: 'San Francisco, USA',
       login: '',
       name:'',
       surnames:'',
@@ -19,14 +19,14 @@ class UserComponent extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('https://api.github.com/users/maecapozzi')
+    axios.get('http://localhost:4000/users')
               .then((response) =>{
-                for(var x in this.state){
-                  if( response.data.hasOwnProperty(x)){
-                    this.state[x] = response.data[x];
+                  console.info(response)
+                  if( response.statusText == 'OK'){
+                    console.info(response.data[0])
+                    this.state = response.data[0];
+                    this.setState(response.data[0])                
                   }
-                }
-                this.setState({})                
                 console.log(this.state);
               })
               .catch((error) => {
@@ -52,9 +52,9 @@ class UserComponent extends React.Component {
 			                        <small><cite title="San Francisco, USA">{this.state.location} <i class="glyphicon glyphicon-map-marker">
 			                        </i></cite></small>
 			                        <p>
-			                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
+			                            <i class="glyphicon glyphicon-envelope"></i>{this.state.email}
 			                            <br />
-			                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">user: {this.state.login}</a>
+			                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">user: {this.state.nameUser}</a>
 			                            <br />
 			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
 
