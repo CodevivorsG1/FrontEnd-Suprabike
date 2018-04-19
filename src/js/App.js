@@ -5,7 +5,7 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
-import MyPdfViewer from './PDF_Components/PDFViewer.js';
+import MyPdfViewer from './PDF_Components/testPdfViewer.js';
 
 //import {Button} from 'react-bootstrap'
 
