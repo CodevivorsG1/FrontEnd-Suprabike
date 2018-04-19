@@ -7,7 +7,7 @@ import AppHomeComponent from './AppHomeComponent.js'
 import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 class LoginComponent extends React.Component {
   constructor(props){
@@ -89,7 +89,7 @@ class LoginComponent extends React.Component {
                     swal ( "Error" ,  "correo o contraseña incorrecta" ,  "error" )
                     console.log('Failed miserably :(')
                     console.log(error)
-                    this.setState({isLoading: false})
+                    this.setState({isLoading: false, error: true})
                   })
 
     }
