@@ -26,6 +26,8 @@ class RegisterComponent extends React.Component {
       address: '',
       city: 'seleccione',
       city_id:'1',
+      error: false,
+      errorMsg:'',
       cities:[]
 
     };
@@ -107,7 +109,7 @@ class RegisterComponent extends React.Component {
                   })
                   .catch((error)=>{
                     console.log('Failed miserably :(', new_user)
-                    this.setState({ isLoading: false})
+                    this.setState({ isLoading: false, error: true, errorMsg:error})
                   })
   }
   techniciansPetition = () =>{
@@ -135,7 +137,7 @@ class RegisterComponent extends React.Component {
                   })
                   .catch((error)=>{
                     console.log('Failed miserably :(', new_user)
-                    this.setState({ isLoading: false})
+                    this.setState({ isLoading: false, error: true, errorMsg: error})
                   })
   }
   storesPetition = () =>{
@@ -162,8 +164,8 @@ class RegisterComponent extends React.Component {
                     this.props.history.push('/home/undefined')
                   })
                   .catch((error)=>{
-                    console.log('Failed miserably :(', new_user)
-                    this.setState({ isLoading: false})
+                    console.log('Failed miserably :(', error)
+                    this.setState({ isLoading: false, error:true, errorMsg:error})
                   })
   }
   handleSubmit(e) {
@@ -248,6 +250,15 @@ class RegisterComponent extends React.Component {
     if (redirect) {
       console.log("entra aquí")
       return <Redirect to={'/home/'+section} />;
+    }
+    if (this.state.error){
+      console.log(this.state.errorMsg)
+      return (<SweetAlert
+        show = {this.state.error}
+        title="Error"
+        text="Error, correo o contraseña incorrecta"
+        onConfirm={() => this.setState({ error: false, errorMsg: '' })}
+      />);
     }
     if (this.state.isLoading){
       return(
