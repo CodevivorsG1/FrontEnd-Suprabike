@@ -5,7 +5,7 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
-//import UploadZone from './Upload_Components/UploadZonePDF.js';
+import MyPdfViewer from './PDF_Components/testPdfViewer.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -21,7 +21,7 @@ class App extends Component {
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          {/*<Route path='/up'component={UploadZone}/>*/}
+          {<Route path='/pdf'component={MyPdfViewer}/>}
         </Switch>
       </BrowserRouter>
     );

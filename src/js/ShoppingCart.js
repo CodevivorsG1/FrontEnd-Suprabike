@@ -26,27 +26,27 @@ class ShoppingCart extends Component {
 
   render() {
     return (
-    
+
       <div class="card">
         <div class="card-header">
           Carrito de compras
         </div>
          {this.state.cart.map(bike =>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{bike.name} ${bike.price} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+              <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
             </ul>
-                  
+
                   )}
-        
+
         <div class="card-body">
           <h5 class="card-title">Total</h5>
-         
-          <p class="card-text"> $ {this.state.cart.reduce((sum, bike) => sum + bike.price, 0)}</p>
+
+          <p class="card-text"> $ {this.state.cart.reduce((sum, bike) => sum + bike.price_bicy, 0)}</p>
           <a href="#" class="btn btn-primary">Comprar</a>
         </div>
-        
+
       </div>
-      
+
     )
   }
 

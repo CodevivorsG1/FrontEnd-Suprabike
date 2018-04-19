@@ -1,5 +1,6 @@
 import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
+import UploadZoneImages from '../Upload_Components/UploadZoneImages.js'
 import axios from 'axios';
 
 class UserComponent extends React.Component {
@@ -26,7 +27,7 @@ class UserComponent extends React.Component {
                     this.state[x] = response.data[x];
                   }
                 }
-                this.setState({})                
+                this.setState({})
                 console.log(this.state);
               })
               .catch((error) => {
@@ -77,6 +78,7 @@ class UserComponent extends React.Component {
 			            </div>
 			        </div>
 			    </div>
+          
 			</div>
 
 	    );
