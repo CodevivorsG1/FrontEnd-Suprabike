@@ -7,7 +7,7 @@ import AppHomeComponent from './AppHomeComponent.js'
 import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
-import SweetAlert from 'sweetalert2-react';
+import swal from 'sweetalert';
 
 class LoginComponent extends React.Component {
   constructor(props){
@@ -18,8 +18,7 @@ class LoginComponent extends React.Component {
       role:'users',
       token: '',
       redirect: false,
-      isLoading: false,
-      error: false
+      isLoading: false
     };
 
     store.subscribe(() => {
@@ -87,7 +86,7 @@ class LoginComponent extends React.Component {
                     
                   })
                   .catch((error) =>{
-                    {/*swal ( "Error" ,  "correo o contraseña incorrecta" ,  "error" )*/}
+                    swal ( "Error" ,  "correo o contraseña incorrecta" ,  "error" )
                     console.log('Failed miserably :(')
                     console.log(error)
                     this.setState({isLoading: false, error: true})
@@ -152,14 +151,6 @@ class LoginComponent extends React.Component {
      }
     console.log(this.state.token)
     var match = { params:{section:''}};
-    if (this.state.error){
-      return (<SweetAlert
-        show = {this.state.error}
-        title="Error"
-        text="Error, correo o contraseña incorrecta"
-        onConfirm={() => this.setState({ error: false })}
-      />);
-    }
     if (this.state.isLoading){
       return (
         this.state.token != '' ?
