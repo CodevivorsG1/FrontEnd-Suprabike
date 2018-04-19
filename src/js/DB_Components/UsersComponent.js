@@ -78,7 +78,7 @@ class UserComponent extends React.Component {
 			            </div>
 			        </div>
 			    </div>
-          <UploadZoneImages />
+          
 			</div>
 
 	    );
