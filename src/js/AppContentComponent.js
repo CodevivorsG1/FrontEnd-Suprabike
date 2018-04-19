@@ -14,7 +14,7 @@ class AppContentComponent extends React.Component{
 	constructor(){
 		super();
 		this.title = ""
-		
+
 	}
   render() {
   	if (store.getState().sectionView === "productList") {
@@ -27,15 +27,15 @@ class AppContentComponent extends React.Component{
 	      		<div class="col-md-8" >
 	      			<h3>Lista de productos</h3>
 		        	<ProductList />
-		        	
+
 		        </div>
 		        <div class="col-md-4" >
 		        	<ShoppingCart />
 		        </div>
 	      	</div>
-	        
+
 	      </div>
-	    );	
+	    );
   	}
   	if (store.getState().sectionView === "user") {
   		return(
@@ -43,7 +43,7 @@ class AppContentComponent extends React.Component{
 	        <h3>Perfil de Usuario</h3>
 	        <UserComponent />
 	      </div>
-	    );	
+	    );
   	}
   	if (store.getState().sectionView === "technician") {
   		return(
@@ -51,7 +51,7 @@ class AppContentComponent extends React.Component{
 	        <h3>Servicio Técnico</h3>
 	        <TechnicianList />
 	      </div>
-	    );	
+	    );
   	}
   	if (store.getState().sectionView === "forums") {
   		return(
@@ -59,7 +59,7 @@ class AppContentComponent extends React.Component{
 	        <h3>Foros</h3>
 	        <ForumComponent />
 	      </div>
-	    );	
+	    );
   	}
     else{
     	return (
@@ -71,13 +71,13 @@ class AppContentComponent extends React.Component{
 	      		<div class="col-md-8" >
 	      			<h3>Lista de productos</h3>
 		        	<ProductList />
-		        	
+
 		        </div>
 		        <div class="col-md-4" >
 		        	<ShoppingCart />
 		        </div>
 	      	</div>
-	        
+
 	      </div>);
     }
   }
@@ -85,4 +85,3 @@ class AppContentComponent extends React.Component{
 }
 
 export default AppContentComponent;
-

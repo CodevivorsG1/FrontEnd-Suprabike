@@ -9,6 +9,7 @@ class ProductList extends React.Component {
 		super();
 		this.addToCart = this.addToCart.bind(this);
 		this.handleImg = this.handleImg.bind(this);
+		this.generatePDF = this.generatePDF.bind(this);
 
 		this.state = {
 			bikes: [
@@ -51,7 +52,8 @@ class ProductList extends React.Component {
 				<div className="loader"></div>
 			);
 		}else{
-			return (bike.map(product =>
+			return (
+				bike.map(product =>
 	        	<div class="col-md-3 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
@@ -60,7 +62,7 @@ class ProductList extends React.Component {
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
-					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(product)} role="button">Agregar</button>
+					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Agregar</button>
 				    	</div>
 				    	<div class="pricetext">
 				    		 {(product)  => this.renderStars(product.stars)}
@@ -69,18 +71,28 @@ class ProductList extends React.Component {
 			    	</div>
 				</div>
 			))
+
 		}
+	}
+
+	generatePDF(){
+		console.log(this.state.bikes);
 	}
 
 
 
 	 render() {
 	    return (
+			<div>
 	      <div class="row ">
 			{
 			<this.loadData bike={this.state.bikes}/>
 			}
 	      </div>
+				<div class="row">
+					<button class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Generar catálogo</button>
+				</div>
+			</div>
 		);
 	  }
 	  addToCart(bike) {
