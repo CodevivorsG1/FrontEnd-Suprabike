@@ -6,6 +6,7 @@ import ShoppingCart from './ShoppingCart.js'
 import User from './User.js'
 import store from './store'
 import UserComponent from './DB_Components/UsersComponent.js';
+import EditUserComponent from './DB_Components/EditUsersComponent.js';
 import ForumComponent from './DB_Components/ForumComponent.js';
 
 
@@ -42,6 +43,14 @@ class AppContentComponent extends React.Component{
 	      <div>
 	        <h3>Perfil de Usuario</h3>
 	        <UserComponent />
+	      </div>
+	    );	
+  	}
+  	if (store.getState().sectionView === "editUser") {
+  		return(
+	      <div>
+	        <h2>Editar perfil de usuario</h2>
+	        <EditUserComponent />
 	      </div>
 	    );	
   	}
