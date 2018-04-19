@@ -6,7 +6,7 @@ class PDFViewer extends React.Component{
   constructor(props){
     super();
     this.state = {
-      url: "https://mozilla.github.io/pdf.js/web/viewer.html"
+      url: "http://pinkmonkey.com/dl/library1/london06.pdf"
     }
   }
   render(){
@@ -14,7 +14,7 @@ class PDFViewer extends React.Component{
       <div>
         <AppHeaderComponent />
         <div id="content">
-          <iframe src={this.state.url} height="91%" width="100%"
+          <iframe src={this.state.url} height="100%" width="100%"
           style={{overflow:"hidden"}}/>
         </div>
       </div>

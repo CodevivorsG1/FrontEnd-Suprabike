@@ -3,6 +3,7 @@ import "../css/ProductList.css";
 import store from './store'
 import "../css/loader.css";
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class ProductList extends React.Component {
 	constructor(){
@@ -14,7 +15,8 @@ class ProductList extends React.Component {
 		this.state = {
 			bikes: [
 			],
-			isLoading: false
+			isLoading: false,
+			redirect: false
 		}
 	}
 
@@ -76,24 +78,32 @@ class ProductList extends React.Component {
 	}
 
 	generatePDF(){
-		console.log(this.state.bikes);
+		this.setState({
+			redirect: true
+		})
 	}
 
 
 
 	 render() {
-	    return (
-			<div>
-	      <div class="row ">
-			{
-			<this.loadData bike={this.state.bikes}/>
-			}
-	      </div>
-				<div class="row">
-					<button class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Generar catálogo</button>
-				</div>
-			</div>
-		);
+
+				if (this.state.redirect){
+					return <Redirect to={'/pdf'}/>
+				} else {
+					return(
+						<div>
+							<div class="row ">
+						{
+						<this.loadData bike={this.state.bikes}/>
+						}
+							</div>
+							<div class="row">
+								<button class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Generar catálogo</button>
+							</div>
+						</div>
+					);
+				}
+
 	  }
 	  addToCart(bike) {
 	  	store.dispatch({
