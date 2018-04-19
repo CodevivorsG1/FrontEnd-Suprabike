@@ -7,6 +7,7 @@ import AppHomeComponent from './AppHomeComponent.js'
 import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
+import swal from 'sweetalert'
 
 class LoginComponent extends React.Component {
   constructor(props){
@@ -53,6 +54,7 @@ class LoginComponent extends React.Component {
 
     if (!this.showFormErrors()) {
       console.log('Form is invalid: do not submit');
+      this.setState({isLoading: false})
     } else {
       console.log('Form is valid: submit');
       console.log("role", this.state.role)
@@ -84,6 +86,7 @@ class LoginComponent extends React.Component {
                     
                   })
                   .catch((error) =>{
+                    swal ( "Error" ,  "correo o contraseña incorrecta" ,  "error" )
                     console.log('Failed miserably :(')
                     console.log(error)
                     this.setState({isLoading: false})
