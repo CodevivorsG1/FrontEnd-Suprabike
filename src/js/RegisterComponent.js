@@ -94,7 +94,7 @@ class RegisterComponent extends React.Component {
       genderUser: this.state.gender, 
       phonenumUser: this.state.telephone, 
       celphoneUser: this.state.cellphone,
-      city_id: "1"
+      city_id: this.state.city_id
     }
 
     axios.post('http://localhost:4000/users/',
@@ -151,7 +151,7 @@ class RegisterComponent extends React.Component {
       address_store: this.state.address,
       phonenum_store: this.state.telephone, 
       celphone_store: this.state.cellphone,
-      city_id: "1",
+      city_id: this.state.city_id,
       score_store: "0"
     }
 
@@ -431,7 +431,7 @@ class RegisterComponent extends React.Component {
                     {
                       
                       this.state.cities.map((city) =>(
-                        <option value={this.city.id}>{this.city.name_city}</option>
+                        <option value={city.id}>{city.name_city}</option>
                       ))
                     }
                   </select>
@@ -566,8 +566,8 @@ class RegisterComponent extends React.Component {
                     <select name="city_id" id="city-list"
                       defaultValue={this.state.city} onChange={(e)=>this.setState({city_id: e.target.value })}>
                       {
-                        this.state.cities.map(city =>(
-                          <option value={city.idCity}>{city.name_city}</option>
+                        this.state.cities.map((city) =>(
+                          <option value={city.id}>{city.name_city}</option>
                         ))
                       }
                     </select>
