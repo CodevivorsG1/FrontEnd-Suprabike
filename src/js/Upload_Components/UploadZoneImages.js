@@ -9,10 +9,6 @@ class UploadZoneImages extends React.Component {
     isSubmittingForm: false,
     didFormSubmissionComplete: false,
     book: {
-      id: this.props.match.params.id,
-      title: '',
-      description: '',
-      errors: {}
     }
   };
 

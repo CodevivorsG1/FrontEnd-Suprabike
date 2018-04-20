@@ -1,0 +1,14 @@
+#content {
+  position:absolute;  
+  width: 100%;
+  height: 88.8%;
+  overflow-y: hidden;
+
+}
+
+#content iframe{
+  margin: 0;
+  display: block;
+  padding: 0;
+  border: 1px solid black;
+}
