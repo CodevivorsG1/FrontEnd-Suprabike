@@ -28,7 +28,7 @@ class UserComponent extends React.Component {
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
                     this.state = response.data[0];
-                    this.setState(response.data[0])                
+                    this.setState(response.data[0])
                   }
                 this.setState({ isLoading: false})
                 console.log(this.state);
@@ -43,7 +43,7 @@ class UserComponent extends React.Component {
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
                     this.state.city = response.data[0].name_city;
-                    this.setState(response.data[0])                
+                    this.setState(response.data[0])
                   }
                 console.log(this.state);
               })
@@ -56,7 +56,7 @@ class UserComponent extends React.Component {
 
   render(){
     if (this.state.isLoading){
-      
+
       return(
         <div className="loader"></div>
       );
@@ -80,19 +80,19 @@ class UserComponent extends React.Component {
                                   <br />
 			                            <i class="fas fa-envelope"></i> { this.state.email}
 			                            <br />
-			                            
-			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+
+			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>                              
                               <a href="/home/editUser">
                                 <button type="button" class="btn btn-primary">
                                         <i class="far fa-edit"></i> Editar
-                                </button>          
+                                </button>
 			                        </a>
 			                    </div>
 			                </div>
 			            </div>
 			        </div>
 			    </div>
-          
+          <UploadZoneImages />
 			</div>
 
 	    );}
