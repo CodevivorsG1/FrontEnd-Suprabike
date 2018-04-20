@@ -1,11 +1,14 @@
 import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import axios from 'axios';
+import swal from 'sweetalert';
+import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
 
 class EditUsersComponent extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      "id":0,
       "user":{
         "email": "",
         "password": "",
@@ -19,11 +22,38 @@ class EditUsersComponent extends React.Component {
         "city_id": ""
       }
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeNameUser = this.handleChangeNameUser.bind(this);
+    this.handleChangePhone = this.handleChangePhone.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePass = this.handleChangePass.bind(this);
+    this.handleChangePassCon = this.handleChangePassCon.bind(this);
+    this.saveUser = this.saveUser.bind(this);
   }
-   handleChange(event) {
-    this.state.nameUser = event.target.value
-    this.setState({value: event.target.value});
+   handleChangeNameUser(event) {
+    var newState = this.state;
+    newState.user.nameUser = event.target.value
+    this.setState(newState);
+  }
+  handleChangePhone(event) {
+     var newState = this.state;
+    newState.user.celphoneUser = event.target.value
+    this.setState(newState);
+    
+  }
+  handleChangeEmail(event) {
+    var newState = this.state;
+    newState.user.email = event.target.value
+    this.setState(newState); 
+  }
+  handleChangePass(event) {
+    var newState = this.state;
+    newState.user.password = event.target.value
+    this.setState(newState);
+  }
+  handleChangePassCon(event) {
+    var newState = this.state;
+    newState.user.password_confirmation = event.target.value
+    this.setState(newState);
   }
   componentDidMount(){
     this.setState({isLoading: true})
@@ -33,7 +63,8 @@ class EditUsersComponent extends React.Component {
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
                     this.state.user = response.data[0];
-                    this.setState(response.data[0])                
+                    this.state.id = response.data[0].id;
+                    this.setState({ id: response.data[0].id})                
                   }
                 this.setState({ isLoading: false})
                 console.log(this.state);
@@ -56,10 +87,35 @@ class EditUsersComponent extends React.Component {
                 console.log("fuck")
               })
   }
-
+  saveUser(){
+    this.setState({isLoading: true})
+    axios.put('http://localhost:4000/users/'+this.state.id,{user:this.state.user})
+              .then((response) =>{
+                  console.info(response)
+                  if( response.statusText == 'OK'){
+                    console.info(response.data[0])
+                    this.state = response.data[0];
+                    this.setState(response.data[0])    
+                    this.setState({ redirect: true, isLoading: false });
+                    swal("Correcto!", "Usuario editado correctamente", "success");
+                  }
+                
+                console.log(this.state);
+              })
+              .catch((error) => {
+                console.log(error)
+                swal ( "Error" ,  "no se ha editado el usuario" ,  "error" )
+                this.setState({ isLoading: false})
+              })
+  }
 
 
   render(){
+    const { redirect } = this.state;
+     
+     if (redirect) {
+       return <Redirect to={'/home/user'} />;
+     }
     if (this.state.isLoading){
       
       return(
@@ -70,75 +126,41 @@ class EditUsersComponent extends React.Component {
 			<div class="container">
 			    <div class="row">
           <div class="col-lg-12 panel-body"> 
-                                 <form  data-toggle="validator">
+                                 <div   >
                                       <div class=""> 
                                            
                                            <h3>Nombre</h3> 
-                                           <input type="text" class="form-control required" value={this.state.user.nameUser} onChange={this.handleChange} /> 
+                                           <input type="text" class="form-control " value={this.state.user.nameUser} onChange={this.handleChangeNameUser} required /> 
                                       </div> 
                                       
-                                       
+                  
                                       <div class="form-group"> 
                                            <h3>Teléfono</h3> 
-                                           <input id="actorTel"  type="number" min="0" class="form-control required" value={this.state.user.celphoneUser} /> 
+                                           <input id="actorTel" required type="number" min="0" class="form-control required" value={this.state.user.celphoneUser} onChange={this.handleChangePhone} /> 
                                       </div> 
                                       <div class="form-group"> 
                                            <h3>E-mail</h3> 
-                                           <input type="email" class="form-control required" value={this.state.user.email} /> 
+                                           <input type="email" required class="form-control required" value={this.state.user.email} onChange={this.handleChangeEmail}/> 
                                       </div> 
                                       <div class="form-group"> 
                                            <h3>Password</h3> 
                                            
-                                           <input type="password" class="form-control required" value="" /> 
-                                           <input   type="password" class="form-control required" value="" /> 
+                                           <input type="password" required class="form-control required" value={this.state.user.password} onChange={this.handleChangePass}/> 
+                                           <input   type="password" required class="form-control required" value={this.state.user.password_confirmation} onChange={this.handleChangePassCon}/> 
                                       </div> 
                                       
                                     
-                                      <button id="btnCrearActor" class="btn-primary btn-lg btn-primary" ><i class="fa fa-save"> </i> Guardar
+                                      <button onClick={this.saveUser} class="btn-primary btn-lg btn-primary" ><i class="fa fa-save"> </i> Guardar
                                       </button>
                                  
-                                 </form>
+                                 </div>
                             </div> 
-			        <div class="col-xs-12 col-sm-6 col-md-6">
-			            <div class="well well-sm">
-			                <div class="row">
-			                    <div class="col-sm-6 col-md-4">
-			                        <img src={this.state.avatar_url} alt="" class="img-rounded img-responsive" />
-			                    </div>
-			                    <div class="col-sm-6 col-md-8">
-			                        <h4>
-			                            {this.state.nameUser}</h4>
-			                        
-			                        <p>
-                                  <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">Usuario: {this.state.nameUser}</a>
-                                  <br />
-			                            <i class="fas fa-envelope"></i> { this.state.email}
-			                            <br />
-			                            
-			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-                              <a href="/home/editUser">
-                                <button type="button" class="btn btn-primary">
-                                        <i class="far fa-edit"></i> Guardar
-                                </button>          
-			                        </a>
-			                    </div>
-			                </div>
-			            </div>
-			        </div>
+			        
 			    </div>
 			</div>
 
 	    );}
-    return(
-      <div>
-        <AppHeaderComponent />
-        Component used to extract User´s info from database
-        <h1>{this.state.name}</h1>
-        <h2>{this.state.location}</h2>
-        <h2>login: {this.state.login}</h2>
-        <img src={this.state.avatar_url}/>
-      </div>
-    );
+    
   }
 }
 
