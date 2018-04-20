@@ -29,19 +29,30 @@ class EditUsersComponent extends React.Component {
     this.saveUser = this.saveUser.bind(this);
   }
    handleChangeNameUser(event) {
-    this.setState({user:{nameUser: event.target.value}});
+    var newState = this.state;
+    newState.user.nameUser = event.target.value
+    this.setState(newState);
   }
   handleChangePhone(event) {
-    this.setState({user:{phonenumUser: event.target.value}});
+     var newState = this.state;
+    newState.user.celphoneUser = event.target.value
+    this.setState(newState);
+    
   }
   handleChangeEmail(event) {
-    this.setState({user:{email: event.target.value}});
+    var newState = this.state;
+    newState.user.email = event.target.value
+    this.setState(newState); 
   }
   handleChangePass(event) {
-    this.setState({user:{password: event.target.value}});
+    var newState = this.state;
+    newState.user.password = event.target.value
+    this.setState(newState);
   }
   handleChangePassCon(event) {
-    this.setState({user:{password_confirmation: event.target.value}});
+    var newState = this.state;
+    newState.user.password_confirmation = event.target.value
+    this.setState(newState);
   }
   componentDidMount(){
     this.setState({isLoading: true})
