@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Table, Button, Glyphicon } from 'react-bootstrap';
 import store from './store'
+import swal from 'sweetalert';
 
 const styles = {
   footer: {
@@ -13,7 +14,7 @@ class ShoppingCart extends Component {
   constructor() {
     super();
     this.removeFromCart = this.removeFromCart.bind(this);
-
+    this.comprar = this.comprar.bind(this);
     this.state = {
       cart: store.getState().cart
     }
@@ -42,14 +43,18 @@ class ShoppingCart extends Component {
           <h5 class="card-title">Total</h5>
 
           <p class="card-text"> $ {this.state.cart.reduce((sum, bike) => sum + bike.price_bicy, 0)}</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <a href="#" onClick={() => this.comprar()} class="btn btn-primary">Comprar</a>
         </div>
 
       </div>
 
     )
   }
-
+  comprar(){
+    swal('Realizar compra',{
+  buttons: ["cancelar", "Comprar!"],
+});
+  }
   removeFromCart(bike) {
     store.dispatch({
       type: 'REMOVE_BIKE',
