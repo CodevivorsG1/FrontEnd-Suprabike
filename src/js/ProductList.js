@@ -4,6 +4,7 @@ import store from './store'
 import "../css/loader.css";
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import swal from 'sweetalert';
 
 class ProductList extends React.Component {
 	constructor(){
@@ -41,6 +42,7 @@ class ProductList extends React.Component {
 								console.log(this.state);
 			  })
               .catch((error) => {
+								swal("Error", "Error al cargar productos", "error")
 				console.log("fuck")
 				this.setState({ isLoading: false})
               })
