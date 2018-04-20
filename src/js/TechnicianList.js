@@ -1,7 +1,7 @@
 import React from 'react';
 import "../css/TechnicianList.css";
 import "../css/loader.css";
-
+import swal from 'sweetalert';
 
 import store from './store';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import axios from 'axios';
 class TechnicianList extends React.Component {
 	constructor(){
 		super();
-		this.addToCart = this.addToCart.bind(this);
+		this.contact = this.contact.bind(this);
 		this.handleImg = this.handleImg.bind(this);
 
 		this.state = {
@@ -17,6 +17,16 @@ class TechnicianList extends React.Component {
 			],
 			isLoading: false
 		}
+	}
+	contact(technician){
+		swal("Ingrese el mensaje para " + technician.NameTec , {
+		  content: "input",
+		})
+		.then(function(value)  {
+		  swal('Mensaje: ' + value);
+		  if (true) {}
+		});
+		
 	}
 
 	handleImg(product){
@@ -27,6 +37,7 @@ class TechnicianList extends React.Component {
 			return '../img/unknown.jpg'
 		}
 	}
+
 
 	componentDidMount(){
 	this.setState({isLoading: true})
@@ -62,7 +73,7 @@ class TechnicianList extends React.Component {
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
-					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(product)} role="button">Contactar</button>
+					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.contact(product)} role="button">Contactar</button>
 				    	</div>
 				    	<div class="pricetext">
 				    		 {(product)  => this.renderStars(product.stars)}

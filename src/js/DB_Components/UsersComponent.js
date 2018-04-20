@@ -79,6 +79,8 @@ class UserComponent extends React.Component {
                                   <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">Usuario: {this.state.nameUser}</a>
                                   <br />
 			                            <i class="fas fa-envelope"></i> { this.state.email}
+                                  <br />
+                                  <i class="fas fa-phone"></i> { this.state.celphoneUser}
 			                            <br />
 
 			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>                              

@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
 
 class EditUsersComponent extends React.Component {
   constructor(props){
@@ -95,7 +96,7 @@ class EditUsersComponent extends React.Component {
                     console.info(response.data[0])
                     this.state = response.data[0];
                     this.setState(response.data[0])    
-                    this.setState({ isLoading: false})
+                    this.setState({ redirect: true, isLoading: false });
                     swal("Correcto!", "Usuario editado correctamente", "success");
                   }
                 
@@ -110,6 +111,11 @@ class EditUsersComponent extends React.Component {
 
 
   render(){
+    const { redirect } = this.state;
+     
+     if (redirect) {
+       return <Redirect to={'/home/user'} />;
+     }
     if (this.state.isLoading){
       
       return(
