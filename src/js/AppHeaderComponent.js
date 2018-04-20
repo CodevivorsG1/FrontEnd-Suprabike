@@ -1,9 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../img/logoSupraBIKES.png';
-
+import axios from 'axios';
 import store from './store'
 class AppHeaderComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+
+    }
+  }
+  componentDidMount(){
+    this.setState({isLoading: true})
+    axios.get('http://localhost:4000/users')
+              .then((response) =>{
+                  console.info(response)
+                  if( response.statusText == 'OK'){
+                    console.info(response.data[0])
+                    this.state = response.data[0];
+                    this.setState(response.data[0])    
+                  }
+                this.setState({ isLoading: false})
+                console.log(this.state);
+              })
+              .catch((error) => {
+                console.log("fuck user")
+                this.setState({ isLoading: false})
+              })
+      
+  }
 
 
   render() {
@@ -21,7 +46,7 @@ class AppHeaderComponent extends React.Component{
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <Link to='/'>Inicio <span class="sr-only">(current)</span></Link>
+                <Link to='/home'>Inicio <span class="sr-only">(current)</span></Link>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,9 +66,12 @@ class AppHeaderComponent extends React.Component{
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
               <button class="btn btn-outline-primary my-2 my-sm-2" type="submit">Buscar
               </button>
-
+              
             </form>
-            
+            <Link to={'/home/user'}>
+              <button class="btn btn-primary my-2 my-sm-0 mr-sm-2" type="submit">
+              <i class="fas fa-user"></i> {this.state.nameUser}</button>
+            </Link>
           </div>
         </nav>
 
