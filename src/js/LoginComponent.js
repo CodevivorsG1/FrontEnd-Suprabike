@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
 import swal from 'sweetalert';
+import SocialNetworkComponent from './SocialNetworkComponent';
+
 
 class LoginComponent extends React.Component {
   constructor(props){
@@ -168,58 +170,59 @@ class LoginComponent extends React.Component {
             :
             <div>
         <AppHeaderComponent />
-        <form onSubmit={this.handleSubmit} noValidate>
-          <div class="container-fluid">
+        
+        <div class="container-fluid">
             <div class="panel login-square">
-              <div class="panel-heading">
+            <div class="panel-heading">
                 <h3 class="panel-heading">Ingrese por favor ...</h3>
               </div>
               <div class="row">
+                <SocialNetworkComponent/>
                 <div class="col-md-6">
-                  <button class="btn btn-block google-btn btnSocial"><i class="fab fa-google icon-pos"></i>Ingresar con <b>Google</b></button>
-                  <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
-                  <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
+                  <form onSubmit={this.handleSubmit} noValidate>
+                  <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-md-12">
+                      <label id="emailLabel">Email</label>
+                      <input id="email" name="email"
+                        type="email" class="form-control input-md getIt"
+                        placeholder="Email"
+                        value={this.state.email} onChange={this.handleChange}
+                        required/>
+                      <div className="error" id="emailError" />
+                      <div class="spacing"></div>
+
+                      <label id="passwordLabel">Contraseña</label>
+                      <input id="password" name="password"
+                        type="password" placeholder="Contraseña"
+                        class="form-control input-md getIt"
+                        value={this.state.password} onChange={this.handleChange}
+                        pattern=".{5,}" required/>
+                      <div className="error" id="passwordError" />
+                      <div class="spacing">
+                        <label id="checkboxLabel">Check</label>
+
+                        <select name="role" id="role-list"
+                          defaultValue={this.state.role} onChange={this.handleSmallChange}>
+                          <option value="users">Usuario</option>
+                          <option value="stores">Tienda</option>
+                          <option value="technicians">Técnico</option>
+
+                        </select>
+
+                        <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
+                        <div className="error" id="checkboxError" />
+                        <a href="#"><small> Olvidaste la clave?</small></a><br/>
+                        <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
+                        <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+                    </div>
                 </div>
-
-                <div class="col-md-6">
-                  <label id="emailLabel">Email</label>
-                  <input id="email" name="email"
-                    type="email" class="form-control input-md getIt"
-                    placeholder="Email"
-                    value={this.state.email} onChange={this.handleChange}
-                    required/>
-                  <div className="error" id="emailError" />
-                  <div class="spacing"></div>
-
-                  <label id="passwordLabel">Contraseña</label>
-                  <input id="password" name="password"
-                    type="password" placeholder="Contraseña"
-                    class="form-control input-md getIt"
-                    value={this.state.password} onChange={this.handleChange}
-                    pattern=".{5,}" required/>
-                  <div className="error" id="passwordError" />
-                  <div class="spacing">
-                    <label id="checkboxLabel">Check</label>
-
-                    <select name="role" id="role-list"
-                      defaultValue={this.state.role} onChange={this.handleSmallChange}>
-                      <option value="users">Usuario</option>
-                      <option value="stores">Tienda</option>
-                      <option value="technicians">Técnico</option>
-
-                    </select>
-
-                    <input type="checkbox" name="checkbox" id="checkbox" value="1" /><small> Recordarme</small><br/>
-                    <div className="error" id="checkboxError" />
-                    <a href="#"><small> Olvidaste la clave?</small></a><br/>
-                    <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                    <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
                 </div>
-
+              </form>
+              </div>
               </div>
             </div>
           </div>
-        </form>
         </div>      
       );
     }
