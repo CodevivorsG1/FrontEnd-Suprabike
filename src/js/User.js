@@ -1,5 +1,6 @@
 import React from 'react';
 import "../css/ProductList.css";
+import UploadZone from './Upload_Components/UploadZoneImages.js';
 
 class User extends React.Component {
 	constructor(){
@@ -32,7 +33,7 @@ class User extends React.Component {
 			                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
 			                            <br />
 			                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-			                        
+
 			                        <div class="btn-group">
 			                            <button type="button" class="btn btn-primary">
 			                                Social</button>
@@ -52,12 +53,13 @@ class User extends React.Component {
 			            </div>
 			        </div>
 			    </div>
+					<UploadZone />
 			</div>
 
 	    );
 	  }
 	  addToCart(product) {
-	  	
+
   	}
 }
 
