@@ -1,13 +1,12 @@
 import React from 'react';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import {Redirect} from 'react-router-dom';
-import '../css/register.css';
 import axios from 'axios';
 import store from './store'
 import TechnicianList from './TechnicianList.js';
 import swal from 'sweetalert';
 
-class RegisterComponent extends React.Component {
+class EditUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +35,7 @@ class RegisterComponent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
-    axios.get(store.getState().globalUrl + 'cities')
+    axios.get('http://localhost:4000/cities')
     .then((response) =>{
       this.setState({cities: response.data})
     })
@@ -65,7 +64,7 @@ class RegisterComponent extends React.Component {
     })
   }
   handleUser = (prevResponse) =>{
-    axios.post(store.getState().globalUrl + `${this.state.role}_sessions`,
+    axios.post(`http://localhost:4000/${this.state.role}_sessions`,
                   {
                     'password': this.state.password,
                     'email': prevResponse.data.email
@@ -97,7 +96,7 @@ class RegisterComponent extends React.Component {
       city_id: this.state.city_id
     }
 
-    axios.post(store.getState().globalUrl + 'users/',
+    axios.post('http://localhost:4000/users/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
@@ -126,7 +125,7 @@ class RegisterComponent extends React.Component {
       celphoneUser: this.state.cellphone,
     }
 
-    axios.post(store.getState().globalUrl + 'technicians/',
+    axios.post('http://localhost:4000/technicians/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
@@ -155,7 +154,7 @@ class RegisterComponent extends React.Component {
       score_store: "0"
     }
 
-    axios.post(store.getState().globalUrl + 'stores/',
+    axios.post('http://localhost:4000/stores/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
@@ -262,14 +261,12 @@ class RegisterComponent extends React.Component {
       )
     }else if (this.state.role === "technicians"){
       return(<div>
-          <AppHeaderComponent />
+          
             <form onSubmit={this.handleSubmit} noValidate>
             
-            <div class="container-fluid">
-              <div class="panel register-square">
-                <div class="panel-heading">
-                  <h3 class="panel-heading">Registrese en SupraBikes</h3>
-                </div>
+            <div class="">
+              <div class=" ">
+                
                 <div class="row">
                   <div class="col-md-12">
                   <select name="role" id="role-list"
@@ -688,7 +685,7 @@ class RegisterComponent extends React.Component {
                 <div class="row">
                   <div class="col-md-4"></div>
                   <div class="col-md-4 col-md-offset-4">
-                    <input type="submit" value="Registrarse" class="btn btn-info btn-block"/>
+                    <input type="submit" value="Editar" class="btn btn-info btn-block"/>
                   </div>
                 </div>
   
@@ -702,4 +699,4 @@ class RegisterComponent extends React.Component {
   }
 }
 
-export default RegisterComponent;
+export default EditUser;
