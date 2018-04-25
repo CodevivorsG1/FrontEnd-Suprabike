@@ -54,7 +54,8 @@ const persistedState = () =>{
 		token: currentStore.token,
 		sectionView: currentStore.sectionView,
 		userType: currentStore.userType,
-		cart: currentCart
+		cart: currentCart,
+		globalUrl : 'https://mighty-atoll-94931.herokuapp.com/'
 	}
 }
 
