@@ -63,7 +63,7 @@ class LoginComponent extends React.Component {
 
       var new_user = this.state
 
-      axios.post(store.getState().globalUrl + '${this.state.role}_sessions',
+      axios.post(store.getState().globalUrl + `${this.state.role}_sessions`,
                   {
                     'password': new_user.password,
                     'email': new_user.email
