@@ -22,7 +22,7 @@ class LoginComponent extends React.Component {
       redirect: false,
       isLoading: false
     };
-
+    console.info(store.getState().globalUrl)
     store.subscribe(() => {
         this.state.token = store.getState().token
       });
@@ -63,7 +63,7 @@ class LoginComponent extends React.Component {
 
       var new_user = this.state
 
-      axios.post(`http://localhost:4000/${this.state.role}_sessions`,
+      axios.post(store.getState().globalUrl + '${this.state.role}_sessions',
                   {
                     'password': new_user.password,
                     'email': new_user.email
