@@ -1,33 +1,29 @@
 import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import {withGoogleMap, withScriptjs, GoogleMap} from 'react-google-maps';
 
 
 class SimpleMap extends React.Component{
-
-    static defaultProps = {
-        center: {
-            lat: 59.95,
-            lon: 30.33
-        },
-        zoom: 11
-    };
-
     render(){
-        return({
-            <div style={{height:'100%', width:'100%'}}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{key: AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A}}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}
-                >
-                    <AnyReactComponent 
-                        lat={59.955413}
-                        lng={30.337844}
-                        text={'Kreyser Avrora'}
-                    />
-                <GoogleMapReact />
-            </div>            
-        });
+
+        const GoogleMapExample = withScriptjs(withGoogleMap(props => (
+            <GoogleMap
+              defaultCenter = { { lat: 40.756795, lng: -73.954298 } }
+              defaultZoom = { 13 }
+            >
+            </GoogleMap>
+         )));
+
+        return(
+            <div>
+                <h1>This is a map!</h1>
+                <GoogleMapExample
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A"
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={ <div style={{ height: `500px`, width: '500px' }} /> }
+                    mapElement={ <div style={{ height: `100%` }} /> }
+                />
+            </div>
+        );
     }
 }
 
