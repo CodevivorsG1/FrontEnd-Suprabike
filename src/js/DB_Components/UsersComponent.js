@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import UploadZoneImages from '../Upload_Components/UploadZoneImages.js'
 import axios from 'axios';
+import store from '../store.js';
 
 class UserComponent extends React.Component {
   constructor(props){
@@ -22,7 +23,7 @@ class UserComponent extends React.Component {
 
   componentDidMount(){
     this.setState({isLoading: true})
-    axios.get('http://localhost:4000/users')
+    axios.get(store.getState().globalUrl+'users')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
@@ -37,7 +38,7 @@ class UserComponent extends React.Component {
                 console.log("fuck user")
                 this.setState({ isLoading: false})
               })
-      axios.get('http://localhost:4000/cities')
+      axios.get(store.getState().globalUrl+'cities')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){

@@ -13,7 +13,7 @@ class AppHeaderComponent extends React.Component{
   componentDidMount(){
     this.setState({isLoading: true})
     if (store.getState().token != ""){
-      axios.get('http://localhost:4000/users')
+      axios.get(store.getState().globalUrl + 'users')
                 .then((response) =>{
                     console.info(response)
                     if( response.statusText == 'OK'){

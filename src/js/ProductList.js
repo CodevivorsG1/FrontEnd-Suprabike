@@ -32,7 +32,7 @@ class ProductList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get('http://localhost:4000/bicycles/')
+    axios.get(store.getState().globalUrl +'bicycles/')
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){

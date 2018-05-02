@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import '../../css/forum.css'
 import axios from 'axios';
+import store from '../store';
 
 
 class ForumComponent extends React.Component {
@@ -14,7 +15,7 @@ class ForumComponent extends React.Component {
     
   }
   componentDidMount(){
-    axios.get('https://suprabikes-backend.herokuapp.com/forums')
+    axios.get(store.getState().globalUrl + 'forums')
               .then((response) =>{
               	this.state.forums = response;
                 
