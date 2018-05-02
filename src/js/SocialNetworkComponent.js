@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import {GoogleAPI, GoogleLogin} from 'react-google-oauth';
-
+import axios from 'axios';
+import store from './store';
 class SocialNetworkComponent extends Component {
+    verifyAccount = (userEmail, userToken) =>{
+        axios.post( store.getState().globalUrl + 'auth_google_token',
+                  {
+                    'id_token': userToken,
+                    'email': userEmail
+                  }
+              , 
+              {headers: {
+                'Content-type': 'application/json'
+              }
+            })
+    .then((response) =>
+    (
+     console.log("respuesta google", response)
+     
+    ))
+    .catch((error)=>{
+        console.log("Error google", error)
+    })
+    }
     responseGoogle = (googleUser) => {
       const userEmail = googleUser.w3.U3;
-      const googleId = googleUser.getId();
-      console.log("cuenta de google", googleUser)
-      let emailRegex = /^[-\w.%+]{1,64}@(unal.edu.co)$/i
-      let userName = userEmail.substr(0, userEmail.indexOf('@')); 
+      const userToken = googleUser.getAuthResponse().id_token;
+      console.log("cuenta de google", userEmail, userToken)
+      this.verifyAccount(userEmail, userToken)
    
     }
 
