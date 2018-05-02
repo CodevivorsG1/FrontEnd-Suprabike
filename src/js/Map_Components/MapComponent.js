@@ -79,7 +79,7 @@ export class MapContainer extends Component {
           position: "relative",
           height: "calc(100vh - 60px)"
         }}>
-        <h1>This Fucking Map</h1>
+        
         <Map style={{}}
             google={this.props.google}
             zoom={14}
