@@ -41,7 +41,7 @@ class TechnicianList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get('http://localhost:4000/technicians/')
+    axios.get(store.getState().globalUrl + 'technicians/')
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){
