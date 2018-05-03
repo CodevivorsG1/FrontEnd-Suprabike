@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import Map from './Map.js';
+import "../../css/loader.css";
 
 export default class Container extends React.Component {
 
   state = {
-    addresses:[]
+    addresses:[],
+    loaded: false
   }
 
   getGeocode = (url, num) => {
@@ -30,6 +32,7 @@ export default class Container extends React.Component {
                 let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + record.address_store +",Bogotá&key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A";                    
                 this.getGeocode(url, x);
             }
+            this.setState({loaded:true})
             //console.log(this.state.addresses);
         })
         .catch((error) => {
@@ -38,14 +41,20 @@ export default class Container extends React.Component {
   }
 
   render() {
-    return (
-      <Map
-        addresses = {this.state.addresses}
-        googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A&v=3.exp&libraries=geometry,drawing,places'}
-        loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `600px`, width: `600px` }} />}
-				mapElement={<div style={{ height: `100%` }} />}
-      />
-    );
+    if(this.state.loaded){
+      return (
+        <Map
+          addresses = {this.state.addresses}
+          googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A&v=3.exp&libraries=geometry,drawing,places'}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `600px`, width: `600px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      );
+    } else {
+      return(
+				<div className="loader"></div>
+			);
+    }
   }
 }
