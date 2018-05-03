@@ -5,7 +5,7 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
-import Map from './Map_Components/MapComponent.js';
+import Map from './Map_Components/Container.js';
 
 //import {Button} from 'react-bootstrap'
 
