@@ -127,6 +127,7 @@ class RegisterComponent extends React.Component {
       costhourtec: this.state.techCost,
       phonenumtec: this.state.telephone, 
       celphoneUser: this.state.cellphone,
+      city_id: "1"
     }
 
     axios.post(store.getState().globalUrl + 'technicians/',
