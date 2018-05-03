@@ -36,8 +36,8 @@ class SocialNetworkComponent extends Component {
     .then((response) =>
     {
      this.setState({isLoading: false})
-     console.log("respuesta google", response)   
      const id = response.data.id
+     console.log("respuesta google", id)   
      if (id == undefined){
          this.logingoogle(response)
      }else{

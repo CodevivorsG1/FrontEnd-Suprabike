@@ -68,18 +68,13 @@ class RegisterGoogle extends Component {
     registerAccount = () => {
       axios.put(store.getState().globalUrl + `users/${this.props.match.params.id}`,
       {
-        'user':{
         "email": this.state.email,
-        "password": "",
-        "password_confirmation": "",
-        "idUser": "456",
         "nameUser": this.state.names,
         "surnameUser": this.state.surnames, 
         "genderUser": this.state.gender, 
         "phonenumUser": this.state.telephone, 
         "celphoneUser": this.state.cellphone,
         "city_id": this.state.city_id
-        }
       }
     )
     .then((response) =>{
