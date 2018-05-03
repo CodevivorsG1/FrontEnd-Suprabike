@@ -8,6 +8,7 @@ import store from './store'
 import UserComponent from './DB_Components/UsersComponent.js';
 import EditUserComponent from './DB_Components/EditUsersComponent.js';
 import ForumComponent from './DB_Components/ForumComponent.js';
+import Map from './Map_Components/Container.js';
 
 
 
@@ -35,6 +36,14 @@ class AppContentComponent extends React.Component{
 		        </div>
 	      	</div>
 
+	      </div>
+	    );
+		}
+		if (store.getState().sectionView === "map") {
+  		return(
+	      <div>
+	        <h3>Mapa de Tiendas</h3>
+	        <Map />
 	      </div>
 	    );
   	}
