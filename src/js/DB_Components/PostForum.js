@@ -41,7 +41,7 @@ class PostForum extends Component {
                     </div>
                     <div class="rx-lastpost-info h-hide">
                         <a class="lastpost-title" href="https://vb5.pixelgoose.com/forum/main-forum/main-subforum/test-subforum-01/221-testimony#post221">
-                            ver Comentarios
+                            Ver mas...
                         </a>
                     </div>
                 </td>
