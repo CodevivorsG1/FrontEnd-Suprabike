@@ -100,7 +100,15 @@ class ProductList extends React.Component {
 						}
 							</div>
 							<div class="row">
-								<button class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Generar catálogo</button>
+								<a href="http://localhost:4000/bicycles/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Catálogo</button>
+								</a>
+								<a href="http://localhost:4000/technicians/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Técnicos</button>
+								</a>
+								<a href="http://localhost:4000/components/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Partes</button>
+								</a>
 							</div>
 						</div>
 					);
