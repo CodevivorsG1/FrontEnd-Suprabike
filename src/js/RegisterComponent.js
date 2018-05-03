@@ -36,7 +36,6 @@ class RegisterComponent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
-    console.log("component will mount",store.getState().globalUrl + 'cities')
     axios.get(store.getState().globalUrl + 'cities')
     .then((response) =>{
       this.setState({cities: response.data})

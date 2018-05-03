@@ -32,7 +32,7 @@ class ProductList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl +'bicycles/')
+    axios.get(store.getState().globalUrl + 'bicycles/')
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){
@@ -66,7 +66,7 @@ class ProductList extends React.Component {
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
-					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Agregar</button>
+					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(product)} role="button">Agregar</button>
 				    	</div>
 				    	<div class="pricetext">
 				    		 {(product)  => this.renderStars(product.stars)}
