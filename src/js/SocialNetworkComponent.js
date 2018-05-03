@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {GoogleAPI, GoogleLogin} from 'react-google-oauth';
 import axios from 'axios';
 import store from './store';
+import '../css/google.css'
 class SocialNetworkComponent extends Component {
     verifyAccount = (userEmail, userToken) =>{
         axios.post( store.getState().globalUrl + 'auth_google_token',
@@ -34,8 +35,9 @@ class SocialNetworkComponent extends Component {
     render() {
         return (
             <div class="col-md-6">
-                <GoogleAPI className="GoogleLogin" clientId="533966985417-qfdt7qfclu4h9si70n693fas25n1p4u1.apps.googleusercontent.com">
+                <GoogleAPI className="GoogleLogin" clientId="265848036385-8nb02cph4d85ca74vakqq463ggif52gc.apps.googleusercontent.com">
 				<div>
+                <p className="text-center"> Solo para usuarios </p>
 				<GoogleLogin 
                     fetchBasicProfile={true}
                     height="20px"
@@ -49,8 +51,6 @@ class SocialNetworkComponent extends Component {
 				/>
 				</div>
 			</GoogleAPI>
-                <button class="btn btn-block facebook-btn btnSocial"><i class="fab fa-facebook-f icon-pos"></i>Ingresar con <b>Facebook</b></button>
-                <button class="btn btn-block twitter-btn btnSocial"><i class="fab fa-twitter icon-pos"></i>Ingresar con <b>Twitter</b></button>
             </div>
         );
     }
