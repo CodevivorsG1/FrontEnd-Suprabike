@@ -25,7 +25,7 @@ class App extends Component {
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          <Route path='/registergoogle/:name/:surname/:email' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
+          <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
           {<Route path='/map'component={Map}/>}
         </Switch>
       </BrowserRouter>

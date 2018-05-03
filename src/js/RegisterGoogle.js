@@ -25,6 +25,7 @@ class RegisterGoogle extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSmallChange = this.handleSmallChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
     componentWillMount(){
         this.setState({
@@ -40,6 +41,56 @@ class RegisterGoogle extends Component {
           console.log("error cities, ", e)
         })
     }
+    login = () =>{
+      axios.post( store.getState().globalUrl + 'auth_google_token',
+                  {
+                    "id_token": this.props.match.params.userToken,
+                    "email": this.state.email
+                  }
+              , 
+              {headers: {
+                'Content-type': 'application/json'
+              }
+            })
+      .then((response) =>{
+        this.setState({isLoading: false})
+        store.dispatch({
+          type: 'ADD_TOKEN',
+          token: response.data.authentication_token,
+          userType: 'users' 
+        })
+        this.props.history.push('/home/undefined')
+      })
+      .catch(() =>{
+        this.setState({isLoading: false})
+      })
+    }
+    registerAccount = () => {
+      axios.put(store.getState().globalUrl + `users/${this.props.match.params.id}`,
+      {
+        'user':{
+        "email": this.state.email,
+        "password": "",
+        "password_confirmation": "",
+        "idUser": "456",
+        "nameUser": this.state.names,
+        "surnameUser": this.state.surnames, 
+        "genderUser": this.state.gender, 
+        "phonenumUser": this.state.telephone, 
+        "celphoneUser": this.state.cellphone,
+        "city_id": this.state.city_id
+        }
+      }
+    )
+    .then((response) =>{
+      console.log("respuesta edición login google", response)
+      this.login()
+    })
+    .catch((response)=>{
+      this.setState({isLoading: false})
+      console.log("respuesta error edición login google", response)
+    })
+    }
     handleSubmit(e) {
     
         e.preventDefault();
@@ -51,17 +102,7 @@ class RegisterGoogle extends Component {
         } else {
           console.log('Form is valid: submit');
           this.setState({ isLoading: true })
-          switch(this.state.role){
-            case "users":
-              this.userPetition();
-              break;
-            case "technicians":
-              this.techniciansPetition();
-              break;
-            case "stores":
-              this.storesPetition();
-              break;
-          }
+          this.registerAccount()
                       
         }
     }
@@ -124,7 +165,7 @@ class RegisterGoogle extends Component {
                     <div className="loader position-middle"/>
                 </div>
             )
-        }
+        }else{
         return (
         <div>
           <AppHeaderComponent />
@@ -242,6 +283,7 @@ class RegisterGoogle extends Component {
           </form>
         </div>
         );
+      }
     }
 }
 
