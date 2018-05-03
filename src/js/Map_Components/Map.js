@@ -8,7 +8,9 @@ const Map = withScriptjs(withGoogleMap((props) => {
     <Markers      
       key={add.id}
       id={add.id}
-      location={{lat: add.data.lat, lng: add.data.lng}}      
+      location={{lat: add.data.lat, lng: add.data.lng}}
+      name={add.name}
+      phone={add.phone}      
     />);
 
   return (

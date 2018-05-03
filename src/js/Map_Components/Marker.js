@@ -20,7 +20,10 @@ export default class Markers extends React.Component {
                 {
                     this.state.isOpen &&
                     <InfoWindow onCloseClick={this.onToggleOpen}>
-                        <h6>Hola!</h6>
+                        <div>
+                            <h5>{this.props.name}</h5><br/>
+                            <h6>tel: {this.props.phone}</h6>
+                        </div>
                     </InfoWindow>
                 }              
             </Marker>
