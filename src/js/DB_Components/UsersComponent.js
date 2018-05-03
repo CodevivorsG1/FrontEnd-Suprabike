@@ -2,7 +2,7 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import UploadZoneImages from '../Upload_Components/UploadZoneImages.js'
 import axios from 'axios';
-import store from '../store'
+import store from '../store';
 
 class UserComponent extends React.Component {
   constructor(props){
