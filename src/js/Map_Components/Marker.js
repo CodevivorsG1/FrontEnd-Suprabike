@@ -6,8 +6,7 @@ export default class Markers extends React.Component {
         isOpen: false        
     }
 
-    onToggleOpen = () => {
-        console.log(this.props.id);
+    onToggleOpen = () => {        
         this.setState({isOpen: !this.state.isOpen})
     }
 

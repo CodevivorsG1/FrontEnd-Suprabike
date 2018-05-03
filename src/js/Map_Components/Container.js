@@ -26,7 +26,7 @@ export default class Container extends React.Component {
   componentWillMount(){
     axios.get("http://localhost:4000/stores")
         .then((response) => {
-            //console.log(response);
+            console.log(response);
             for(var x in response.data){    // Obtiene todas las direcciones del pedido
                 let record = response.data[x]
                 let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + record.address_store +",Bogotá&key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A";                    
