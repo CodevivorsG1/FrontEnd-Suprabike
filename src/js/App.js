@@ -5,6 +5,7 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
+import Map from './Map_Components/Container.js';
 import Map from './Map_Components/MapComponent.js';
 import MyPdfViewer from './PDF_Components/testPdfViewer.js';
 import store from './store'
