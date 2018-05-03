@@ -55,7 +55,10 @@ const persistedState = () =>{
 		sectionView: currentStore.sectionView,
 		userType: currentStore.userType,
 		cart: currentCart,
-		globalUrl : 'https://suprabikesbackendd.herokuapp.com/'
+		globalUrl: 
+		'http://localhost:4000/'
+		//'https://mighty-atoll-94931.herokuapp.com/'
+		//'https://suprabikesbackendd.herokuapp.com/'
 	}
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import {Redirect} from 'react-router-dom';
 import '../css/register.css';
+import '../css/loader.css';
 import axios from 'axios';
 import store from './store'
 import TechnicianList from './TechnicianList.js';
@@ -40,7 +41,9 @@ class RegisterComponent extends React.Component {
     .then((response) =>{
       this.setState({cities: response.data})
     })
-    .catch()
+    .catch((e) =>{
+      console.log("error cities, ", e)
+    })
   }
   handleChange (e){
     e.target.classList.add('active');
