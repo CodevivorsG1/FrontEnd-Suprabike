@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { Route , withRouter} from 'react-router-dom';
 import {GoogleAPI, GoogleLogin} from 'react-google-oauth';
 import axios from 'axios';
 import store from './store';
-import '../css/google.css'
+import '../css/google.css';
+
 class SocialNetworkComponent extends Component {
+    constructor (props) {
+        super(props)
+    }
+    
     verifyAccount = (userEmail, userToken) =>{
         axios.post( store.getState().globalUrl + 'auth_google_token',
                   {
@@ -27,7 +33,10 @@ class SocialNetworkComponent extends Component {
     responseGoogle = (googleUser) => {
       const userEmail = googleUser.w3.U3;
       const userToken = googleUser.getAuthResponse().id_token;
-      console.log("cuenta de google", userEmail, userToken)
+      const userName = googleUser.w3.ofa;
+      const userSurname = googleUser.w3.wea;
+      console.log("cuenta de google", googleUser);
+      this.props.history.push(`/registergoogle/${userName}/${userSurname}/${userEmail}`)     
       this.verifyAccount(userEmail, userToken)
    
     }
@@ -35,7 +44,7 @@ class SocialNetworkComponent extends Component {
     render() {
         return (
             <div class="col-md-6">
-                <GoogleAPI className="GoogleLogin" clientId="265848036385-8nb02cph4d85ca74vakqq463ggif52gc.apps.googleusercontent.com">
+                <GoogleAPI className="GoogleLogin" clientId="533966985417-qfdt7qfclu4h9si70n693fas25n1p4u1.apps.googleusercontent.com">
 				<div>
                 <p className="text-center"> Solo para usuarios </p>
 				<GoogleLogin 
@@ -56,4 +65,4 @@ class SocialNetworkComponent extends Component {
     }
 }
 
-export default SocialNetworkComponent;
+export default withRouter(SocialNetworkComponent);

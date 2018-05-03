@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import {Redirect} from 'react-router-dom';
 import '../css/register.css';
+import '../css/loader.css';
 import axios from 'axios';
 import store from './store'
 import TechnicianList from './TechnicianList.js';
