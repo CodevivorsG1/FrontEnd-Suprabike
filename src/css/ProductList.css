@@ -25,3 +25,7 @@
  img{
 	width: inherit;
 }
+
+.pdfBtn {
+	margin: 0px 5px;
+}

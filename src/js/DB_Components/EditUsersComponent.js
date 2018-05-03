@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import axios from 'axios';
 import swal from 'sweetalert';
+import store from '../store'
 import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
 
 class EditUsersComponent extends React.Component {
@@ -57,7 +58,7 @@ class EditUsersComponent extends React.Component {
   }
   componentDidMount(){
     this.setState({isLoading: true})
-    axios.get('http://localhost:4000/users')
+    axios.get(store.getState().globalUrl + 'users')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
@@ -73,7 +74,7 @@ class EditUsersComponent extends React.Component {
                 console.log("fuck user")
                 this.setState({ isLoading: false})
               })
-      axios.get('http://localhost:4000/cities')
+      axios.get(store.getState().globalUrl + 'cities')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
@@ -89,7 +90,7 @@ class EditUsersComponent extends React.Component {
   }
   saveUser(){
     this.setState({isLoading: true})
-    axios.put('http://localhost:4000/users/'+this.state.id,{user:this.state.user})
+    axios.put(store.getState().globalUrl + 'users/'+this.state.id,{user:this.state.user})
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){

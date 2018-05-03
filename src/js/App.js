@@ -6,22 +6,26 @@ import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
 import Map from './Map_Components/Container.js';
+import MyPdfViewer from './PDF_Components/testPdfViewer.js';
+import store from './store'
 
 //import {Button} from 'react-bootstrap'
 
 //DB_Components/UsersComponent.js
 class App extends Component {
   render() {
+    const token = store.getState().token 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={AppHomeLandingComponent}/>
-          <Route path='/login' component={LoginComponent}/>
+          <Route path='/login' component={store.getState().token != "" ? LoginComponent : AppHomeComponent }/>
           <Route path='/register' component={RegisterComponent} />
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          {<Route path='/map'component={Map}/>}
+          <Route path='/map'component={Map}/>
+          <Route path='/pdf'component={MyPdfViewer}/>
         </Switch>
       </BrowserRouter>
     );
