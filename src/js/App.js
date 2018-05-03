@@ -5,7 +5,7 @@ import LoginComponent from './LoginComponent.js';
 import RegisterComponent from './RegisterComponent.js';
 import AppHomeLandingComponent from './AppHomeLandingComponent.js';
 import UserComponent from './DB_Components/UsersComponent.js';
-import Map from './Map_Components/MapComponent.js';
+import Map from './Map_Components/Container.js';
 import RegisterGoogle from './RegisterGoogle.js';
 import MyPdfViewer from './PDF_Components/testPdfViewer.js';
 import store from './store'
@@ -26,7 +26,8 @@ class App extends Component {
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
           <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
-          {<Route path='/map'component={Map}/>}
+          <Route path='/map'component={Map}/>
+          <Route path='/pdf'component={MyPdfViewer}/>
         </Switch>
       </BrowserRouter>
     );
