@@ -1,54 +1,51 @@
 import React from 'react';
 import axios from 'axios';
-import {GoogleApiWrapper} from 'google-maps-react';
-import { Route } from 'react-router-dom';
 import Map from './Map.js';
 
-export class MapContainer extends React.Component {
+export default class Container extends React.Component {
 
-    state = {
-      addresses: []
-    }
+  state = {
+    addresses:[]
+  }
 
-    getGeocode = (url) => {
-      axios.get(url)
-          .then((response) => {
-              let data = response.data.results[0].geometry.location;
-              this.state.addresses.push(data);              
-              //console.log(this.state.storesMarkers);
-          })
-          .catch((error) => {
-              console.log("No data found!");
-          })  
-    };
+  getGeocode = (url, num) => {
+    axios.get(url)
+        .then((response) => {
+            //console.log(response);
+            let data = response.data.results[0].geometry.location;
+            this.state.addresses.push({data: data, id: num});            
+            //console.log(this.state.storesMarkers);
+        })
+        .catch((error) => {
+            console.log("No data found!");
+        })
+  }
 
-    componentDidMount(){
-      axios.get("http://localhost:4000/stores")
+  componentWillMount(){
+    axios.get("http://localhost:4000/stores")
         .then((response) => {
             //console.log(response);
             for(var x in response.data){    // Obtiene todas las direcciones del pedido
                 let record = response.data[x]
                 let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + record.address_store +",Bogotá&key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A";                    
-                this.getGeocode(url);
+                this.getGeocode(url, x);
             }
-            console.log(this.state.addresses);
+            //console.log(this.state.addresses);
         })
         .catch((error) => {
             console.log("Nothing happened");
         })
-    }
+  }
 
-    render() {      
-      return (
-        <div className="MapContainer">
-          <div className="wrapper">
-            <Route path='/map' render={(props) => < Map google={this.props.google} addresses={this.state.addresses} {...props}/>} />
-          </div>
-        </div>
-      );
+  render() {
+    return (
+      <Map
+        addresses = {this.state.addresses}
+        googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A&v=3.exp&libraries=geometry,drawing,places'}
+        loadingElement={<div style={{ height: `100%` }} />}
+				containerElement={<div style={{ height: `600px`, width: `600px` }} />}
+				mapElement={<div style={{ height: `100%` }} />}
+      />
+    );
   }
 }
-
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A'
-})(MapContainer)
