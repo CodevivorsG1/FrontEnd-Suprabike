@@ -7,15 +7,14 @@ const Map = withScriptjs(withGoogleMap((props) => {
   console.log("En mapa");
   console.log(props.addresses);
   for(var x in props.addresses){
-    console.log(x);        
+    console.log(props.addresses[x].id);        
   }
   const markers = props.addresses.map( add =>         
     <Markers      
       id={add.id}
       location={{lat: add.data.lat, lng: add.data.lng}}
+      activeMarker={null}      
     />);
-
-    
 
   return (
     <GoogleMap

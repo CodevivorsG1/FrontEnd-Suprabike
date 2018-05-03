@@ -39,7 +39,7 @@ export default class Container extends React.Component {
             console.log("Nothing happened");
         })
   }
-
+  
   render() {
     if(this.state.loaded){
       return (
@@ -48,7 +48,7 @@ export default class Container extends React.Component {
           googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAqD4Z3Cam8ZJqQr_v42hKjmQktYMq-27A&v=3.exp&libraries=geometry,drawing,places'}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `600px`, width: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}          
         />
       );
     } else {
