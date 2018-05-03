@@ -42,7 +42,7 @@ class UploadZoneImages extends React.Component {
           ref={field => (this.bookCoversField = field)}
           type="file"
           disabled={this.state.isSubmittingForm}
-          multiple={true}
+          multiple={false}
           accept="image/*"
           style={{
             width: 0.1,
