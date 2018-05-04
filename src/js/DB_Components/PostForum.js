@@ -19,6 +19,9 @@ class PostForum extends Component {
       console.log("error cities, ", e)
     })
     }
+    viewComments = () =>{
+        
+    }
     render() {
         const len = this.props.foroContent.comments.length;
         let image = this.state.user.image;
@@ -40,7 +43,7 @@ class PostForum extends Component {
                         Comentarios: {len > 1 ? 'Si' : 'No'}
                     </div>
                     <div class="rx-lastpost-info h-hide">
-                        <a class="lastpost-title" href="https://vb5.pixelgoose.com/forum/main-forum/main-subforum/test-subforum-01/221-testimony#post221">
+                        <a class="lastpost-title" href="#" onClick={this.viewComments()}>
                             Ver mas...
                         </a>
                     </div>
