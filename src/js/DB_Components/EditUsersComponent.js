@@ -60,33 +60,27 @@ class EditUsersComponent extends React.Component {
     newState.user.password_confirmation = event.target.value
     this.setState(newState);
   }
-  componentDidMount(){    
+  componentDidMount(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl + 'users')
-              .then((response) =>{
-                  console.info(response)
-                  if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state.user = response.data[0];
-                    this.state.id = response.data[0].id;
-                    this.setState({ id: response.data[0].id})                
-                  }
-                this.setState({ isLoading: false})
-                console.log(this.state);
-              })
-              .catch((error) => {
-                console.log("fuck user")
-                this.setState({ isLoading: false})
-              })
-      axios.get(store.getState().globalUrl + 'cities')
-              .then((response) =>{
-                console.info("ciudades edición",response.data)
-                this.setState({cities: response.data})                  
-              })
-              .catch((error) => {
-                console.log("fuck")
-              })
-  }
+    axios.get(store.getState().globalUrl + `${store.getState().userType}/${store.getState().userId}`)
+    .then((response) =>{  
+    this.setState({ user: response.data})  
+    this.setState({ isLoading: false})
+    })
+    .catch((error) => {
+    console.log("fuck user")
+    this.setState({ isLoading: false})
+    })
+    axios.get(store.getState().globalUrl + 'cities')
+    .then((response) =>{
+     console.info("ciudades edición",response.data)
+    this.setState({cities: response.data})  
+    })
+    .catch((error) => {
+    console.log("fuck")
+    })
+    }
+  
   saveUser(){
     this.setState({isLoading: true})
     axios.put(store.getState().globalUrl+`${store.getState().userType}/${store.getState().userId}`,

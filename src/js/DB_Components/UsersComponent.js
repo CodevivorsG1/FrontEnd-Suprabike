@@ -34,10 +34,8 @@ class UserComponent extends React.Component {
               .then((response) =>{
                   
                   if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state = response.data[response.data.length -1];
-                    this.handleImage(response.data[response.data.length -1])
-                    this.setState(response.data[response.data.length -1])
+                    this.setState(response.data) 
+                    this.handleImage(response.data)
                   }
                 this.setState({ isLoading: false})
               })
