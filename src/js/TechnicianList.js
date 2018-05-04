@@ -83,6 +83,8 @@ class TechnicianList extends React.Component {
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
 				    	{product.NameTec + " " + product.SurnameTec}
+				    	<br/>
+				    	{"$ " + product.costhourtec}
 							
 				    </div>
 				    <div class="productprice">
