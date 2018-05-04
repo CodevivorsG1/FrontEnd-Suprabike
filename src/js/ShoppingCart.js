@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Panel, Table, Button, Glyphicon } from 'react-bootstrap';
 import store from './store'
 import swal from 'sweetalert';
+import axios from 'axios';
 
 const styles = {
   footer: {
@@ -51,9 +52,47 @@ class ShoppingCart extends Component {
     )
   }
   comprar(){
-    swal('Realizar compra',{
-  buttons: ["cancelar", "Comprar!"],
-});
+    var items = 'Ud ha adquirido bicicleta '
+    for (var i = 0; i < this.state.cart.length; i++) {
+      items = items + this.state.cart[i].brand_bicy + " en " + this.state.cart[i].material_bicy + " por $" + this.state.cart[i].price_bicy +" , "
+    }
+    console.log(this.state.cart)
+    const value = this.state.cart.reduce((sum, bike) => sum + bike.price_bicy, 0)
+    swal({
+      title: "Estas seguro?",
+      text: "Vas a realizar una compra por $" +   value,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        var message = {
+            "date_transaction":"25/05/2016",
+            "type_transaction":"mantenimiento", 
+            "total_transaction":value,
+            "items": items,
+            "store_id":'23', 
+            "user_id": store.getState().userId
+          }
+        axios.post(store.getState().globalUrl + 'transactions',message)
+        .then((response)=>{
+          console.log("respuesta promise a transactions", response)
+          swal("Bien! Tu compra ha sido realizada!", {
+            icon: "success",
+          });
+        })
+        .catch((response)=>{
+          
+          console.log("Error promise transaction", response)
+        })
+        
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+
+    
   }
   removeFromCart(bike) {
     store.dispatch({
@@ -64,3 +103,4 @@ class ShoppingCart extends Component {
 }
 
 export default ShoppingCart;
+
