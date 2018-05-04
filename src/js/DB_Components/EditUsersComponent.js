@@ -20,7 +20,7 @@ class EditUsersComponent extends React.Component {
         "city_id": "",
         "name": "",
         "this_image": null
-      }
+      },
       cities:[]
     }
     this.handleChangeNameUser = this.handleChangeNameUser.bind(this);
