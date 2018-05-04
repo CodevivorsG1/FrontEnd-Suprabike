@@ -28,7 +28,8 @@ const reducer = ( state, action) => {
 		return{
 			...state,
 			token: "",
-			userType: ""
+			userType: "",
+			userId: ""
 		}
 	}
 	if (action.type === "REMOVE_BIKE") {
@@ -57,7 +58,8 @@ const persistedState = () =>{
 		userType: currentStore.userType,
 		userId: currentStore.userId,
 		cart: currentCart,
-		globalUrl: 'https://suprabikesbackendd.herokuapp.com/'
+		globalUrl: //'https://suprabikesbackendd.herokuapp.com/'
+		'http://localhost:4000/'
 	}
 }
 
