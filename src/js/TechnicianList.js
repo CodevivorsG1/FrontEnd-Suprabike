@@ -11,6 +11,7 @@ class TechnicianList extends React.Component {
 		super();
 		this.contact = this.contact.bind(this);
 		this.handleImg = this.handleImg.bind(this);
+		this.sendMail = this.sendMail.bind(this);
 
 		this.state = {
 			bikes: [
@@ -22,13 +23,26 @@ class TechnicianList extends React.Component {
 		swal("Ingrese el mensaje para " + technician.NameTec , {
 		  content: "input",
 		})
-		.then(function(value)  {
-		  swal('Mensaje: ' + value);
+		.then(function(message)  {
+			console.info(technician)
+			console.info(message)
+			message = {
+					"date_transaction":"25/05/2016",
+					"type_transaction":"mantenimiento", 
+					"total_transaction":technician.costhourtec,
+					"technician_id":technician.id, 
+					"user_id": store.getState().userId
+				}
+
+		  swal('Mensaje: ' + message);
 		  if (true) {}
 		});
 		
 	}
-
+	sendMail(technician, value){
+		console.info(technician)
+		console.info(value)
+	}
 	handleImg(product){
 		if(product.hasOwnProperty('img')){
 			return product.image;

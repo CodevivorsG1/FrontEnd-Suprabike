@@ -8,7 +8,8 @@ const reducer = ( state, action) => {
 		return{
 			...state,
 			token: action.token,
-			userType: action.userType
+			userType: action.userType,
+			userId: action.userId
 		}
 	}
 	if (action.type === "ADD_BIKE") {
@@ -42,7 +43,7 @@ const reducer = ( state, action) => {
 			userType: action.userType
 		}
 	}
-	console.log('view '+state.sectionView)
+	
 	return state
 };
 
@@ -54,13 +55,17 @@ const persistedState = () =>{
 		token: currentStore.token,
 		sectionView: currentStore.sectionView,
 		userType: currentStore.userType,
+		userId: currentStore.userId,
 		cart: currentCart,
-		globalUrl : 'https://suprabikesbackendd.herokuapp.com/'
+		globalUrl: 
+		//'http://localhost:4000/'
+		//'https://mighty-atoll-94931.herokuapp.com/'
+		'https://suprabikesbackendd.herokuapp.com/'
 	}
 }
 
 const logger = store => next => action => {
-    console.log('Realizó método dispatch para: ', action);
+    
     let result = next(action);
 	saveState(store.getState());
 	saveCartState(store.getState());
