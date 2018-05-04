@@ -20,7 +20,9 @@ class EditUsersComponent extends React.Component {
         "genderUser": "", 
         "phonenumUser": "", 
         "celphoneUser": "",
-        "city_id": ""
+        "city_id": "",
+        "name": "",
+        "this_image": null
       }
     }
     this.handleChangeNameUser = this.handleChangeNameUser.bind(this);
@@ -110,6 +112,23 @@ class EditUsersComponent extends React.Component {
               })
   }
 
+  imageSelectedHandler = event => {
+    console.log(event.target.files[0])
+    this.setState({
+      this_image: event.target.files[0],
+      name: event.target.files[0].name
+    })
+  }
+
+  imageUploadHandlder = () => {
+    const fd = new FormData();
+    fd.append('image', this.state.user.this_image, this.state.user.name)     
+    console.log(this.state.user.this_image)   
+    axios.put(store.getState().globalUrl+'users/'+this.state.id, fd)
+      .then((response) => {
+        console.log(response)
+      })
+  }
 
   render(){
     const { redirect } = this.state;
@@ -151,9 +170,13 @@ class EditUsersComponent extends React.Component {
                                       </div> 
                                       
                                     
-                                      <button onClick={this.saveUser} class="btn-primary btn-lg btn-primary" ><i class="fa fa-save"> </i> Guardar
+                                      <button onClick={this.saveUser} class="btn-primary btn-lg btn-primary" style={{'margin-bottom':"10px"}} ><i class="fa fa-save"> </i> Guardar
                                       </button>
-                                 
+                                      <br/>
+                                      <h2>Nueva Foto de Perfil</h2>
+                                      <input type="file" onChange={this.imageSelectedHandler}/>
+                                      <button onClick={this.imageUploadHandlder}>Subir</button>
+                                  
                                  </div>
                             </div> 
 			        
