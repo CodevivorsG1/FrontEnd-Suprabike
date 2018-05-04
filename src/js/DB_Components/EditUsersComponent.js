@@ -90,7 +90,7 @@ class EditUsersComponent extends React.Component {
   }
   saveUser(){
     this.setState({isLoading: true})
-    axios.put(store.getState().globalUrl + 'users/'+this.state.id,{user:this.state.user})
+    axios.put(store.getState().globalUrl+'users/'+this.state.id,{user:this.state.user})
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
