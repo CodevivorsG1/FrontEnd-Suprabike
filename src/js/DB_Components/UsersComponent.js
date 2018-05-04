@@ -1,6 +1,5 @@
 import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
-import UploadZoneImages from '../Upload_Components/UploadZoneImages.js'
 import axios from 'axios';
 import store from '../store.js';
 
@@ -21,11 +20,25 @@ class UserComponent extends React.Component {
     }
   }
 
+  handleImage = (response) => {
+    if(response.image !== null && response.image.this_image !== "/images/original/missing.png"){
+      this.setState({
+        avatar_url: store.getState().globalUrl + response.image.this_image
+      })
+    }
+  }
+
   componentDidMount(){
     this.setState({isLoading: true})
     axios.get(store.getState().globalUrl+`users/${store.getState().userId}`)
               .then((response) =>{
-                this.setState(response.data)
+                  
+                  if( response.statusText == 'OK'){
+                    console.info(response.data[0])
+                    this.state = response.data[response.data.length -1];
+                    this.handleImage(response.data[response.data.length -1])
+                    this.setState(response.data[response.data.length -1])
+                  }
                 this.setState({ isLoading: false})
               })
               .catch((error) => {
@@ -94,8 +107,7 @@ class UserComponent extends React.Component {
 			                </div>
 			            </div>
 			        </div>
-			    </div>
-          <UploadZoneImages />
+			    </div>          
 			</div>
 
 	    );}
