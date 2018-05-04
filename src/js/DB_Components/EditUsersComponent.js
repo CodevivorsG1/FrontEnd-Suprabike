@@ -23,8 +23,12 @@ class EditUsersComponent extends React.Component {
         "city_id": "",
         "name": "",
         "this_image": null
-      }
+      }      
     }
+    this.info = new FormData();
+
+    
+
     this.handleChangeNameUser = this.handleChangeNameUser.bind(this);
     this.handleChangePhone = this.handleChangePhone.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -58,19 +62,26 @@ class EditUsersComponent extends React.Component {
     newState.user.password_confirmation = event.target.value
     this.setState(newState);
   }
-  componentDidMount(){
+  componentDidMount(){    
     this.setState({isLoading: true})
     axios.get(store.getState().globalUrl + 'users')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
-                    this.state.user = response.data[0];
-                    this.state.id = response.data[0].id;
-                    this.setState({ id: response.data[0].id})                
+                    this.state.user = response.data[response.data.length -1];                    
+                    this.state.id = response.data[response.data.length -1].id;
+                    console.log("this.user");
+                    console.log(this.state.user);
+                    for(let x in this.state.user){
+                      if(x !=="transactions" && x!=="comments"&&x!=="forums"&&x!="image"){
+                        console.log(x)
+                        this.info.append(x, this.state.user[x])
+                      }
+                    }
+                    this.setState({ id: response.data[response.data.length -1].id})                
                   }
-                this.setState({ isLoading: false})
-                console.log(this.state);
+                this.setState({ isLoading: false})                                
               })
               .catch((error) => {
                 console.log("fuck user")
@@ -113,20 +124,33 @@ class EditUsersComponent extends React.Component {
   }
 
   imageSelectedHandler = event => {
-    console.log(event.target.files[0])
+    
     this.setState({
-      this_image: event.target.files[0],
-      name: event.target.files[0].name
+      this_image: event.target.files[0]      
     })
+
+    this.state.user.this_image = event.target.files[0]    
+    console.log(this.state.user.this_image)
+    
   }
 
   imageUploadHandlder = () => {
     const fd = new FormData();
-    fd.append('image', this.state.user.this_image, this.state.user.name)     
-    console.log(this.state.user.this_image)   
+    fd.append('this_image', this.state.user.this_image)
+    fd.append('name', 'profile_id_' + this.state.user.id)
+    
+    
+    for(let x of fd.entries()){
+      console.log(x[0]+": "+x[1])
+    }
+    console.log(this.state.user)   
+    console.log(store.getState().globalUrl+'users/'+this.state.id)
     axios.put(store.getState().globalUrl+'users/'+this.state.id, fd)
       .then((response) => {
         console.log(response)
+      })
+      .catch((error) =>{
+        console.log("Error al subir imagen")
       })
   }
 
