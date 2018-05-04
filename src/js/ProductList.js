@@ -57,7 +57,20 @@ class ProductList extends React.Component {
 			);
 		}else{
 			return (
-				bike.map(product =>
+				<div>
+				<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+   {'< $500.000'}
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
+  {"< $1'000.000"}
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled/>
+  {"> $1'000.000"}
+</div>
+				{bike.map(product =>
 	        	<div class="col-md-3 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
@@ -74,7 +87,10 @@ class ProductList extends React.Component {
 				    	</div>
 			    	</div>
 				</div>
-			))
+				
+			)}
+			</div>
+			)
 
 		}
 	}
