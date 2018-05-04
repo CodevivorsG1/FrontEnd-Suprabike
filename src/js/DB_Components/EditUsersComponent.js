@@ -12,9 +12,6 @@ class EditUsersComponent extends React.Component {
       "id":0,
       "user":{
         "email": "",
-        "password": "",
-        "password_confirmation": "",
-        "idUser": "",
         "nameUser": "",
         "surnameUser": "", 
         "genderUser": "", 
@@ -23,7 +20,8 @@ class EditUsersComponent extends React.Component {
         "city_id": "",
         "name": "",
         "this_image": null
-      }      
+      }
+      cities:[]
     }
     this.info = new FormData();
 
@@ -69,19 +67,12 @@ class EditUsersComponent extends React.Component {
                   console.info(response)
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
-                    this.state.user = response.data[response.data.length -1];                    
-                    this.state.id = response.data[response.data.length -1].id;
-                    console.log("this.user");
-                    console.log(this.state.user);
-                    for(let x in this.state.user){
-                      if(x !=="transactions" && x!=="comments"&&x!=="forums"&&x!="image"){
-                        console.log(x)
-                        this.info.append(x, this.state.user[x])
-                      }
-                    }
-                    this.setState({ id: response.data[response.data.length -1].id})                
+                    this.state.user = response.data[0];
+                    this.state.id = response.data[0].id;
+                    this.setState({ id: response.data[0].id})                
                   }
-                this.setState({ isLoading: false})                                
+                this.setState({ isLoading: false})
+                console.log(this.state);
               })
               .catch((error) => {
                 console.log("fuck user")
@@ -89,13 +80,8 @@ class EditUsersComponent extends React.Component {
               })
       axios.get(store.getState().globalUrl + 'cities')
               .then((response) =>{
-                  console.info(response)
-                  if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state.city = response.data[0].name_city;
-                    this.setState(response.data[0])                
-                  }
-                console.log(this.state);
+                console.info("ciudades edición",response.data)
+                this.setState({cities: response.data})                  
               })
               .catch((error) => {
                 console.log("fuck")
@@ -103,16 +89,13 @@ class EditUsersComponent extends React.Component {
   }
   saveUser(){
     this.setState({isLoading: true})
-    axios.put(store.getState().globalUrl+'users/'+this.state.id,{user:this.state.user})
+    axios.put(store.getState().globalUrl+`${store.getState().userType}/${store.getState().userId}`,
+                this.state.user)
               .then((response) =>{
-                  console.info(response)
-                  if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state = response.data[0];
-                    this.setState(response.data[0])    
-                    this.setState({ redirect: true, isLoading: false });
-                    swal("Correcto!", "Usuario editado correctamente", "success");
-                  }
+                  console.info("respuesta edicion",response)
+                  //this.setState(response.data[0])    
+                  this.setState({ redirect: true, isLoading: false });
+                  swal("Correcto!", "Usuario editado correctamente", "success");
                 
                 console.log(this.state);
               })

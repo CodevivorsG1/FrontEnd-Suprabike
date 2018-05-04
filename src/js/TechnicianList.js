@@ -33,7 +33,14 @@ class TechnicianList extends React.Component {
 					"technician_id":technician.id, 
 					"user_id": store.getState().userId
 				}
-
+		  axios.post(store.getState().globalUrl + 'transactions',message)
+		  .then((response)=>{
+			  console.log("respuesta promise a transactions", response)
+		  })
+		  .catch((response)=>{
+			  swal("Error, intente de nuevo", response)
+			  console.log("Error promise transaction", response)
+		  })
 		  swal('Mensaje: ' + message);
 		  if (true) {}
 		});
@@ -83,6 +90,8 @@ class TechnicianList extends React.Component {
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
 				    	{product.NameTec + " " + product.SurnameTec}
+				    	<br/>
+				    	{"$ " + product.costhourtec} /hora
 							
 				    </div>
 				    <div class="productprice">

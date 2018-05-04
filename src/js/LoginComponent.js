@@ -76,7 +76,7 @@ class LoginComponent extends React.Component {
             })
                   .then((response)=>{
                     console.log('login')
-                    console.log(response)
+                    console.log("esta es la respuesta",response.data.id)
                     store.dispatch({
                       type: 'ADD_TOKEN',
                       token: response.data.authentication_token,
