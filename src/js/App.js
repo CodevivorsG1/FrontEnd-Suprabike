@@ -8,6 +8,7 @@ import UserComponent from './DB_Components/UsersComponent.js';
 import Map from './Map_Components/Container.js';
 import RegisterGoogle from './RegisterGoogle.js';
 import MyPdfViewer from './PDF_Components/testPdfViewer.js';
+import UploadZone from './Upload_Components/UploadZoneImages.js';
 import store from './store'
 
 //import {Button} from 'react-bootstrap'
@@ -28,6 +29,7 @@ class App extends Component {
           <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
           <Route path='/map'component={Map}/>
           <Route path='/pdf'component={MyPdfViewer}/>
+          <Route path='/image'component={UploadZone}/>
         </Switch>
       </BrowserRouter>
     );

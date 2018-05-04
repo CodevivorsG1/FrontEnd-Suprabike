@@ -28,7 +28,8 @@ class RegisterComponent extends React.Component {
       address: '',
       city: 'seleccione',
       city_id:'1',
-      cities:[]
+      cities:[],
+      images: null
 
     };
 
@@ -248,6 +249,17 @@ class RegisterComponent extends React.Component {
 
     error.textContent = '';
     return true;
+  }
+
+  fileSelectedHandler = event => {
+    console.log(event.target.files[0])
+    this.setState({
+      images: event.target.files[0]
+    })
+  }
+
+  fileUploadHandler = () => {
+
   }
   
   render() {
@@ -530,7 +542,7 @@ class RegisterComponent extends React.Component {
                    <div className="error" id="telephoneError" />
                   </div>
                 </div>
-              </div>
+              </div>          
 
 
               <div class="row">
@@ -687,8 +699,6 @@ class RegisterComponent extends React.Component {
                     </div>
                   </div>
                 </div>
-  
-  
                 <div class="row">
                   <div class="col-md-4"></div>
                   <div class="col-md-4 col-md-offset-4">

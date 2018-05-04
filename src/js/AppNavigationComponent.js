@@ -46,6 +46,7 @@ class AppNavigationComponent extends React.Component{
               <a href="#"  class="list-group-item disabled"><i class="fas fa-bicycle"></i> Armar bici</a>
               <a href="/home/technician" class="list-group-item"><i class="fas fa-wrench"></i> Servicio técnico</a>
               <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
+              <a href="/home/map" class="list-group-item"><i class="far fa-map"></i> Mapa de tiendas</a>
               <a href="#" onClick={() => this.closeSession()} class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
               
             </div>
