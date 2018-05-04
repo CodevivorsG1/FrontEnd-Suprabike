@@ -18,7 +18,8 @@ class SocialNetworkComponent extends Component {
             store.dispatch({
               type: 'ADD_TOKEN',
               token: response.data.authentication_token,
-              userType: 'users' 
+              userType: 'users',
+              userId: response.data.id
             })
             this.props.history.push('/home/undefined')
     }
@@ -36,12 +37,12 @@ class SocialNetworkComponent extends Component {
     .then((response) =>
     {
      this.setState({isLoading: false})
-     const id = response.data.id
-     console.log("respuesta google", id)   
-     if (id == undefined){
-         this.logingoogle(response)
-     }else{
+     const userName = response.data.nameUser
+     console.log("respuesta google", response)   
+     if (userName == "yourname"){
         this.props.history.push(`/registergoogle/${userToken}/${userName}/${userSurname}/${userEmail}/${response.data.id}`)
+     }else{
+        this.logingoogle(response)
      }
      
     })
