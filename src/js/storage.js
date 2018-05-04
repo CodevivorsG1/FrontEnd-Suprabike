@@ -1,3 +1,5 @@
+import { stat } from "fs";
+
 export const loadState = () => {
     try {
       const serializedData = localStorage.getItem('state')
@@ -6,7 +8,8 @@ export const loadState = () => {
         return {
           token: "",
           sectionView: "",
-          userType: ""
+          userType: "",
+          userId: ""
         }
       } 
       return JSON.parse(serializedData) // Si encontramos con exito nuestro storage lo devolvemos.
@@ -14,7 +17,8 @@ export const loadState = () => {
       return {
         token: "",
         sectionView: "",
-        userType: ""
+        userType: "",
+        userId: ""
       }
     }
 }
@@ -35,7 +39,8 @@ export const saveState = (state) => {
       const varState = {
         token: state.token,
         sectionView: state.sectionView,
-        userType: state.userType
+        userType: state.userType,
+        userId: state.userId
       }
       let serializedData = JSON.stringify(varState)
       console.log("serializador", serializedData)

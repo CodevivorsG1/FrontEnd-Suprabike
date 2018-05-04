@@ -23,16 +23,10 @@ class UserComponent extends React.Component {
 
   componentDidMount(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl+'users')
+    axios.get(store.getState().globalUrl+`users/${store.getState().userId}`)
               .then((response) =>{
-                  
-                  if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state = response.data[response.data.length -1];
-                    this.setState(response.data[response.data.length -1])
-                  }
+                this.setState(response.data)
                 this.setState({ isLoading: false})
-                console.log(this.state);
               })
               .catch((error) => {
                 console.log("fuck user")
