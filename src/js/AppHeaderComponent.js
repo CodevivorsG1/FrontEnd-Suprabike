@@ -7,25 +7,19 @@ class AppHeaderComponent extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-
+      nameUser: ""
     }
   }
   componentDidMount(){
     this.setState({isLoading: true})
     if (store.getState().token != ""){
-      console.log('userid')
-      console.log(store.getState().userId)
-      axios.get(store.getState().globalUrl + 'users/'+ store.getState().userId )
+      console.log("id del usuario",store.getState().userId)
+      axios.get(store.getState().globalUrl + `${store.getState().userType}/`+ store.getState().userId )
                 .then((response) =>{
-                    console.info('header user')
-                    console.info(response)
-                    if( response.statusText == 'OK'){
-                      
-                      
-                      this.state = response.data[response.data.length -1];
-                      this.setState(response.data[response.data.length -1])    
-                    }
-                  this.setState({ isLoading: false})
+                  
+                  this.setState({ isLoading: false,
+                                nameUser: response.data.nameUser
+                  })
                 })
                 .catch((error) => {
                   console.log("fuck user")
