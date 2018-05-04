@@ -158,13 +158,13 @@ class ProductList extends React.Component {
 						}
 							</div>
 							<div class="row">
-								<a href="https://suprabikesbackendd.herokuapp.com/bicycles/showpdf.pdf" target="_blank">
+								<a href= {store.getState().globalUrl+"/bicycles/showpdf.pdf"} target="_blank">
 									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> Catálogo Bicis</button>
 								</a>
-								<a href="https://suprabikesbackendd.herokuapp.com/technicians/showpdf.pdf" target="_blank">
+								<a href={store.getState().globalUrl+"/technicians/showpdf.pdf"} target="_blank">
 									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> PDF Técnicos</button>
 								</a>
-								<a href="https://suprabikesbackendd.herokuapp.com/components/showpdf.pdf" target="_blank">
+								<a href={store.getState().globalUrl+"/components/showpdf.pdf"} target="_blank">
 									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> PDF Partes</button>
 								</a>
 							</div>
