@@ -25,11 +25,11 @@ class UserComponent extends React.Component {
     this.setState({isLoading: true})
     axios.get(store.getState().globalUrl+'users')
               .then((response) =>{
-                  console.info(response)
+                  
                   if( response.statusText == 'OK'){
                     console.info(response.data[0])
-                    this.state = response.data[0];
-                    this.setState(response.data[0])
+                    this.state = response.data[response.data.length -1];
+                    this.setState(response.data[response.data.length -1])
                   }
                 this.setState({ isLoading: false})
                 console.log(this.state);
@@ -77,7 +77,7 @@ class UserComponent extends React.Component {
 			                        <small><cite title="San Francisco, USA"> {this.state.city} <i class="glyphicon glyphicon-map-marker">
 			                        </i></cite></small>
 			                        <p>
-                                  <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">Usuario: {this.state.nameUser}</a>
+                                  <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">Usuario: {this.state.nameUser + " " + this.state.surnameUser}</a>
                                   <br />
 			                            <i class="fas fa-envelope"></i> { this.state.email}
                                   <br />
@@ -90,6 +90,12 @@ class UserComponent extends React.Component {
                                         <i class="far fa-edit"></i> Editar
                                 </button>
 			                        </a>
+                              <br/>
+                              <a href="/home/statistics">
+                                <button type="button" class="btn btn-primary">
+                                        <i class="fas fa-chart-line"></i> Estadisticas
+                                </button>
+                              </a>
 			                    </div>
 			                </div>
 			            </div>
