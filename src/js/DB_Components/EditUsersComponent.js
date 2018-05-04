@@ -122,7 +122,7 @@ class EditUsersComponent extends React.Component {
     }
     console.log(this.state.user)   
     console.log(store.getState().globalUrl+'users/'+this.state.id)
-    axios.put(store.getState().globalUrl+'users/'+this.state.id, fd)
+    axios.put(store.getState().globalUrl+'users/'+this.state.user.id, fd)
       .then((response) => {
         console.log(response)
       })
