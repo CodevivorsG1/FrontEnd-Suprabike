@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
 import '../css/login.css';
+import '../css/google.css';
 import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import AppHomeComponent from './AppHomeComponent.js'
@@ -179,7 +180,7 @@ class LoginComponent extends React.Component {
                 <h3 class="panel-heading">Ingrese por favor ...</h3>
               </div>
               <div class="row">
-                <SocialNetworkComponent/>
+                <SocialNetworkComponent className="google-btn"/>
                 <div class="col-md-6">
                   <form onSubmit={this.handleSubmit} noValidate>
                   <div class="container-fluid">

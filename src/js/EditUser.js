@@ -35,7 +35,7 @@ class EditUser extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
-    axios.get(store.getState().globalUrl +'cities')
+    axios.get(store.getState().globalUrl + 'cities')
     .then((response) =>{
       this.setState({cities: response.data})
     })
@@ -96,7 +96,7 @@ class EditUser extends React.Component {
       city_id: this.state.city_id
     }
 
-    axios.post(store.getState().globalUrl+'users/',
+    axios.post(store.getState().globalUrl + 'users/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
@@ -125,7 +125,7 @@ class EditUser extends React.Component {
       celphoneUser: this.state.cellphone,
     }
 
-    axios.post(store.getState().globalUrl+'technicians/',
+    axios.post(store.getState().globalUrl + 'technicians/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')
@@ -154,7 +154,7 @@ class EditUser extends React.Component {
       score_store: "0"
     }
 
-    axios.post(store.getState().globalUrl+'stores/',
+    axios.post(store.getState().globalUrl + 'stores/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')

@@ -38,7 +38,7 @@ class UserComponent extends React.Component {
                 console.log("fuck user")
                 this.setState({ isLoading: false})
               })
-      axios.get(store.getState().globalUrl+'cities')
+      axios.get(store.getState().globalUrl + 'cities')
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){

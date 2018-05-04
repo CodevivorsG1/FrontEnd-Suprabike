@@ -2,8 +2,9 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import axios from 'axios';
 import swal from 'sweetalert';
+import store from '../store'
 import {BrowserRouter, Redirect, Switch, Route} from 'react-router-dom';
-import store from '../store';
+
 class EditUsersComponent extends React.Component {
   constructor(props){
     super(props);

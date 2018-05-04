@@ -32,7 +32,7 @@ class ProductList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl +'bicycles/')
+    axios.get(store.getState().globalUrl + 'bicycles/')
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){
@@ -100,7 +100,15 @@ class ProductList extends React.Component {
 						}
 							</div>
 							<div class="row">
-								<button class="btn btn-info btn-sm" onClick={() => this.generatePDF()} role="button">Generar catálogo</button>
+								<a href="https://suprabikesbackendd.herokuapp.com/bicycles/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Catálogo</button>
+								</a>
+								<a href="https://suprabikesbackendd.herokuapp.com/technicians/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Técnicos</button>
+								</a>
+								<a href="https://suprabikesbackendd.herokuapp.com/components/showpdf.pdf" target="_blank">
+									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Partes</button>
+								</a>
 							</div>
 						</div>
 					);

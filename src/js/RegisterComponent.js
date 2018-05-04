@@ -2,6 +2,7 @@ import React from 'react';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import {Redirect} from 'react-router-dom';
 import '../css/register.css';
+import '../css/loader.css';
 import axios from 'axios';
 import store from './store'
 import TechnicianList from './TechnicianList.js';
@@ -27,7 +28,8 @@ class RegisterComponent extends React.Component {
       address: '',
       city: 'seleccione',
       city_id:'1',
-      cities:[]
+      cities:[],
+      images: null
 
     };
 
@@ -36,7 +38,6 @@ class RegisterComponent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
-    console.log("component will mount",store.getState().globalUrl + 'cities')
     axios.get(store.getState().globalUrl + 'cities')
     .then((response) =>{
       this.setState({cities: response.data})
@@ -127,6 +128,7 @@ class RegisterComponent extends React.Component {
       costhourtec: this.state.techCost,
       phonenumtec: this.state.telephone, 
       celphoneUser: this.state.cellphone,
+      city_id: "1"
     }
 
     axios.post(store.getState().globalUrl + 'technicians/',
@@ -247,6 +249,17 @@ class RegisterComponent extends React.Component {
 
     error.textContent = '';
     return true;
+  }
+
+  fileSelectedHandler = event => {
+    console.log(event.target.files[0])
+    this.setState({
+      images: event.target.files[0]
+    })
+  }
+
+  fileUploadHandler = () => {
+
   }
   
   render() {
@@ -529,7 +542,7 @@ class RegisterComponent extends React.Component {
                    <div className="error" id="telephoneError" />
                   </div>
                 </div>
-              </div>
+              </div>          
 
 
               <div class="row">
@@ -686,8 +699,6 @@ class RegisterComponent extends React.Component {
                     </div>
                   </div>
                 </div>
-  
-  
                 <div class="row">
                   <div class="col-md-4"></div>
                   <div class="col-md-4 col-md-offset-4">
