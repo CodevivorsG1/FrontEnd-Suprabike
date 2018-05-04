@@ -84,7 +84,7 @@ class TechnicianList extends React.Component {
 				    <div class="producttitle">
 				    	{product.NameTec + " " + product.SurnameTec}
 				    	<br/>
-				    	{"$ " + product.costhourtec}
+				    	{"$ " + product.costhourtec} /hora
 							
 				    </div>
 				    <div class="productprice">

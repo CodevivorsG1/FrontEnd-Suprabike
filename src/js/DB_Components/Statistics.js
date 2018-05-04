@@ -103,7 +103,7 @@ class UserComponent extends React.Component {
     for (var i = 0; i < this.state.nTransactions; i++) {
       var transaction = {
                       type: i,
-                      x: this.state.transactions[i].type_transaction + ' ' + this.state.transactions[i].total_transaction,
+                      x: this.state.transactions[i].type_transaction + ' $' + this.state.transactions[i].total_transaction,
                       y: this.state.transactions[i].total_transaction
                     }
 
