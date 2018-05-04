@@ -1,5 +1,5 @@
 import React from 'react';
-import "../css/ProductList.css";
+//import "../css/ProductList.css";
 import store from './store'
 import "../css/loader.css";
 import axios from 'axios';
@@ -11,6 +11,8 @@ class ProductList extends React.Component {
 		super();
 		this.addToCart = this.addToCart.bind(this);
 		this.handleImg = this.handleImg.bind(this);
+		this.handleOptionChange = this.handleOptionChange.bind(this);
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		this.generatePDF = this.generatePDF.bind(this);
 
 		this.state = {
@@ -20,7 +22,11 @@ class ProductList extends React.Component {
 			redirect: false
 		}
 	}
-
+	handleOptionChange (changeEvent) {
+	  this.setState({
+	    selectedOption: changeEvent.target.value
+	  });
+	}
 	handleImg(product){
 		if(product.hasOwnProperty('img')){
 			return product.image;
@@ -28,6 +34,27 @@ class ProductList extends React.Component {
 			console.log("no img")
 			return '../img/bikeUnknown.jpg'
 		}
+	}
+	handleFormSubmit (formSubmitEvent) {
+	  this.setState({isLoading: true})
+	  console.log('You have selected:', this.state.selectedOption);
+	  axios.get(store.getState().globalUrl + 'bicycles/' + this.state.selectedOption)
+              .then((response) =>{
+              					console.log('bicis')
+              					console.log(response)
+								this.setState({isLoading: false});
+								this.state.bikes =[]
+								for(var x in response.data){
+									this.state.bikes.push(response.data[x])
+								}
+								this.setState({});
+								console.log(this.state);
+			  })
+              .catch((error) => {
+								swal("Error", "Error al cargar productos", "error")
+				console.log("fuck")
+				this.setState({ isLoading: false})
+              })
 	}
 
 	componentDidMount(){
@@ -57,21 +84,35 @@ class ProductList extends React.Component {
 			);
 		}else{
 			return (
-				<div>
-				<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
-   {'< $500.000'}
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
-  {"< $1'000.000"}
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled/>
-  {"> $1'000.000"}
-</div>
+				<div class="row well">
+				<div class="form-check form-check-inline row">
+					  <input checked={this.state.selectedOption === 'h500'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="h500"/>
+					   {'< $500.000'}
+					</div>
+					<div class="form-check form-check-inline">
+					  <input checked={this.state.selectedOption === 'hmillon'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="hmillon"/>
+					  {"< $1'000.000"}
+					</div>
+					<div class="form-check form-check-inline">
+					  <input checked={this.state.selectedOption === 'dmillon'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="dmillon" />
+					  {"> $1'000.000"}
+					</div>
+					<button href="#" class="btn btn-info btn-sm" onClick={() => this.handleFormSubmit()} role="button"><i class="fas fa-filter"></i> Filtrar</button>
+					<div class="col-md-12">
+						<div class="form-check form-check-inline">
+						  <input checked={this.state.selectedOption === 'aluminio'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="aluminio" />
+						  {"Aluminio"}
+						</div>
+						<div class="form-check form-check-inline">
+						  <input checked={this.state.selectedOption === 'acero'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="acero" />
+						  {"Acero"}
+						</div>
+						<div class="form-check form-check-inline">
+						  <input checked={this.state.selectedOption === 'carbono'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="carbono" />
+						  {"Carbono"}
+						</div>
 				{bike.map(product =>
-	        	<div class="col-md-3 productbox">
+	        	<div class="col-md-4 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
 				    	{product.brand_bicy+" "+product.usetype_bicy}<br/>{"$"+product.price_bicy}
@@ -89,6 +130,7 @@ class ProductList extends React.Component {
 				</div>
 				
 			)}
+			</div>
 			</div>
 			)
 
@@ -117,13 +159,13 @@ class ProductList extends React.Component {
 							</div>
 							<div class="row">
 								<a href="https://suprabikesbackendd.herokuapp.com/bicycles/showpdf.pdf" target="_blank">
-									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Catálogo</button>
+									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> Catálogo Bicis</button>
 								</a>
 								<a href="https://suprabikesbackendd.herokuapp.com/technicians/showpdf.pdf" target="_blank">
-									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Técnicos</button>
+									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> PDF Técnicos</button>
 								</a>
 								<a href="https://suprabikesbackendd.herokuapp.com/components/showpdf.pdf" target="_blank">
-									<button class="btn btn-info btn-sm pdfBtn" role="button">Generar PDF Partes</button>
+									<button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> PDF Partes</button>
 								</a>
 							</div>
 						</div>
