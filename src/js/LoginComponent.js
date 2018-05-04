@@ -75,11 +75,13 @@ class LoginComponent extends React.Component {
               }
             })
                   .then((response)=>{
+                    console.log('login')
                     console.log(response)
                     store.dispatch({
                       type: 'ADD_TOKEN',
                       token: response.data.authentication_token,
-                      userType: this.state.role 
+                      userType: this.state.role ,
+                      userId : response.data.id
                     })
                     this.state.token = response.data.authentication_token;
                     this.setState({ redirect: true, isLoading: false });
