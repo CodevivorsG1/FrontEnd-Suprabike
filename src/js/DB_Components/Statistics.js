@@ -4,7 +4,7 @@ import AppHeaderComponent from '../AppHeaderComponent.js';
 import UploadZoneImages from '../Upload_Components/UploadZoneImages.js'
 import axios from 'axios';
 import store from '../store.js';
-import {BarChart , PieChart ,ScatterplotChart } from 'react-easy-chart';
+import {BarChart , PieChart ,ScatterplotChart , Legend} from 'react-easy-chart';
 
 class UserComponent extends React.Component {
   constructor(props){
@@ -89,39 +89,27 @@ class UserComponent extends React.Component {
       { key: 'Acero', value: 200 },
       { key: 'Carbono', value: 50 }
     ]
+    const scatterStyle = {
+    '.legend': {
+      backgroundColor: '#f9f9f9',
+      border: '1px solid #e5e5e5',
+      borderRadius: '12px',
+      fontSize: '0.8em',
+      maxWidth: '480px',
+      padding: '12px'
+    }
+  };
     const dataTransactions = []
     for (var i = 0; i < this.state.nTransactions; i++) {
       var transaction = {
                       type: i,
-                      x: this.state.transactions[i].type_transaction,
+                      x: this.state.transactions[i].type_transaction + ' ' + this.state.transactions[i].total_transaction,
                       y: this.state.transactions[i].total_transaction
                     }
 
                     dataTransactions.push(transaction)
     }
-    /*
-    const dataTransactions = [
-      {
-        type: 1,
-        x: 'Tue',
-        y: 10
-      },
-      {
-        type: 1,
-        x: 'Wed',
-        y: 20
-      },
-      {
-        type: 2,
-        x: 'Tue',
-        y: 30
-      },
-      {
-        type: 3,
-        x: 'Thu',
-        y: 40
-      }
-    ];*/
+    
     if (this.state.isLoading){
 
       return(
@@ -134,7 +122,7 @@ class UserComponent extends React.Component {
 			        <div class="col-xs-12 col-sm-6 col-md-6">
 			            <div class="well well-sm">
 			                <div class="row">
-			                    <div class="col-sm-6 col-md-4">
+			                    <div class="col-sm-4 col-md-4">
 			                        <label for="exampleFormControlSelect1">Seleccione tipo de estadisticas</label>
                                 <select class="form-control" onChange={this.change}  id="exampleFormControlSelect1">
                                   <option value="1">Usuario</option>
@@ -144,7 +132,7 @@ class UserComponent extends React.Component {
                                   
                                 </select>
 			                    </div>
-			                    <div class="col-sm-6 col-md-8">
+			                    <div class="col-sm-8 col-md-8">
 			                        <div id="myContainer"></div>
                               <h2>Participación</h2>
                                   <BarChart
@@ -153,6 +141,7 @@ class UserComponent extends React.Component {
                                     width={400}
                                     data={dataUser}
                                   />
+                                  <h2>Compras</h2>
                                   <ScatterplotChart
                                     data={dataTransactions}
                                     axes
@@ -180,7 +169,7 @@ class UserComponent extends React.Component {
               <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="well well-sm">
                       <div class="row">
-                          <div class="col-sm-6 col-md-4">
+                          <div class="col-sm-4 col-md-4">
                               <label for="exampleFormControlSelect1">Seleccione tipo de estadisticas</label>
                                 <select class="form-control" onChange={this.change}  id="exampleFormControlSelect1">
                                   <option value="1">Usuario</option>
@@ -190,7 +179,7 @@ class UserComponent extends React.Component {
                                   
                                 </select>
                           </div>
-                          <div class="col-sm-6 col-md-8">
+                          <div class="col-sm-8 col-md-8">
                               <div id="myContainer"></div>
                                   <PieChart
                                     labels
@@ -206,6 +195,7 @@ class UserComponent extends React.Component {
                                     }}
                                     data={dataBikes}
                                   />
+                                  <Legend data={dataBikes} dataId={'value'} />
                           </div>
                       </div>
                   </div>

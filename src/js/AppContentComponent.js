@@ -74,7 +74,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "statistics") {
   		return(
 	      <div>
-	        <h3>Estadisticas</h3>
+	        <h3>Estadísticas</h3>
 	        <Statistics />
 	      </div>
 	    );
