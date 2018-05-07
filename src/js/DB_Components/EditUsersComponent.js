@@ -66,6 +66,8 @@ class EditUsersComponent extends React.Component {
     .then((response) =>{  
     this.setState({ user: response.data})  
     this.setState({ isLoading: false})
+    console.log("Estado")
+    console.log(this.state)
     })
     .catch((error) => {
     console.log("fuck user")
@@ -125,10 +127,27 @@ class EditUsersComponent extends React.Component {
     axios.put(store.getState().globalUrl+'users/'+this.state.user.id, fd)
       .then((response) => {
         console.log(response)
+        swal("Bien! Tu foto ha sido cambiada!", {
+          icon: "success",
+        });
       })
       .catch((error) =>{
         console.log("Error al subir imagen")
+        swal("Error", "Error al subir imagenes", "error")
       })
+  }
+
+  showImage = () => {
+    console.log(typeof this.state.user.this_image)
+    if(this.state.user.image.this_image === null){
+      console.log("Imagen default")
+      return '../img/unknown.jpg';
+    }
+    else {
+      var binaryData = [];
+      binaryData.push(this.state.user.image.this_image);
+      return URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))     
+    }
   }
 
   render(){
@@ -177,6 +196,7 @@ class EditUsersComponent extends React.Component {
                                       <h2>Nueva Foto de Perfil</h2>
                                       <input type="file" onChange={this.imageSelectedHandler}/>
                                       <button onClick={this.imageUploadHandlder}>Subir</button>
+                                      <img width={150} src={this.showImage()} style={{alignSelf: 'center'}}/>
                                   
                                  </div>
                             </div> 
