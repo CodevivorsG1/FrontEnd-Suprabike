@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import store from '../store';
 import '../../css/forum.css';
 class PostForum extends Component {
@@ -20,7 +19,7 @@ class PostForum extends Component {
     })
     }
     viewComments = () =>{
-        
+     this.props.showComment(this.state.user, this.props.foroContent)
     }
     render() {
         const len = this.props.foroContent.comments.length;
@@ -43,7 +42,7 @@ class PostForum extends Component {
                         Comentarios: {len > 1 ? 'Si' : 'No'}
                     </div>
                     <div class="rx-lastpost-info h-hide">
-                        <a class="lastpost-title" href="#" onClick={this.viewComments()}>
+                        <a class="lastpost-title" href="#" onClick={this.viewComments}>
                             Ver mas...
                         </a>
                     </div>
