@@ -60,33 +60,29 @@ class EditUsersComponent extends React.Component {
     newState.user.password_confirmation = event.target.value
     this.setState(newState);
   }
-  componentDidMount(){    
+  componentDidMount(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl + 'users')
-              .then((response) =>{
-                  console.info(response)
-                  if( response.statusText == 'OK'){
-                    console.info(response.data[0])
-                    this.state.user = response.data[0];
-                    this.state.id = response.data[0].id;
-                    this.setState({ id: response.data[0].id})                
-                  }
-                this.setState({ isLoading: false})
-                console.log(this.state);
-              })
-              .catch((error) => {
-                console.log("fuck user")
-                this.setState({ isLoading: false})
-              })
-      axios.get(store.getState().globalUrl + 'cities')
-              .then((response) =>{
-                console.info("ciudades edición",response.data)
-                this.setState({cities: response.data})                  
-              })
-              .catch((error) => {
-                console.log("fuck")
-              })
-  }
+    axios.get(store.getState().globalUrl + `${store.getState().userType}/${store.getState().userId}`)
+    .then((response) =>{  
+    this.setState({ user: response.data})  
+    this.setState({ isLoading: false})
+    console.log("Estado")
+    console.log(this.state)
+    })
+    .catch((error) => {
+    console.log("fuck user")
+    this.setState({ isLoading: false})
+    })
+    axios.get(store.getState().globalUrl + 'cities')
+    .then((response) =>{
+     console.info("ciudades edición",response.data)
+    this.setState({cities: response.data})  
+    })
+    .catch((error) => {
+    console.log("fuck")
+    })
+    }
+  
   saveUser(){
     this.setState({isLoading: true})
     axios.put(store.getState().globalUrl+`${store.getState().userType}/${store.getState().userId}`,
@@ -128,13 +124,30 @@ class EditUsersComponent extends React.Component {
     }
     console.log(this.state.user)   
     console.log(store.getState().globalUrl+'users/'+this.state.id)
-    axios.put(store.getState().globalUrl+'users/'+this.state.id, fd)
+    axios.put(store.getState().globalUrl+'users/'+this.state.user.id, fd)
       .then((response) => {
         console.log(response)
+        swal("Bien! Tu foto ha sido cambiada!", {
+          icon: "success",
+        });
       })
       .catch((error) =>{
         console.log("Error al subir imagen")
+        swal("Error", "Error al subir imagenes", "error")
       })
+  }
+
+  showImage = () => {
+    console.log(typeof this.state.user.this_image)
+    if(this.state.user.image.this_image === null){
+      console.log("Imagen default")
+      return '../img/unknown.jpg';
+    }
+    else {
+      var binaryData = [];
+      binaryData.push(this.state.user.image.this_image);
+      return URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))     
+    }
   }
 
   render(){
@@ -183,6 +196,7 @@ class EditUsersComponent extends React.Component {
                                       <h2>Nueva Foto de Perfil</h2>
                                       <input type="file" onChange={this.imageSelectedHandler}/>
                                       <button onClick={this.imageUploadHandlder}>Subir</button>
+                                      <img width={150} src={this.showImage()} style={{alignSelf: 'center'}}/>
                                   
                                  </div>
                             </div> 

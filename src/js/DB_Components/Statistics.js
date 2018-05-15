@@ -126,8 +126,7 @@ class UserComponent extends React.Component {
 			                        <label for="exampleFormControlSelect1">Seleccione tipo de estadisticas</label>
                                 <select class="form-control" onChange={this.change}  id="exampleFormControlSelect1">
                                   <option value="1">Usuario</option>
-                                  <option value="2">Bicicletas</option>
-                                  <option value="3">Técnicos</option>
+                                  <option value="2">Bicicletas</option>                                
                                   
                                   
                                 </select>
@@ -174,7 +173,7 @@ class UserComponent extends React.Component {
                                 <select class="form-control" onChange={this.change}  id="exampleFormControlSelect1">
                                   <option value="1">Usuario</option>
                                   <option value="2">Bicicletas</option>
-                                  <option value="3">Técnicos</option>
+                                  
                                   
                                   
                                 </select>
@@ -216,7 +215,7 @@ class UserComponent extends React.Component {
                                 <select class="form-control" onChange={this.change}  id="exampleFormControlSelect1">
                                   <option value="1">Usuario</option>
                                   <option value="2">Bicicletas</option>
-                                  <option value="3">Técnicos</option>
+                                  
                                   
                                   
                                 </select>
