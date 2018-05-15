@@ -47,17 +47,8 @@ class AppHeaderComponent extends React.Component{
               <li class="nav-item active">
                 <Link to='/home'>Inicio <span class="sr-only">(current)</span></Link>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Servicios
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Armar bici</a>
-                  <a class="dropdown-item" href="#">Servicio Técnico</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">SupraBikes</a>
-                </div>
-              </li>
+              
+
 
             </ul>
 
