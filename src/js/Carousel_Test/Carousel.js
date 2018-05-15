@@ -51,7 +51,7 @@ export default class MultipleItems extends React.Component {
           dots: true,
           infinite: true,
           speed: 500,
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1
         };
         return (
@@ -62,13 +62,7 @@ export default class MultipleItems extends React.Component {
           <Slider {...settings}>
             <div>
               <h3>Esperando algo!</h3>
-            </div>
-            <div>
-              <img  class="img-responsive thumbnail" src='../../img/unknown.jpg' />
-            </div>
-            <div>
-              <img  class="img-responsive thumbnail" src='../../img/unknown.jpg' />
-            </div>
+            </div>            
           </Slider>
         </div>
         );
