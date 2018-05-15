@@ -45,49 +45,13 @@ export default class MultipleItems extends React.Component {
               })
     }
 
-    loadData =({bike}) => {
-      console.log("spinner", bike)
-      console.log("entro al spinner", bike.length)
-      if (this.state.isLoading){
-        console.log("entro al spinner", bike.length)
-        return(
-          <div className="loader"></div>
-        );
-      }else{
-        return (bike.map(product =>
-          <div>
-              <div class="col-md-3 productbox">
-                <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
-                <div class="producttitle">
-                  {product.NameTec + " " + product.SurnameTec}
-                  <br/>
-                  {"$ " + product.costhourtec} /hora
-                  
-                </div>
-                <div class="productprice">
-                  <div class="pull-right">
-                    <button href="#" class="btn btn-info btn-sm" onClick={() => this.contact(product)} role="button">Contactar</button>
-                  </div>
-                  <div class="pricetext">
-                    {(product)  => this.renderStars(product.stars)}
-    
-                  </div>
-                </div>
-              </div>
-              </div>
-        ))
-      }
-    }
-
-    
-
     render() {
       if(this.state.response === false){
         const settings = {
           dots: true,
           infinite: true,
           speed: 500,
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1
         };
         return (
@@ -98,7 +62,13 @@ export default class MultipleItems extends React.Component {
           <Slider {...settings}>
             <div>
               <h3>Esperando algo!</h3>
-            </div>            
+            </div>
+            <div>
+              <img  class="img-responsive thumbnail" src='../../img/unknown.jpg' />
+            </div>
+            <div>
+              <img  class="img-responsive thumbnail" src='../../img/unknown.jpg' />
+            </div>
           </Slider>
         </div>
         );
@@ -110,13 +80,34 @@ export default class MultipleItems extends React.Component {
           slidesToShow: 3,
           slidesToScroll: 3
         };
+
+        const listTechs = this.state.techs.map( item => 
+          <div class="col-md-3 productbox">
+              <img  class="img-responsive thumbnail" src={this.handleImg(item)} alt={item.name} />
+              <div class="producttitle">
+                {item.NameTec + " " + item.SurnameTec}
+                <br/>
+                {"$ " + item.costhourtec} /hora
+                
+              </div>
+              <div class="productprice">
+                <div class="pull-right">
+                  <button href="#" class="btn btn-info btn-sm" onClick={() => this.contact(item)} role="button">Contactar</button>
+                </div>
+                <div class="pricetext">
+                  {(item)  => this.renderStars(item.stars)}
+
+                </div>
+              </div>
+          </div>        
+        )
         return (
           <div className="container">
           <h2> Multiple items </h2>
           <button>Sillas</button>
           <button onClick={() => this.loadTech()}>Técnicos</button>
           <Slider {...settings}>
-            <this.loadData bike={this.state.techs}/>
+            {listTechs}
           </Slider>
         </div>
         );
