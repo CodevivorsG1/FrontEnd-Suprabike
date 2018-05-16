@@ -1,24 +1,15 @@
 import React from 'react';
 import Slider from 'react-slick';
-import axios from 'axios';
-import swal from 'sweetalert';
-import store from '../store';
 import './slick.css';
 
 
 
 export default class MultipleItems extends React.Component {
-    constructor(){
+    constructor() {
       super();
       this.handleImg = this.handleImg.bind(this);
-
-      this.state = {
-        response: false,
-        isLoading: false,
-        techs:[]
-      }
     }
-
+    
     handleImg(product){
       if(product.hasOwnProperty('img')){
         return product.image;
@@ -26,27 +17,12 @@ export default class MultipleItems extends React.Component {
         console.log("no img")
         return '../../img/unknown.jpg'
       }
-    }
-
-    loadTech() {
-      axios.get(store.getState().globalUrl + 'technicians/')
-              .then((response) =>{								
-								for(var x in response.data){
-									this.state.techs.push(response.data[x])
-								}								
-                console.log(this.state);
-                this.setState({response: true});
-
-			        })
-              .catch((error) => {
-                  swal("Error", "Error al obtener datos", "error")
-                  console.log("fuck")
-                  this.setState({ isLoading: false})
-              })
-    }
+    }   
 
     render() {
-      if(this.state.response === false){
+      console.log(this.props)
+      if(this.props.data.type === ""){
+        console.log("Type nothing!!")
         const settings = {
           dots: true,
           infinite: true,
@@ -55,18 +31,16 @@ export default class MultipleItems extends React.Component {
           slidesToScroll: 1
         };
         return (
-          <div className="container">
-          <h2> Multiple items </h2>
-          <button>Sillas</button>
-          <button onClick={() => this.loadTech()}>Técnicos</button>
-          <Slider {...settings}>
-            <div>
-              <h3>Esperando algo!</h3>
-            </div>            
-          </Slider>
+          <div className="container">          
+            <Slider {...settings}>
+              <div>
+                <h3>Esperando algo!</h3>
+              </div>            
+            </Slider>
         </div>
         );
-      } else {
+      } 
+      else if (this.props.data.type === 'tech') {
         const settings = {
           dots: true,
           infinite: true,
@@ -75,7 +49,7 @@ export default class MultipleItems extends React.Component {
           slidesToScroll: 3
         };
 
-        const listTechs = this.state.techs.map( item => 
+        const listTechs = this.props.data.data.map( item => 
           <div class="col-md-3 productbox">
               <img  class="img-responsive thumbnail" src={this.handleImg(item)} alt={item.name} />
               <div class="producttitle">
@@ -96,14 +70,16 @@ export default class MultipleItems extends React.Component {
           </div>        
         )
         return (
-          <div className="container">
-          <h2> Multiple items </h2>
-          <button>Sillas</button>
-          <button onClick={() => this.loadTech()}>Técnicos</button>
-          <Slider {...settings}>
-            {listTechs}
-          </Slider>
-        </div>
+          <div className="container">          
+            <Slider {...settings}>
+              {listTechs}
+            </Slider>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div>Fuck!</div>
         );
       }      
     }

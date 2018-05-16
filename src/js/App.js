@@ -9,7 +9,7 @@ import Map from './Map_Components/Container.js';
 import RegisterGoogle from './RegisterGoogle.js';
 import MyPdfViewer from './PDF_Components/testPdfViewer.js';
 import UploadZone from './Upload_Components/UploadZoneImages.js';
-import Carousel from './Carousel_Test/Carousel.js';
+import Carousel from './Carousel_Test/Container.js';
 import store from './store'
 
 //import {Button} from 'react-bootstrap'
