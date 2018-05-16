@@ -59,7 +59,7 @@ export default class Container extends React.Component {
                         type: 'sillas',
                         data: this.state.sillas
                     }
-                    this.setState({loadedTech: true});
+                    this.setState({loadedSillas: true});
                 })
                 .catch((error) => {
                     swal("Error", "Error al obtener datos", "error")

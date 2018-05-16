@@ -43,7 +43,7 @@ export default class MultipleItems extends React.Component {
       } 
       else if (this.props.data.type === 'tech') {
         settings.slidesToShow = 3;
-        settings.slidesToScroll = 3;
+        settings.slidesToScroll = 1;
 
         const listTechs = this.props.data.data.map( item => 
           <div class="col-md-3 productbox">
@@ -75,7 +75,7 @@ export default class MultipleItems extends React.Component {
       }
       else if (this.props.data.type === 'sillas') {
         settings.slidesToShow = 3;
-        settings.slidesToScroll = 3;
+        settings.slidesToScroll = 1;
         const listSillas = this.props.data.data.map( item => 
           <div class="col-md-3 productbox">
               <img  class="img-responsive thumbnail" src={this.handleImg(item)} alt={item.name}/>
