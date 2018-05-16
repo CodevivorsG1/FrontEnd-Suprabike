@@ -49,7 +49,7 @@ export default class Container extends React.Component {
 
     loadSillas() {
         if(!this.state.loadedSillas) {
-            axios.get(store.getState().globalUrl + 'get_seats/')
+            axios.get(store.getState().globalUrl + '/components/get_seats/')
                 .then((response) => {
                     for(var x in response.data){
                         this.state.sillas.push(response.data[x])
