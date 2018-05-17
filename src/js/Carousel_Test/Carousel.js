@@ -35,7 +35,7 @@ export default class MultipleItems extends React.Component {
           <div className="container">          
             <Slider {...settings}>
               <div>
-                <h3>Esperando algo!</h3>
+                <h3 className="waiting">Esperando algo!</h3>
               </div>            
             </Slider>
         </div>

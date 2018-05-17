@@ -409,9 +409,6 @@
     box-sizing: border-box;
     transition: background 0.25s ease 0s;
   }
-  input {
-    visibility: hidden;
-  }
   .instruction {
     position: absolute;
     bottom: 6px;

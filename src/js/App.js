@@ -12,6 +12,7 @@ import UploadZone from './Upload_Components/UploadZoneImages.js';
 import Carousel from './Carousel_Test/Container.js';
 import store from './store'
 import Bicycle from './Carousel_Test/Bicycle.js';
+import DataBicycle from './Carousel_Test/DataBicycle.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -31,8 +32,8 @@ class App extends Component {
           <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
           <Route path='/map'component={Map}/>
           <Route path='/pdf'component={MyPdfViewer}/>
-          <Route path='/carousel'component={Carousel}/>
-          <Route path='/bicycle'component={Bicycle}/>
+          <Route path='/bicycle'component={Carousel}/>
+          <Route path='/data-bicycle' component ={DataBicycle}/>
         </Switch>
       </BrowserRouter>
     );
