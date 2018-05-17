@@ -2,8 +2,10 @@ import React from 'react';
 import AppHeaderComponent from '../AppHeaderComponent.js';
 import '../../css/forum.css';
 import axios from 'axios';
+import swal from 'sweetalert';
 import store from '../store';
 import PostForum from './PostForum.js';
+import CommentPost from './CommentPost.js';
 
 
 class ForumComponent extends React.Component {
@@ -12,7 +14,10 @@ class ForumComponent extends React.Component {
     
     this.state = {
 	  forums: [],
-	  isLoading: false
+	  isLoading: false,
+	  user: {},
+	  hideForum: false,
+	  foroContent: {}
     }   
     
   }
@@ -33,45 +38,83 @@ class ForumComponent extends React.Component {
 				this.setState({isLoading:false})
               })
   }
-  render(){
+  showComment = (user, foroContent) =>{
+	this.setState({
+		user,
+		foroContent,
+		hideForum: true
+	});
+  } 
+  newForum = () =>{
+	swal("Ingrese su nueva pregunta " , {
+		content: "input",
+	})
+	.then((message)=>{
+		const forum = {
+			"topic": message,
+			"user_id": store.getState().userId
+		}
+		axios.post(store.getState().globalUrl + 'forums', forum)
+		.then((response)=>{
+			window.location.reload()
+		})
+		.catch((error) =>{
+			swal("Error, intente de nuevo")
+		})
+	})
+  }
+  showContent = () =>{
 	const forums = Object.values(this.state.forums)
+	  if (this.state.hideForum){
+		  return (
+			  <CommentPost user={this.state.user} foroContent={this.state.foroContent} />
+		  );
+	  }else{
+		return (
+			<div>
+				<table class=" stretch">
+					<tbody>
+						<tr class="card-header mb-3">
+							<th class="">
+								Directorio
+							</th>
+							<th class="header-topics">
+								Temas
+							</th>
+							<th class="header-posts">
+								Posts
+							</th>
+							<th class="header-lastpost">
+								<button class="btn btn-primary my-2 my-sm-0 mr-sm-2" onClick={this.newForum}>
+              					Nuevo foro</button>
+							</th>
+						</tr>
+						<tr id="forum3" class="bg-primary text-white ml-4">
+							<td colspan="4">
+								Foros Principales
+							</td>
+						</tr>
+						{
+						forums.map((foro) => (
+							<PostForum key={foro.id}foroContent={foro} showComment={this.showComment}/>
+						))	
+						}
+					</tbody>
+				</table>
+			</div>
+		);
+	
+	  }
+  }
+  render(){
+	
 	if (this.state.isLoading){
 		return (
 			<div className="loader"></div>
 		)
 	}else{
     return(
-      <div>
-		<table class=" stretch">
-			<tbody>
-				<tr class="card-header mb-3">
-					<th class="">
-						Directorio
-					</th>
-					<th class="header-topics">
-						Temas
-					</th>
-					<th class="header-posts">
-						Posts
-					</th>
-					<th class="header-lastpost">
-						Ultimo Post
-					</th>
-				</tr>
-				<tr id="forum3" class="bg-primary text-white ml-4">
-					<td colspan="4">
-						Foros Principales
-					</td>
-				</tr>
-				{
-				 forums.map((foro) => (
-					<PostForum foroContent={foro}/>
-				 ))	
-				}
-			</tbody>
-		</table>
-
-      </div>
+      this.showContent()
 	);
 	}
   }
