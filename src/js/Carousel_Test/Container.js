@@ -45,18 +45,25 @@ export default class Container extends React.Component {
     chooseLoad = (part) =>{
         switch (part){
             case "sillas":
+                console.log("sillas")
                 return this.loadSillas();
             case "tecnicos":
+                console.log("tecnicos")
                 return this.loadTech();
             case "manubrios":
+                console.log("manubrios")
                 return this.loadManubrio();
             case "forks":
+                console.log("forks")
                 return this.loadFork();
             case "tires":
+                console.log("tires")
                 return this.loadTires();
             case "wheels":
+                console.log("wheels")
                 return this.loadWheels();
             case "frames":
+                console.log("frames")
                 return this.loadFrame();
             default:
                 //nothing
@@ -91,7 +98,25 @@ export default class Container extends React.Component {
     }
     loadManubrio = () =>{
         if(!this.state.loadedManubrios) {
-            axios.get(store.getState().globalUrl + '/components/get_handlebar_to_urban')
+            var path = '/components/get_handlebar'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                     path += '_to_mountain/';
+                     break;
+                case "road":
+                     path += '_to_road/';
+                     break;
+                case "urban":
+                     path += '_to_urban/';
+                     break;
+                case "bmx":
+                     path += '_to_bmx/';
+                     break;
+                default:
+            }
+            console.log(path)
+            axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
                         this.state.manubrios.push(response.data[x])
@@ -117,6 +142,21 @@ export default class Container extends React.Component {
     }
     loadFrame = () =>{
         if(!this.state.loadedFrames) {
+            var path = '/components/get_frame_size'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                     path += '_to_mountain_' + this.state.size + '/';
+                     break;
+                case "road":
+                     path += '_to_road_' + this.state.size + '/';
+                     break;
+                case "urban":
+                     path += '_to_urban_' + this.state.size + '/';
+                     break;                
+                default:
+            }
+            console.log(path)
             axios.get(store.getState().globalUrl + '/components/get_frame_size_to_urban_xs')
                 .then((response) => {
                     for(var x in response.data){
@@ -143,7 +183,25 @@ export default class Container extends React.Component {
     }
     loadWheels = () => {
         if(!this.state.loadedWheels) {
-            axios.get(store.getState().globalUrl + '/components/get_wheel_to_urban')
+            var path = '/components/get_wheel'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                     path += '_to_mountain/';
+                     break;
+                case "road":
+                     path += '_to_road/';
+                     break;
+                case "urban":
+                     path += '_to_urban/';
+                     break;
+                case "bmx":
+                     path += '_to_bmx/';
+                     break;
+                default:
+            }
+            console.log(path)
+            axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
                         this.state.wheels.push(response.data[x])
@@ -169,7 +227,25 @@ export default class Container extends React.Component {
     }
     loadFork = () =>{
         if(!this.state.loadedForks) {
-            axios.get(store.getState().globalUrl + '/components/get_fork_to_urban')
+            var path = '/components/get_fork'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                     path += '_to_mountain/';
+                     break;
+                case "road":
+                     path += '_to_road/';
+                     break;
+                case "urban":
+                     path += '_to_urban/';
+                     break;
+                case "bmx":
+                     path += '_to_bmx/';
+                     break;
+                default:
+            }
+            console.log(path)
+            axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
                         this.state.forks.push(response.data[x])
@@ -195,6 +271,21 @@ export default class Container extends React.Component {
     }
     loadTires = () =>{
         if(!this.state.loadedTires) {
+            var path = '/components/get_tire'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                     path += '_to_mountain/';
+                     break;                
+                case "urban":
+                     path += '_to_urban/';
+                     break;
+                case "bmx":
+                     path += '_to_bmx/';
+                     break;
+                default:
+            }
+            console.log(path)
             axios.get(store.getState().globalUrl + '/components/get_tire_to_urban')
                 .then((response) => {
                     for(var x in response.data){
@@ -221,7 +312,24 @@ export default class Container extends React.Component {
     }
     loadSillas = () => {
         if(!this.state.loadedSillas) {
-            axios.get(store.getState().globalUrl + '/components/get_seats/')
+
+            var path = '/components/get_seats'
+            console.log(this.state)
+            switch(this.state.type) {
+                case "mountain":
+                case "road":
+                     path += '/';
+                     break;
+                case "urban":
+                     path += '_to_urban/';
+                     break;
+                case "bmx":
+                     path += '_to_bmx/';
+                     break;
+                default:
+            }
+            console.log(path)
+            axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
                         this.state.sillas.push(response.data[x])
@@ -247,7 +355,7 @@ export default class Container extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+        
         return(
             <div>
             <AppHeaderComponent/>
