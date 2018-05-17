@@ -4,7 +4,7 @@
 
 .container { margin: 0 auto; padding: 40px; width: 80%; color: #333; /*background: #419be0;*/ }
 
-h3 {
+.waiting {
     background: blue;
     color: #fff;
     font-size: 36px;
@@ -50,7 +50,7 @@ h3 {
   .slick-slider {
     margin-left: 6%;
     /* margin: 30px auto 50px; */
-    margin-top: 10%;
+    margin-top: 8%;
   }
   .slick-dots {
     margin-left: 0;
