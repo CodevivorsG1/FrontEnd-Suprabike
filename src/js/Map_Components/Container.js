@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Map from './Map.js';
+import store from '../store';
 import "../../css/loader.css";
 
 export default class Container extends React.Component {
@@ -24,7 +25,7 @@ export default class Container extends React.Component {
   }
 
   componentWillMount(){
-    axios.get("http://localhost:4000/stores")
+    axios.get(store.getState().globalUrl + 'stores/')
         .then((response) => {
             console.log(response);
             for(var x in response.data){    // Obtiene todas las direcciones del pedido
