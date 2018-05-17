@@ -13,7 +13,7 @@ export default class Container extends React.Component {
         super();
         this.state = {
             loadedTech: false,
-            techs: [],
+            tech: [],
             loadedSillas: false,
             sillas: [],
             loadedManubrios: false,
@@ -59,12 +59,12 @@ export default class Container extends React.Component {
             axios.get(store.getState().globalUrl + 'technicians/')
                 .then((response) => {
                     for(var x in response.data){
-                        this.state.techs.push(response.data[x])
+                        this.state.tech.push(response.data[x])
                     }								
                     console.log(this.state);
                     this.data = {
                         type: 'tech',
-                        data: this.state.techs
+                        data: this.state.tech
                     }
                     this.setState({loadedTech: true});
                 })
@@ -75,7 +75,7 @@ export default class Container extends React.Component {
         } else {
             this.data = {
                 type: 'tech',
-                data: this.state.techs
+                data: this.state.tech
             }
             this.setState({loadedTech: true});
         }
