@@ -48,7 +48,9 @@ h3 {
     border: 0;
   }
   .slick-slider {
-    margin: 30px auto 50px;
+    margin-left: 6%;
+    /* margin: 30px auto 50px; */
+    margin-top: 10%;
   }
   .slick-dots {
     margin-left: 0;
