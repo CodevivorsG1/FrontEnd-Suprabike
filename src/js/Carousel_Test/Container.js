@@ -33,6 +33,15 @@ export default class Container extends React.Component {
             data: []
         }
     }
+
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            size: this.props.location.state.size,
+            type: this.props.location.state.type
+        });
+    }
+
     chooseLoad = (part) =>{
         switch (part){
             case "sillas":
@@ -238,6 +247,7 @@ export default class Container extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return(
             <div>
             <AppHeaderComponent/>

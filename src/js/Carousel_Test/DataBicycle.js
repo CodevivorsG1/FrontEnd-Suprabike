@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import '../../css/register.css';
 import '../../css/loader.css';
 import AppHeaderComponent from '../AppHeaderComponent';
+import {Redirect} from 'react-router-dom';
+
 class DataBicycle extends Component {
     constructor(props){
         super(props)
         this.state ={
+            filled: false,
             type: "road",
             size: "xs"
         }
+        
     }
     handleSubmit = () =>{
-        this.props.history.push("/bicycle");
+        this.setState({filled: true})
     }
     render() {
+        if (this.state.filled) {
+          return <Redirect to={{
+                  pathname: '/bicycle',
+                  state: {
+                    ...this.state
+                  }
+                }}/>;
+        }
         return (
             <div>
           <AppHeaderComponent/>
