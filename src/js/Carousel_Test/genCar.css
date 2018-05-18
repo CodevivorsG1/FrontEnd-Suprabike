@@ -2,7 +2,8 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 
-.container { margin: 0 auto; padding: 60px 20px; width: 80%; color: #333; /*background: #419be0;*/ }
+.container { margin: 0 auto; padding: 20px; width: 80%; color: #333; /*background: #419be0;*/ }
+.container-big { margin: 0 auto; width: 100%; color: #333; /*background: #419be0;*/ }
 
 .waiting {
     background: blue;
@@ -97,16 +98,52 @@
   .slick-next:before, .slick-prev:before {
     color: #000;
 }
-  /*.slick-arrow:hover {
-    background-color: grey;
-  }*/
-  /* .slick-prev {
-    z-index: 100;
-    left: 20px !important;
-  }
-  .slick-next {
-    z-index: 100;
-    right: 20px !important;
-  } */
-  
+
+.stage {
+  background-color: #00ac34;
+  color: white;
+  height: 500px;
+  font-weight: 700;
+  font-size: 36px;
+  border-radius: 25px;
+  text-align: center; 
+}
+
+.stage p {
+  color: white;
+  margin-top: 25%;  
+}
+
+.yellow {
+  background-color: #e9bb00;  
+}
+
+.yellow p {
+  margin-top: 12%;  
+}
+
+.purple {
+  background-color: #4e0c9e;
+}
+.purple p {
+  margin-top: 8%;
+}
+
+.purple table {
+  width: 70%;
+  border-left: none;
+  border-right: none;
+}
+
+.purple th, .purple td {
+  border-bottom: 2px solid white;
+  border-left: none;
+  border-right: none;
+}
+
+.white {
+  background-color: white;
+  color: black;
+  position: relative;
+}
 

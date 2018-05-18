@@ -13,7 +13,11 @@ import Carousel from './Carousel_Test/Container.js';
 import store from './store'
 import Bicycle from './Carousel_Test/Bicycle.js';
 import DataBicycle from './Carousel_Test/DataBicycle.js';
+<<<<<<< HEAD
 import ComponentNuevo from './Components/ComponentNuevo.js';
+=======
+import Trying from './Carousel_Test/fuckingTrying.js';
+>>>>>>> fuckingTrying
 
 //import {Button} from 'react-bootstrap'
 
@@ -35,7 +39,11 @@ class App extends Component {
           <Route path='/pdf'component={MyPdfViewer}/>
           <Route path='/bicycle'component={Carousel}/>
           <Route path='/data-bicycle' component ={DataBicycle}/>
+<<<<<<< HEAD
           <Route path='/component' component={ComponentNuevo}/>
+=======
+          <Route path='/trying' component={Trying} />
+>>>>>>> fuckingTrying
         </Switch>
       </BrowserRouter>
     );

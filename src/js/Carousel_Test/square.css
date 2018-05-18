@@ -1,0 +1,58 @@
+.square {
+	width: 60%;
+	height: auto;	
+}
+
+.panel-heading{
+	background-color: #0084b4;
+	color: white;
+	padding: 5px 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.panel {
+	position: relative;
+	margin: auto;	
+	background-color: rgba(255, 255, 255, 0.8);	
+	border-radius: 10px;
+	border: 1px solid gray;
+
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.spacing {
+	padding-top:7px;
+	padding-bottom:7px;
+}
+
+
+.row {
+	padding: 10px;
+}
+
+.icon-pos {
+	float: left;
+	padding-top: 5px;
+}
+
+/*label{
+	display: none;
+}*/
+.gen_part {
+	color: lightSlateGray;
+	margin:auto;
+}
+
+/*.gen_part > input {
+	margin-left: 10px;
+}*/
+
+hr {
+	color: DarkGray;
+}
