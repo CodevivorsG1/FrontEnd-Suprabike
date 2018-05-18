@@ -35,14 +35,19 @@ export default class Container extends React.Component {
     }
 
     componentDidMount() {
+        console.log("props")
+        console.log(this.props)
+
         this.setState({
             ...this.state,
-            size: this.props.location.state.size,
-            type: this.props.location.state.type
-        });
+            size: this.props.data.size,
+            type: this.props.data.type
+        });       
+
     }
 
     chooseLoad = (part) =>{
+        console.log(this.state)
         switch (part){
             case "sillas":
                 console.log("sillas")
@@ -250,7 +255,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.forks.push(response.data[x])
                     }								
-                    this.state.forks.length === 0 ? swal("No hay  en el momento"):  console.log(this.state);
+                    this.state.forks.length === 0 ? swal("No hay horquillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'forks',
                         data: this.state.forks
@@ -291,8 +296,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.tires.push(response.data[x])
                     }								
-                    this.state.tires.length === 0 ? swal("No hay rines en el momento"):  console.log(this.state);
-                    this.data = {
+                    this.state.tires.length === 0 ? swal("No hay neumaticos en el momento"):  console.log(this.state);                    this.data = {
                         type: 'tires',
                         data: this.state.tires
                     }
@@ -334,7 +338,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.sillas.push(response.data[x])
                     }								
-                    this.state.sillas.length === 0 ? swal("No hay sillines en el momento"):  console.log(this.state);
+                    this.state.sillas.length === 0 ? swal("No hay sillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'sillas',
                         data: this.state.sillas
@@ -358,19 +362,14 @@ export default class Container extends React.Component {
         
         return(
             <div>
-            <AppHeaderComponent/>
+            
             
           <div className="container-fluid">
             {/*<button onClick={() => this.loadSillas()}>Sillas</button>
             <button onClick={() => this.loadTech()}>Técnicos</button>*/}
             
-            <div className="row menu-navigation">
-                <div className="menu-component">
-                    <AppNavigationComponent/>
-                </div>
-                <div className="bike-component">
-                    <Bicycle loadChooser={this.chooseLoad}/>
-                </div>
+            <div className="row menu-navigation">            
+            <Bicycle loadChooser={this.chooseLoad}/>
             </div>
             <div className="row">
             <Carousel data = {this.data}/>

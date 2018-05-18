@@ -10,6 +10,8 @@ import EditUserComponent from './DB_Components/EditUsersComponent.js';
 import ForumComponent from './DB_Components/ForumComponent.js';
 import Map from './Map_Components/Container.js';
 import Statistics from './DB_Components/Statistics.js';
+import BikeData from './Carousel_Test/DataBicycle.js';
+import BikeBuild from './Carousel_Test/fuckingTrying.js';
 
 
 
@@ -47,7 +49,16 @@ class AppContentComponent extends React.Component{
 	        <Map />
 	      </div>
 	    );
-  	}
+		}		
+		if (store.getState().sectionView === "bicycle") {
+			console.log("this props")
+			console.log(this.props)
+			return (
+				<div>
+					<BikeBuild />
+				</div>
+			);
+		}
   	if (store.getState().sectionView === "user") {
   		return(
 	      <div>
