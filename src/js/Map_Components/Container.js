@@ -54,7 +54,19 @@ export default class Container extends React.Component {
       );
     } else {
       return(
-				<div className="loader"></div>
+			
+      <div className="">
+        <div class="">
+          <i class="fa fa-bicycle fa-5x bici"></i>
+          <div class="back">
+            <i class="fa fa-cog fa-3x spin"></i>
+          </div>
+          <div class="front">
+            <i class="fa fa-cog fa-3x spin"></i>
+          </div>
+        </div>
+      </div>
+    
 			);
     }
   }
