@@ -98,7 +98,7 @@ export default class Container extends React.Component {
     }
     loadManubrio = () =>{
         if(!this.state.loadedManubrios) {
-            var path = '/components/get_handlebar'
+            var path = 'components/get_handlebar'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -142,7 +142,7 @@ export default class Container extends React.Component {
     }
     loadFrame = () =>{
         if(!this.state.loadedFrames) {
-            var path = '/components/get_frame_size'
+            var path = 'components/get_frame_size'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -227,7 +227,7 @@ export default class Container extends React.Component {
     }
     loadFork = () =>{
         if(!this.state.loadedForks) {
-            var path = '/components/get_fork'
+            var path = 'components/get_fork'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -271,7 +271,7 @@ export default class Container extends React.Component {
     }
     loadTires = () =>{
         if(!this.state.loadedTires) {
-            var path = '/components/get_tire'
+            var path = 'components/get_tire'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -313,7 +313,7 @@ export default class Container extends React.Component {
     loadSillas = () => {
         if(!this.state.loadedSillas) {
 
-            var path = '/components/get_seats'
+            var path = 'components/get_seats'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -328,7 +328,7 @@ export default class Container extends React.Component {
                      break;
                 default:
             }
-            console.log(path)
+            console.log(store.getState().globalUrl + path)
             axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
@@ -365,8 +365,12 @@ export default class Container extends React.Component {
             <button onClick={() => this.loadTech()}>Técnicos</button>*/}
             
             <div className="row menu-navigation">
-            <AppNavigationComponent className=""/>
-            <Bicycle loadChooser={this.chooseLoad}/>
+                <div className="menu-component">
+                    <AppNavigationComponent/>
+                </div>
+                <div className="bike-component">
+                    <Bicycle loadChooser={this.chooseLoad}/>
+                </div>
             </div>
             <div className="row">
             <Carousel data = {this.data}/>
