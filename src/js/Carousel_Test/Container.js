@@ -82,7 +82,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.tech.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.tech.length === 0 ? swal("No hay tecnicos en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'tech',
                         data: this.state.tech
@@ -167,7 +167,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.frames.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.frames.length === 0 ? swal("No hay marcos en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'frames',
                         data: this.state.frames
@@ -211,7 +211,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.wheels.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.wheels.length === 0 ? swal("No hay llantas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'wheels',
                         data: this.state.wheels
@@ -255,7 +255,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.forks.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.forks.length === 0 ? swal("No hay horquillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'forks',
                         data: this.state.forks
@@ -296,8 +296,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.tires.push(response.data[x])
                     }								
-                    console.log(this.state);
-                    this.data = {
+                    this.state.tires.length === 0 ? swal("No hay neumaticos en el momento"):  console.log(this.state);                    this.data = {
                         type: 'tires',
                         data: this.state.tires
                     }
@@ -339,7 +338,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.sillas.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.sillas.length === 0 ? swal("No hay sillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'sillas',
                         data: this.state.sillas
