@@ -87,7 +87,7 @@ class AppNavigationComponent extends React.Component{
               <i class="fas fa-user-circle"></i> Mi cuenta
             </a>
             <a href="/home/productList" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-            <a href="/data-bicycle"  class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
+            <a href="/home/bicycle"  class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
             <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
             <a href="/component" class="list-group-item"><i class="fa fa-cog"></i> Agregar componente</a>
             <a href="#" onClick={() => this.closeSession()} class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
