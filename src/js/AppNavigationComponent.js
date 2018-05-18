@@ -10,7 +10,8 @@ class AppNavigationComponent extends React.Component{
     this.state = {
         redirect: false,
         sectionView: '',
-          userType: store.getState().userType
+        userType: store.getState().userType,
+        view : store.getState().sectionView
     }
     store.subscribe(() => {
         this.setState({
@@ -31,7 +32,6 @@ class AppNavigationComponent extends React.Component{
     } else {
         x.className = "topnav";
     }
-    console.info('algo')
   }
   closeSession(){
     store.dispatch({
@@ -41,6 +41,8 @@ class AppNavigationComponent extends React.Component{
 
   }
   render(){
+    console.info('state')
+    console.info(this.state)
      const { redirect } = this.state;
 
      if (redirect) {
@@ -59,12 +61,12 @@ class AppNavigationComponent extends React.Component{
     
     
   </a>
-  <a class="itemmenu" href="/home/productList" ><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-  <a class="itemmenu" href="#"  ><i class="fas fa-bicycle"></i> Armar bici</a>
-  <a class="itemmenu" href="/home/technician" ><i class="fas fa-wrench"></i> Servicio técnico</a>
-  <a class="itemmenu" href="/home/forums" ><i class="far fa-comments"></i> Foros</a>
-  <a class="itemmenu" href="/home/map" ><i class="far fa-map"></i> Mapa de tiendas</a>
-  <a class="itemmenu" href="#" onClick={() => this.closeSession()} ><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+  <a class={store.getState().sectionView != 'productList' ? 'itemmenu' : 'selected itemmenu'} href="/home/productList" ><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
+  <a class={store.getState().sectionView != 'user' ? 'itemmenu' : 'selected itemmenu'} href="#"  ><i class="fas fa-bicycle"></i> Armar bici</a>
+  <a class={store.getState().sectionView != 'technician' ? 'itemmenu' : 'selected itemmenu'} href="/home/technician" ><i class="fas fa-wrench"></i> Servicio técnico</a>
+  <a class={store.getState().sectionView != 'forums' ? 'itemmenu' : 'selected itemmenu'} href="/home/forums" ><i class="far fa-comments"></i> Foros</a>
+  <a class={store.getState().sectionView != 'map' ? 'itemmenu' : 'selected itemmenu'} href="/home/map" ><i class="far fa-map"></i> Mapa de tiendas</a>
+  <a class={store.getState().sectionView != '' ? 'itemmenu' : 'selected itemmenu'} href="#" onClick={() => this.closeSession()} ><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
   <a href="javascript:void(0);" class="icon" onClick={this.myFunction}>
     <i class="fa fa-bars"></i>
   </a>

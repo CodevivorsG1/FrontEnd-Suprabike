@@ -12,7 +12,13 @@ class AppHeaderComponent extends React.Component{
       nameUser: ""
     }
   }
+  closeSession(){
+    store.dispatch({
+      type: 'CLOSE_SESSION'
+    })
+    this.setState({ redirect: true });
 
+  }
   componentDidMount(){
     this.setState({isLoading: true})
     if (store.getState().token != ""){
@@ -51,7 +57,7 @@ class AppHeaderComponent extends React.Component{
             <div class="col-sm">
             <form class="form-inline my-2 my-lg-0 mr-sm-2">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
-              <button class="btn btn-outline-primary my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i>
+              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i>
               </button>
               <Link to={'/home/user'}>
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" type="submit">

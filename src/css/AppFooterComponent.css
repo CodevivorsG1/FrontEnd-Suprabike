@@ -13,8 +13,8 @@
     margin: 0 5px;
 }
 .social-link li a {
-    color: #fff;
-    border: 1px solid #fff;
+    color: #9A6BD3;
+    border: 1px solid #9A6BD3;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -23,4 +23,11 @@
     display: inline-block;
     font-size: 14px;
     transition: .5s;
+}
+
+hr.footer {
+    color: #FFD322;
+    border-top: 1px solid #8c8b8b;
+    border-color: #FFD322; 
+    border-style: solid; 
 }
