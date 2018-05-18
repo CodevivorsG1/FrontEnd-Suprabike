@@ -60,7 +60,19 @@ td {
    color: gray;
  }
 
+h3.comment {
+  color:  #202020;
+  font-size:15px;
+}
 
+div.row.comment{
+  margin-top: 35px;
+  
+  border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 1px solid #000000;
+}
  th {
    font-size: 15px;
  }
@@ -85,4 +97,10 @@ td {
 
 .lastpost-title{
   display: inline-block;
+}
+.forum{
+ max-height: 350px;
+ overflow: hidden;
+  overflow-y: scroll  ;
+  padding: 20px
 }

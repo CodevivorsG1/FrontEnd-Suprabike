@@ -51,7 +51,7 @@ class AppHeaderComponent extends React.Component{
             </Link>
           </div>
             
-
+          <hr class="footer"/>
           <div class="" id="navbarSupportedContent">
             
             <div class="col-sm">

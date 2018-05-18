@@ -32,7 +32,7 @@ class ProductList extends React.Component {
 			return product.image;
 		}else{
 			console.log("no img")
-			return '../img/bikeUnknown.jpg'
+			return '../img/bikeUnknown.gif'
 		}
 	}
 	handleFormSubmit (formSubmitEvent) {
@@ -84,20 +84,22 @@ class ProductList extends React.Component {
 			);
 		}else{
 			return (
-				<div class="row well">
+							<div class="row ">
+							<form>
 				<div class="form-check form-check-inline row">
 					  <input checked={this.state.selectedOption === 'h500'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="h500"/>
 					   {'< $500.000'}
-					</div>
-					<div class="form-check form-check-inline">
+				</div>
+				<div class="form-check form-check-inline">
 					  <input checked={this.state.selectedOption === 'hmillon'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="hmillon"/>
 					  {"< $1'000.000"}
-					</div>
-					<div class="form-check form-check-inline">
+				</div>
+				<div class="form-check form-check-inline">
 					  <input checked={this.state.selectedOption === 'dmillon'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="dmillon" />
 					  {"> $1'000.000"}
-					</div>
-					<button href="#" class="btn btn-info btn-sm" onClick={() => this.handleFormSubmit()} role="button"><i class="fas fa-filter"></i> Filtrar</button>
+				</div>
+				</form>
+					<button href="#" class="btn btn-warning btn-sm" onClick={() => this.handleFormSubmit()} role="button"><i class="fas fa-filter"></i> Filtrar</button>
 					<div class="col-md-12">
 						<div class="form-check form-check-inline">
 						  <input checked={this.state.selectedOption === 'aluminio'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="aluminio" />
@@ -111,7 +113,9 @@ class ProductList extends React.Component {
 						  <input checked={this.state.selectedOption === 'carbono'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="carbono" />
 						  {"Carbono"}
 						</div>
-				{bike.map(product =>
+				
+			</div>
+			{bike.map(product =>
 	        	<div class="col-md-4 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
@@ -130,8 +134,7 @@ class ProductList extends React.Component {
 				</div>
 				
 			)}
-			</div>
-			</div>
+		</div>
 			)
 
 		}
