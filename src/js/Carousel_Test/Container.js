@@ -35,11 +35,14 @@ export default class Container extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
+        console.log("props")
+        console.log(this.props)
+
+        /*this.setState({
             ...this.state,
             size: this.props.location.state.size,
             type: this.props.location.state.type
-        });
+        });*/   
     }
 
     chooseLoad = (part) =>{
@@ -358,14 +361,13 @@ export default class Container extends React.Component {
         
         return(
             <div>
-            <AppHeaderComponent/>
+            
             
           <div className="container-fluid">
             {/*<button onClick={() => this.loadSillas()}>Sillas</button>
             <button onClick={() => this.loadTech()}>Técnicos</button>*/}
             
-            <div className="row menu-navigation">
-            <AppNavigationComponent className=""/>
+            <div className="row menu-navigation">            
             <Bicycle loadChooser={this.chooseLoad}/>
             </div>
             <div className="row">
