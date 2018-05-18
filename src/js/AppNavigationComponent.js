@@ -62,7 +62,7 @@ class AppNavigationComponent extends React.Component{
     
   </a>
   <a class={store.getState().sectionView != 'productList' ? 'itemmenu' : 'selected itemmenu'} href="/home/productList" ><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-  <a class={store.getState().sectionView != 'user' ? 'itemmenu' : 'selected itemmenu'} href="#"  ><i class="fas fa-bicycle"></i> Armar bici</a>
+  <a class={store.getState().sectionView != 'data-bicycle' ? 'itemmenu' : 'selected itemmenu'} href="/data-bicycle"  ><i class="fas fa-bicycle"></i> Armar bici</a>
   <a class={store.getState().sectionView != 'technician' ? 'itemmenu' : 'selected itemmenu'} href="/home/technician" ><i class="fas fa-wrench"></i> Servicio técnico</a>
   <a class={store.getState().sectionView != 'forums' ? 'itemmenu' : 'selected itemmenu'} href="/home/forums" ><i class="far fa-comments"></i> Foros</a>
   <a class={store.getState().sectionView != 'map' ? 'itemmenu' : 'selected itemmenu'} href="/home/map" ><i class="far fa-map"></i> Mapa de tiendas</a>
@@ -72,6 +72,7 @@ class AppNavigationComponent extends React.Component{
   </a>
   
 </div></div>
+              
         );
       }
       if( this.state.userType == 'technicians'){
@@ -81,7 +82,7 @@ class AppNavigationComponent extends React.Component{
                 <i class="fas fa-user-circle"></i> Mi cuenta
               </a>
               <a href="/home/productList" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-              <a href="#"  class="list-group-item disabled"><i class="fas fa-bicycle"></i> Armar bici</a>
+              <a href="/data-bicycle"  class="list-group-item disabled"><i class="fas fa-bicycle"></i> Armar bici</a>
               <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
               <a href="#" onClick={() => this.closeSession()} class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
               
