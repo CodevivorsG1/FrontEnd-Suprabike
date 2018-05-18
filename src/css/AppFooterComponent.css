@@ -1,10 +1,10 @@
 .footer-bottom {
     padding: 20px 0 10px;
     border-top: 1px solid #666;
-    background: #f8f9fa;
+    background: #202020;
 }
 .copyright-text p {
-    color: #172556;
+    color: #fff;
     margin-top: 9px;
     margin-bottom: 0;
 }
@@ -13,8 +13,8 @@
     margin: 0 5px;
 }
 .social-link li a {
-    color: #172556;
-    border: 1px solid #172556;
+    color: #9A6BD3;
+    border: 1px solid #9A6BD3;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -23,4 +23,11 @@
     display: inline-block;
     font-size: 14px;
     transition: .5s;
+}
+
+hr.footer {
+    color: #FFD322;
+    border-top: 1px solid #8c8b8b;
+    border-color: #FFD322; 
+    border-style: solid; 
 }

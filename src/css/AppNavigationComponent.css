@@ -9,7 +9,10 @@ table {
 h3 {
   margin: auto;
 }
-
+ a.itemmenu.selected{
+  background-color: #6725B6;
+    color: #fff;
+}
 .CustomTable {
   border: 1px solid blue;
   width: 30%;
