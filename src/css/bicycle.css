@@ -1,4 +1,4 @@
-:root {
+.after-bikes {
     --frame: #f00;
     --seat: #000;
     --handlebars: #f00;
@@ -9,7 +9,37 @@
     --pedals: #c0c0c0;
     --tyres: #000;
     --cranks: #000;
-  }
+}
+.after-wheels{
+  --tyres: #000;
+}
+.after-tyres{
+  --mags: #808080;
+}
+.after-forks{
+  --forks: #f00;
+}
+.after-frames{
+  --frame: #f00;
+}
+.after-seats{
+  --seat: #000;
+}
+.after-handlebar{
+  --handlebars: #f00;
+}
+:root {
+  --frame: #606060;
+  --seat: #606060;
+  --handlebars: #606060;
+  --forks: #606060;
+  --stem: #000;
+  --mags: #606060;
+  --sprocket: #c0c0c0;
+  --pedals: #c0c0c0;
+  --tyres: #606060;
+  --cranks: #000;
+}
   .wheel {
     height: 160px;
     width: 160px;
