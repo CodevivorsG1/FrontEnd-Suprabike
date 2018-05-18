@@ -96,7 +96,7 @@ class ForumComponent extends React.Component {
 	
 	if (this.state.isLoading){
 		return (
-			<div className="loader"></div>
+			<div className=""></div>
 		)
 	}else{
     return(

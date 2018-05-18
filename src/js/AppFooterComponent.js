@@ -7,7 +7,7 @@ class AppFooterComponent extends React.Component{
         
 <div class="footer-bottom">
 
-	<div class="container">
+	<div class="">
 		<div class="row">
 			<div class="col-sm-6 ">
 				<div class="copyright-text">

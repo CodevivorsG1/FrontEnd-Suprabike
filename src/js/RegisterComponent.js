@@ -273,7 +273,18 @@ class RegisterComponent extends React.Component {
       return(
         <div>
           <AppHeaderComponent />
-          <div className="loader position-middle"/>
+          <div className="">
+        
+            <div class="">
+              <i class="fa fa-bicycle fa-5x bici"></i>
+              <div class="back">
+                <i class="fa fa-cog fa-3x spin"></i>
+              </div>
+              <div class="front">
+                <i class="fa fa-cog fa-3x spin"></i>
+              </div>
+            </div>
+            </div>
         </div>
       )
     }else if (this.state.role === "technicians"){

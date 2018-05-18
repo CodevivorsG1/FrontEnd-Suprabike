@@ -82,7 +82,18 @@ class TechnicianList extends React.Component {
 		if (this.state.isLoading){
 			console.log("entro al spinner", bike.length)
 			return(
-				<div className="loader"></div>
+				<div className="">
+				
+					<div class="">
+					  <i class="fa fa-bicycle fa-5x bici"></i>
+					  <div class="back">
+					    <i class="fa fa-cog fa-3x spin"></i>
+					  </div>
+					  <div class="front">
+					    <i class="fa fa-cog fa-3x spin"></i>
+					  </div>
+					</div>
+				</div>
 			);
 		}else{
 			return (bike.map(product =>

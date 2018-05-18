@@ -28,7 +28,7 @@ class AppContentComponent extends React.Component{
 	      	</div>
 	        <div class="row">
 	      		<div class="col-md-8" >
-	      			<h3>Lista de productos</h3>
+	      			<h3 class="text-align">Lista de productos</h3>
 		        	<ProductList />
 
 		        </div>
@@ -43,7 +43,7 @@ class AppContentComponent extends React.Component{
 		if (store.getState().sectionView === "map") {
   		return(
 	      <div>
-	        <h3>Mapa de Tiendas</h3>
+	        <h3 class="text-align">Mapa de Tiendas</h3>
 	        <Map />
 	      </div>
 	    );
@@ -51,7 +51,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "user") {
   		return(
 	      <div>
-	        <h3>Perfil de Usuario</h3>
+	        <h3 class="text-align">Perfil de Usuario</h3>
 	        <UserComponent />
 	      </div>
 	    );
@@ -59,7 +59,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "editUser") {
   		return(
 	      <div>
-	        <h2>Editar perfil de usuario</h2>
+	        <h2 class="text-align">Editar perfil de usuario</h2>
 	        <EditUserComponent />
 	      </div>
 	    );	
@@ -67,7 +67,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "technician") {
   		return(
 	      <div>
-	        <h3>Servicio Técnico</h3>
+	        <h3 class="text-align">Servicio Técnico</h3>
 	        <TechnicianList />
 	      </div>
 	    );
@@ -75,7 +75,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "forums") {
   		return(
 	      <div>
-	        <h3>Foros</h3>
+	        <h3 class="text-align">Foros</h3>
 	        <ForumComponent />
 	      </div>
 	    );
@@ -83,7 +83,7 @@ class AppContentComponent extends React.Component{
   	if (store.getState().sectionView === "statistics") {
   		return(
 	      <div>
-	        <h3>Estadísticas</h3>
+	        <h3 class="text-align">Estadísticas</h3>
 	        <Statistics />
 	      </div>
 	    );
@@ -96,7 +96,7 @@ class AppContentComponent extends React.Component{
 	      	</div>
 	        <div class="row">
 	      		<div class="col-md-8" >
-	      			<h3>Lista de productos</h3>
+	      			<h3 class="text-alig">Lista de productos</h3>
 		        	<ProductList />
 
 		        </div>
