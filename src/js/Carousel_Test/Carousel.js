@@ -74,7 +74,7 @@ export default class MultipleItems extends React.Component {
         );
       }
       else{
-        settings.slidesToShow = 3;
+        settings.slidesToShow = 2;
         settings.slidesToScroll = 1;
         const listSillas = this.props.data.data.map( item => 
           <div class="col-md-3 productbox">

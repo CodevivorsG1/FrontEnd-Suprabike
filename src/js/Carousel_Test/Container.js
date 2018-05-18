@@ -42,11 +42,12 @@ export default class Container extends React.Component {
             ...this.state,
             size: this.props.data.size,
             type: this.props.data.type
-        });
+        });       
 
     }
 
     chooseLoad = (part) =>{
+        console.log(this.state)
         switch (part){
             case "sillas":
                 console.log("sillas")
