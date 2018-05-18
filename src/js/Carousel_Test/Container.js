@@ -38,11 +38,12 @@ export default class Container extends React.Component {
         console.log("props")
         console.log(this.props)
 
-        /*this.setState({
+        this.setState({
             ...this.state,
-            size: this.props.location.state.size,
-            type: this.props.location.state.type
-        });*/   
+            size: this.props.data.size,
+            type: this.props.data.type
+        });
+
     }
 
     chooseLoad = (part) =>{

@@ -54,7 +54,7 @@ class AppNavigationComponent extends React.Component{
           <div class="topnav" id="myTopnav">
             <a class="search row"></a>
             <a class={store.getState().sectionView != 'productList' ? 'itemmenu' : 'selected itemmenu'} href="/home/productList" ><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-            <a class={store.getState().sectionView != 'data-bicycle' ? 'itemmenu' : 'selected itemmenu'} href="/home/data-bicycle"  ><i class="fas fa-bicycle"></i> Armar bici</a>
+            <a class={store.getState().sectionView != 'bicycle' ? 'itemmenu' : 'selected itemmenu'} href="/home/bicycle"  ><i class="fas fa-bicycle"></i> Armar bici</a>
             <a class={store.getState().sectionView != 'technician' ? 'itemmenu' : 'selected itemmenu'} href="/home/technician" ><i class="fas fa-wrench"></i> Servicio técnico</a>
             <a class={store.getState().sectionView != 'forums' ? 'itemmenu' : 'selected itemmenu'} href="/home/forums" ><i class="far fa-comments"></i> Foros</a>
             <a class={store.getState().sectionView != 'map' ? 'itemmenu' : 'selected itemmenu'} href="/home/map" ><i class="far fa-map"></i> Mapa de tiendas</a>

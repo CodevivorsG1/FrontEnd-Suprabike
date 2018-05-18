@@ -13,6 +13,7 @@ import Carousel from './Carousel_Test/Container.js';
 import store from './store'
 import Bicycle from './Carousel_Test/Bicycle.js';
 import DataBicycle from './Carousel_Test/DataBicycle.js';
+import Trying from './Carousel_Test/fuckingTrying.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path='/pdf'component={MyPdfViewer}/>
           <Route path='/bicycle'component={Carousel}/>
           <Route path='/data-bicycle' component ={DataBicycle}/>
+          <Route path='/trying' component={Trying} />
         </Switch>
       </BrowserRouter>
     );
