@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import './genCar.css';
 import Build from'./Container.js';
 
+
 class BuildBike extends React.Component {
     constructor() {
         super();
@@ -104,6 +105,7 @@ class BuildBike extends React.Component {
                         <Build data={this.state}/>
                     </div>
                 </Slider>
+
             </div>
         );
     }

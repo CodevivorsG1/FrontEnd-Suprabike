@@ -7,13 +7,12 @@ import Bicycle from './Bicycle';
 import AppHeaderComponent from '../AppHeaderComponent';
 import AppNavigationComponent from '../AppNavigationComponent';
 import '../../css/bicycle-menu.css';
+import { POINT_CONVERSION_HYBRID } from 'constants';
 
 export default class Container extends React.Component {
     constructor() {
         super();
         this.state = {
-            loadedTech: false,
-            tech: [],
             loadedSillas: false,
             sillas: [],
             loadedManubrios: false,
@@ -50,57 +49,100 @@ export default class Container extends React.Component {
         console.log(this.state)
         switch (part){
             case "sillas":
-                console.log("sillas")
+                this.loadData("sillas")
                 return this.loadSillas();
             case "tecnicos":
-                console.log("tecnicos")
+                this.loadData("tecnicos")
                 return this.loadTech();
             case "manubrios":
-                console.log("manubrios")
+                this.loadData("manubrios")
                 return this.loadManubrio();
             case "forks":
-                console.log("forks")
+                this.loadData("forks")
                 return this.loadFork();
             case "tires":
-                console.log("tires")
+                this.loadData("tires")
                 return this.loadTires();
             case "wheels":
-                console.log("wheels")
+                this.loadData("wheels")
                 return this.loadWheels();
             case "frames":
-                console.log("frames")
-                return this.loadFrame();
+                this.loadData("frames")
+                //return this.loadFrame();
             default:
                 //nothing
             
         }
     }
-    loadTech() {
-        if(!this.state.loadedTech) {
-            axios.get(store.getState().globalUrl + 'technicians/')
-                .then((response) => {
-                    for(var x in response.data){
-                        this.state.tech.push(response.data[x])
-                    }								
-                    this.state.tech.length === 0 ? swal("No hay tecnicos en el momento"):  console.log(this.state);
-                    this.data = {
-                        type: 'tech',
-                        data: this.state.tech
+
+    loadData(part) {
+        let currentChoice = part.charAt(0).toUpperCase() + part.substr(1);
+        if (! 'this.state.loaded' + {currentChoice}) {
+            let path = 'components/';
+            switch (part) {
+                case "manubrios":
+                    path += "get_handlebar";
+                    break;
+                case "frames":
+                    path += "get_frame_size";
+                    break;
+                case "wheels":
+                    path += "get_wheel";
+                    break;
+                case "tires":
+                    path += "get_tire";
+                    break;
+                case "forks":
+                    path += "get_fork";
+                    break;
+                case "sillas":
+                    path += "get_seats";
+                    break;
+                default:                            
+            }
+            switch (this.state.type) {
+                case "mountain":
+                     path += '_to_mountain';
+                     break;
+                case "road":
+                     path += '_to_road';
+                     break;
+                case "urban":
+                     path += '_to_urban';
+                     break;
+                case "bmx":
+                     path += '_to_bmx';
+                     break;
+                default:
+            }
+
+            if (part === 'frames') {
+                path += '_' + this.state.size;
+            }
+            path += "/";
+            axios.get(store.getState().globalUrl + path)
+                .then( (response) => {                    
+                    for (let x in response.data) {
+                        console.log("pushing");
+                        this.state[part].push(response.data[x]);
                     }
-                    this.setState({loadedTech: true});
+                    this.data = {
+                        type: part,
+                        data: this.state[part]
+                    }
+                    let aux = `loaded${currentChoice}`;
+                    this.setState({ ${aux} : true });
+                    console.log(this.state)
                 })
-                .catch((error) => {
+                .catch ( (error) => {
                     swal("Error", "Error al obtener datos", "error")
                     console.log("fuck")                    
                 })
         } else {
-            this.data = {
-                type: 'tech',
-                data: this.state.tech
-            }
-            this.setState({loadedTech: true});
+
         }
     }
+        
     loadManubrio = () =>{
         if(!this.state.loadedManubrios) {
             var path = 'components/get_handlebar'
@@ -296,7 +338,8 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.tires.push(response.data[x])
                     }								
-                    this.state.tires.length === 0 ? swal("No hay neumaticos en el momento"):  console.log(this.state);                    this.data = {
+                    this.state.tires.length === 0 ? swal("No hay neumaticos en el momento"):  console.log(this.state);
+                        this.data = {
                         type: 'tires',
                         data: this.state.tires
                     }
@@ -371,9 +414,9 @@ export default class Container extends React.Component {
             <div className="row menu-navigation">            
             <Bicycle loadChooser={this.chooseLoad}/>
             </div>
-            <div className="row">
-            <Carousel data = {this.data}/>
-            </div>
+            <div className="row"> 
+            <Carousel data = {this.data}/> 
+            </div>            
           </div>  
           </div>
         );
