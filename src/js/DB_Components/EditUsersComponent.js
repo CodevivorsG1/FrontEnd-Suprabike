@@ -193,11 +193,6 @@ class EditUsersComponent extends React.Component {
                                       <button onClick={this.saveUser} class="btn-primary btn-lg btn-primary" style={{'margin-bottom':"10px"}} ><i class="fa fa-save"> </i> Guardar
                                       </button>
                                       <br/>
-                                      <h2>Nueva Foto de Perfil</h2>
-                                      <input type="file" onChange={this.imageSelectedHandler}/>
-                                      <button onClick={this.imageUploadHandlder}>Subir</button>
-                                      <img width={150} src={this.showImage()} style={{alignSelf: 'center'}}/>
-                                  
                                  </div>
                             </div> 
 			        
