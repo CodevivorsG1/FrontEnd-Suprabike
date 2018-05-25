@@ -12,6 +12,7 @@ class ProductList extends React.Component {
 		this.addToCart = this.addToCart.bind(this);
 		this.handleImg = this.handleImg.bind(this);
 		this.handleOptionChange = this.handleOptionChange.bind(this);
+		this.handleOptionChangeMaterial = this.handleOptionChangeMaterial.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		this.generatePDF = this.generatePDF.bind(this);
 
@@ -27,12 +28,17 @@ class ProductList extends React.Component {
 	    selectedOption: changeEvent.target.value
 	  });
 	}
+	handleOptionChangeMaterial (changeEvent) {
+	  this.setState({
+	    selectedOptionMaterial: changeEvent.target.value
+	  });
+	}
 	handleImg(product){
 		if(product.hasOwnProperty('img')){
 			return product.image;
 		}else{
 			console.log("no img")
-			return '../img/bikeUnknown.jpg'
+			return '../img/bikeUnknown.gif'
 		}
 	}
 	handleFormSubmit (formSubmitEvent) {
@@ -80,38 +86,56 @@ class ProductList extends React.Component {
 		if (this.state.isLoading){
 			console.log("entro al spinner", bike.length)
 			return(
-				<div className="loader"></div>
+				<div className="">
+				
+					<div class="">
+					  <i class="fa fa-bicycle fa-5x bici"></i>
+					  <div class="back">
+					    <i class="fa fa-cog fa-3x spin"></i>
+					  </div>
+					  <div class="front">
+					    <i class="fa fa-cog fa-3x spin"></i>
+					  </div>
+					</div>
+				</div>
 			);
 		}else{
 			return (
-				<div class="row well">
+							<div class="row ">
+							<form>
 				<div class="form-check form-check-inline row">
 					  <input checked={this.state.selectedOption === 'h500'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="h500"/>
 					   {'< $500.000'}
-					</div>
-					<div class="form-check form-check-inline">
+				</div>
+				<div class="form-check form-check-inline">
 					  <input checked={this.state.selectedOption === 'hmillon'} onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="hmillon"/>
 					  {"< $1'000.000"}
-					</div>
-					<div class="form-check form-check-inline">
+				</div>
+				<div class="form-check form-check-inline">
 					  <input checked={this.state.selectedOption === 'dmillon'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="dmillon" />
 					  {"> $1'000.000"}
-					</div>
-					<button href="#" class="btn btn-info btn-sm" onClick={() => this.handleFormSubmit()} role="button"><i class="fas fa-filter"></i> Filtrar</button>
+				</div>
+				</form>
+					<button href="#" class="btn btn-warning btn-sm" onClick={() => this.handleFormSubmit()} role="button"><i class="fas fa-filter"></i> Filtrar</button>
+					<form>
 					<div class="col-md-12">
 						<div class="form-check form-check-inline">
-						  <input checked={this.state.selectedOption === 'aluminio'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="aluminio" />
+						  <input   onChange={this.handleOptionChangeMaterial}  class="checkbox" type="checkbox" name="aluminio" id="inlineRadio2" value="aluminio" />
 						  {"Aluminio"}
 						</div>
 						<div class="form-check form-check-inline">
-						  <input checked={this.state.selectedOption === 'acero'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="acero" />
+						  <input    onChange={this.handleOptionChangeMaterial}  class="checkbox" type="checkbox" name="acero" id="inlineRadio2" value="acero" />
 						  {"Acero"}
 						</div>
 						<div class="form-check form-check-inline">
-						  <input checked={this.state.selectedOption === 'carbono'}  onChange={this.handleOptionChange}  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="carbono" />
+						  <input    onChange={this.handleOptionChangeMaterial}  class="checkbox" type="checkbox" name="carbono" id="inlineRadio2" value="carbono" />
 						  {"Carbono"}
 						</div>
-				{bike.map(product =>
+				
+			</div>
+			</form>
+			<div class="row">
+			{bike.map(product =>
 	        	<div class="col-md-4 productbox">
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
 				    <div class="producttitle">
@@ -131,7 +155,7 @@ class ProductList extends React.Component {
 				
 			)}
 			</div>
-			</div>
+		</div>
 			)
 
 		}

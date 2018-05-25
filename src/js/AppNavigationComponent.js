@@ -54,7 +54,7 @@ class AppNavigationComponent extends React.Component{
           <div class="topnav" id="myTopnav">
             <a class="search row"></a>
             <a class={store.getState().sectionView != 'productList' ? 'itemmenu' : 'selected itemmenu'} href="/home/productList" ><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-            <a class={store.getState().sectionView != 'data-bicycle' ? 'itemmenu' : 'selected itemmenu'} href="/home/data-bicycle"  ><i class="fas fa-bicycle"></i> Armar bici</a>
+            <a class={store.getState().sectionView != 'bicycle' ? 'itemmenu' : 'selected itemmenu'} href="/home/bicycle"  ><i class="fas fa-bicycle"></i> Armar bici</a>
             <a class={store.getState().sectionView != 'technician' ? 'itemmenu' : 'selected itemmenu'} href="/home/technician" ><i class="fas fa-wrench"></i> Servicio técnico</a>
             <a class={store.getState().sectionView != 'forums' ? 'itemmenu' : 'selected itemmenu'} href="/home/forums" ><i class="far fa-comments"></i> Foros</a>
             <a class={store.getState().sectionView != 'map' ? 'itemmenu' : 'selected itemmenu'} href="/home/map" ><i class="far fa-map"></i> Mapa de tiendas</a>
@@ -74,12 +74,26 @@ class AppNavigationComponent extends React.Component{
                 <i class="fas fa-user-circle"></i> Mi cuenta
               </a>
               <a href="/home/productList" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
-              <a href="/data-bicycle"  class="list-group-item disabled"><i class="fas fa-bicycle"></i> Armar bici</a>
+              <a href="/data-bicycle"  class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
               <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
               <a href="#" onClick={() => this.closeSession()} class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
               
             </div>
         );
+      } else if (this.state.userType == 'stores'){
+        return (
+          <div class="list-group text-left">
+            <a href="/home/user" class="list-group-item {this.state.sectionView == 'user' ? 'active' : ''}">
+              <i class="fas fa-user-circle"></i> Mi cuenta
+            </a>
+            <a href="/home/productList" class="list-group-item"><i class="fas fa-cart-arrow-down"></i> Mis compras</a>
+            <a href="/home/bicycle"  class="list-group-item"><i class="fas fa-bicycle"></i> Armar bici</a>
+            <a href="/home/forums" class="list-group-item"><i class="far fa-comments"></i> Foros</a>
+            <a href="/component" class="list-group-item"><i class="fa fa-cog"></i> Agregar componente</a>
+            <a href="#" onClick={() => this.closeSession()} class="list-group-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            
+          </div>
+      );
       }
       return (<div> </div>)
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link ,Redirect} from 'react-router-dom';
 import logo from '../img/logoSupraBIKES_gray.png';
 import axios from 'axios';
 import store from './store'
@@ -40,6 +40,10 @@ class AppHeaderComponent extends React.Component{
 
 
   render() {
+    const { redirect } = this.state;
+     if (redirect) {
+       return <Redirect to='/'/>;
+     }
     if (store.getState().token != "") {
       return(
      
@@ -51,7 +55,7 @@ class AppHeaderComponent extends React.Component{
             </Link>
           </div>
             
-
+          <hr class="footer"/>
           <div class="" id="navbarSupportedContent">
             
             <div class="col-sm">

@@ -4,6 +4,7 @@ import '../css/login.css';
 import '../css/google.css';
 import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
+import AppFooterComponent from './AppFooterComponent.js';
 import AppHomeComponent from './AppHomeComponent.js'
 import ReactDOM from 'react-dom';
 import store from './store'
@@ -163,7 +164,19 @@ class LoginComponent extends React.Component {
             :
         <div>
           <AppHeaderComponent />        
-          <div className="loader position-middle"/>
+          <div className="">
+        
+        <div class="">
+          <i class="fa fa-bicycle fa-5x bici"></i>
+          <div class="back">
+            <i class="fa fa-cog fa-3x spin"></i>
+          </div>
+          <div class="front">
+            <i class="fa fa-cog fa-3x spin"></i>
+          </div>
+        </div>
+        </div>
+        <AppFooterComponent/>
         </div>
       );
     }else{

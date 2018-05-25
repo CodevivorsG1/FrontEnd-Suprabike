@@ -2,7 +2,9 @@
 	width: 600px;
 	height: auto;
 }
-
+.active{
+	color: black;
+}
 .panel-heading{
 	background-color: #0084b4;
 	color: white;

@@ -23,6 +23,7 @@
 }
 .header{
   background-color: #202020;
+  margin-top: 30px
 }
 .search-box {
   width:  70%;
@@ -92,4 +93,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c1c1c', end
     display: block;
     text-align: left;
   }
+}
+hr.footer {
+    color: #FFD322;
+    border-top: 1px solid #8c8b8b;
+    border-color: #FFD322; 
+    border-style: solid; 
 }
