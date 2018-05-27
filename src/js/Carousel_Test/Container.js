@@ -75,7 +75,7 @@ export default class Container extends React.Component {
         }
     }
 
-    loadData(part) {
+    /* loadData(part) {
         let currentChoice = part.charAt(0).toUpperCase() + part.substr(1);
         if (! 'this.state.loaded' + {currentChoice}) {
             let path = 'components/';
@@ -141,7 +141,7 @@ export default class Container extends React.Component {
         } else {
 
         }
-    }
+    } */
         
     loadManubrio = () =>{
         if(!this.state.loadedManubrios) {
