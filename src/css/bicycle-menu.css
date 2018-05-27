@@ -1,3 +1,9 @@
 .menu-navigation{
     margin-left: -24px;
 }
+.menu-component{
+    width: 25%;
+}
+.bike-component{
+    margin-left: 10%;
+}

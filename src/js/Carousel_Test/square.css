@@ -1,10 +1,8 @@
-.register-square {
-	width: 600px;
-	height: auto;
+.square {
+	width: 60%;
+	height: auto;	
 }
-.active{
-	color: black;
-}
+
 .panel-heading{
 	background-color: #0084b4;
 	color: white;
@@ -14,12 +12,9 @@
 }
 
 .panel {
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-	background-color: rgba(255, 255, 255, 0.8);
-	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+	position: relative;
+	margin: auto;	
+	background-color: rgba(255, 255, 255, 0.8);	
 	border-radius: 10px;
 	border: 1px solid gray;
 
@@ -54,9 +49,9 @@
 	margin:auto;
 }
 
-.gen_part > input {
+/*.gen_part > input {
 	margin-left: 10px;
-}
+}*/
 
 hr {
 	color: DarkGray;

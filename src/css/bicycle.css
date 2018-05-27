@@ -1,436 +1,465 @@
+.after-bikes {
+  --frame: #f00;
+  --seat: #000;
+  --handlebars: #f00;
+  --forks: #f00;
+  --stem: #000;
+  --mags: #808080;
+  --sprocket: #c0c0c0;
+  --pedals: #c0c0c0;
+  --tyres: #000;
+  --cranks: #000;
+}
+.after-wheels{
+--tyres: #000;
+}
+.after-tyres{
+--mags: #808080;
+}
+.after-forks{
+--forks: #f00;
+}
+.after-frames{
+--frame: #f00;
+}
+.after-seats{
+--seat: #000;
+}
+.after-handlebar{
+--handlebars: #f00;
+}
 :root {
-    --frame: #f00;
-    --seat: #000;
-    --handlebars: #f00;
-    --forks: #f00;
-    --stem: #000;
-    --mags: #808080;
-    --sprocket: #c0c0c0;
-    --pedals: #c0c0c0;
-    --tyres: #000;
-    --cranks: #000;
-  }
-  .wheel {
-    height: 160px;
-    width: 160px;
-    position: relative;
-    overflow: hidden;
-  }
-  .wheel__tyre {
-    border: 20px solid var(--tyres);
-    border-radius: 100%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .wheel__spin {
-    height: 80%;
-    width: 80%;
-    border-radius: 100%;
-    overflow: hidden;
-    position: relative;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -40%;
-    margin-top: -40%;
-    -webkit-animation: spin 0.5s infinite linear;
-            animation: spin 0.5s infinite linear;
-  }
-  .wheel__rim {
-    border: 16px solid var(--mags);
-    border-radius: 100%;
-    height: 140px;
-    width: 140px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  .wheel__hub {
-    height: 25%;
-    width: 25%;
-    background: var(--mags);
-    border-radius: 100%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  .wheel__spokes {
-    height: 97%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-  }
-  .wheel__spoke {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 50%;
-    width: 10%;
-    background: var(--mags);
-    -webkit-transform-origin: top center;
-            transform-origin: top center;
-  }
-  .wheel__spoke:nth-of-type(1) {
-    -webkit-transform: translate(-50%, 0%) rotate(72deg);
-            transform: translate(-50%, 0%) rotate(72deg);
-  }
-  .wheel__spoke:nth-of-type(2) {
-    -webkit-transform: translate(-50%, 0%) rotate(144deg);
-            transform: translate(-50%, 0%) rotate(144deg);
-  }
-  .wheel__spoke:nth-of-type(3) {
-    -webkit-transform: translate(-50%, 0%) rotate(216deg);
-            transform: translate(-50%, 0%) rotate(216deg);
-  }
-  .wheel__spoke:nth-of-type(4) {
-    -webkit-transform: translate(-50%, 0%) rotate(288deg);
-            transform: translate(-50%, 0%) rotate(288deg);
-  }
-  .wheel__spoke:nth-of-type(5) {
-    -webkit-transform: translate(-50%, 0%) rotate(360deg);
-            transform: translate(-50%, 0%) rotate(360deg);
-  }
-  .frame {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    height: 40px;
-    width: 40px;
-  }
-  .frame__tube {
-    background: var(--frame);
-    position: absolute;
-    height: 10px;
-  }
-  .frame__toptube {
-    width: 160px;
-    -webkit-transform: rotate(-14deg) translate(-5%, -825%);
-            transform: rotate(-14deg) translate(-5%, -825%);
-    left: 50%;
-  }
-  .frame__toptube:after {
-    content: '';
-    display: block;
-    position: absolute;
-    background: var(--frame);
-    width: 12px;
-    height: 40px;
-    top: -5px;
-    right: -1px;
-  }
-  .frame__chainstay {
-    width: 104px;
-    top: 50%;
-    -webkit-transform: translate(-90%, -50%);
-            transform: translate(-90%, -50%);
-  }
-  .frame__bottombracket {
-    height: 30px;
-    width: 30px;
-    border-radius: 100%;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  .frame__seatstay {
-    -webkit-transform-origin: left center;
-            transform-origin: left center;
-    top: 50%;
-    -webkit-transform: translate(-104px, -50%) rotate(-38deg);
-            transform: translate(-104px, -50%) rotate(-38deg);
-    width: 124.8px;
-  }
-  .frame__dropout {
-    top: 50%;
-    -webkit-transform: translate(-109.2px, -50%);
-            transform: translate(-109.2px, -50%);
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-  }
-  .frame__downtube {
-    width: 160px;
-    left: 50%;
-    top: 50%;
-    -webkit-transform-origin: left center;
-            transform-origin: left center;
-    -webkit-transform: translate(0, -50%) rotate(-36deg);
-            transform: translate(0, -50%) rotate(-36deg);
-  }
-  .frame__seattube {
-    width: 80px;
-    -webkit-transform-origin: left center;
-            transform-origin: left center;
-    left: 50%;
-    -webkit-transform: rotate(-109deg) translate(0%, -50%);
-            transform: rotate(-109deg) translate(0%, -50%);
-  }
-  .forks {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-  }
-  .forks__steerer {
-    height: 50px;
-    width: 10px;
-    background: var(--forks);
-    position: absolute;
-    bottom: 90px;
-  }
-  .forks__leg {
-    background: var(--forks);
-    width: 10px;
-    height: 90px;
-    -webkit-transform-origin: top center;
-            transform-origin: top center;
-    -webkit-transform: rotate(1deg) translateY(-1%);
-            transform: rotate(1deg) translateY(-1%);
-    position: absolute;
-    bottom: 0;
-  }
-  .forks__dropout {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background: var(--forks);
-    border-radius: 100%;
-  }
+--frame: #606060;
+--seat: #606060;
+--handlebars: #606060;
+--forks: #606060;
+--stem: #000;
+--mags: #606060;
+--sprocket: #c0c0c0;
+--pedals: #c0c0c0;
+--tyres: #606060;
+--cranks: #000;
+}
+.wheel {
+  height: 160px;
+  width: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.wheel__tyre {
+  border: 20px solid var(--tyres);
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.wheel__spin {
+  height: 80%;
+  width: 80%;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -40%;
+  margin-top: -40%;
+  -webkit-animation: spin 0.5s infinite linear;
+          animation: spin 0.5s infinite linear;
+}
+.wheel__rim {
+  border: 16px solid var(--mags);
+  border-radius: 100%;
+  height: 140px;
+  width: 140px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.wheel__hub {
+  height: 25%;
+  width: 25%;
+  background: var(--mags);
+  border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.wheel__spokes {
+  height: 97%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.wheel__spoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50%;
+  width: 10%;
+  background: var(--mags);
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+}
+.wheel__spoke:nth-of-type(1) {
+  -webkit-transform: translate(-50%, 0%) rotate(72deg);
+          transform: translate(-50%, 0%) rotate(72deg);
+}
+.wheel__spoke:nth-of-type(2) {
+  -webkit-transform: translate(-50%, 0%) rotate(144deg);
+          transform: translate(-50%, 0%) rotate(144deg);
+}
+.wheel__spoke:nth-of-type(3) {
+  -webkit-transform: translate(-50%, 0%) rotate(216deg);
+          transform: translate(-50%, 0%) rotate(216deg);
+}
+.wheel__spoke:nth-of-type(4) {
+  -webkit-transform: translate(-50%, 0%) rotate(288deg);
+          transform: translate(-50%, 0%) rotate(288deg);
+}
+.wheel__spoke:nth-of-type(5) {
+  -webkit-transform: translate(-50%, 0%) rotate(360deg);
+          transform: translate(-50%, 0%) rotate(360deg);
+}
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+}
+.frame__tube {
+  background: var(--frame);
+  position: absolute;
+  height: 10px;
+}
+.frame__toptube {
+  width: 160px;
+  -webkit-transform: rotate(-14deg) translate(-5%, -825%);
+          transform: rotate(-14deg) translate(-5%, -825%);
+  left: 50%;
+}
+.frame__toptube:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: var(--frame);
+  width: 12px;
+  height: 40px;
+  top: -5px;
+  right: -1px;
+}
+.frame__chainstay {
+  width: 104px;
+  top: 50%;
+  -webkit-transform: translate(-90%, -50%);
+          transform: translate(-90%, -50%);
+}
+.frame__bottombracket {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.frame__seatstay {
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  top: 50%;
+  -webkit-transform: translate(-104px, -50%) rotate(-38deg);
+          transform: translate(-104px, -50%) rotate(-38deg);
+  width: 124.8px;
+}
+.frame__dropout {
+  top: 50%;
+  -webkit-transform: translate(-109.2px, -50%);
+          transform: translate(-109.2px, -50%);
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+}
+.frame__downtube {
+  width: 160px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  -webkit-transform: translate(0, -50%) rotate(-36deg);
+          transform: translate(0, -50%) rotate(-36deg);
+}
+.frame__seattube {
+  width: 80px;
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  left: 50%;
+  -webkit-transform: rotate(-109deg) translate(0%, -50%);
+          transform: rotate(-109deg) translate(0%, -50%);
+}
+.forks {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+.forks__steerer {
+  height: 50px;
+  width: 10px;
+  background: var(--forks);
+  position: absolute;
+  bottom: 90px;
+}
+.forks__leg {
+  background: var(--forks);
+  width: 10px;
+  height: 90px;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-transform: rotate(1deg) translateY(-1%);
+          transform: rotate(1deg) translateY(-1%);
+  position: absolute;
+  bottom: 0;
+}
+.forks__dropout {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: var(--forks);
+  border-radius: 100%;
+}
+.bike {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  width: 200px;
+  -webkit-transform: translate(-60%, -50%) scale(0.65);
+          transform: translate(-60%, -50%) scale(0.65);
+}
+@media (min-width: 768px) {
   .bike {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 200px;
-    width: 200px;
-    -webkit-transform: translate(-60%, -50%) scale(0.65);
-            transform: translate(-60%, -50%) scale(0.65);
+    -webkit-transform: translate(-60%, -50%) scale(1);
+            transform: translate(-60%, -50%) scale(1);
   }
-  @media (min-width: 768px) {
-    .bike {
-      -webkit-transform: translate(-60%, -50%) scale(1);
-              transform: translate(-60%, -50%) scale(1);
-    }
-  }
-  .bike__cranks {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -20px;
-    margin-top: -20px;
-    background: var(--sprocket);
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    -webkit-animation: spin 1s infinite linear;
-            animation: spin 1s infinite linear;
-  }
-  .bike__cranks--foreground .bike__crank {
-    -webkit-transform-origin: top center;
-            transform-origin: top center;
-    -webkit-transform: translate(-50%, 5%) rotate(-180deg);
-            transform: translate(-50%, 5%) rotate(-180deg);
-  }
-  .bike__crank {
-    height: 50px;
-    width: 10px;
-    background: var(--cranks);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -5%);
-            transform: translate(-50%, -5%);
-    border-radius: 30% 30% 50% 50%;
-  }
-  .bike__crank:after {
-    border-radius: 100%;
-    content: '';
-    height: 8px;
-    width: 8px;
-    background: var(--frame);
-    top: 100%;
-    left: 50%;
-    position: absolute;
-    -webkit-transform: translate(-50%, -110%);
-            transform: translate(-50%, -110%);
-  }
-  .bike__crank:before {
-    content: '';
-    height: 20%;
-    width: 300%;
-    background: #404040;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -150%;
-    margin-top: -100%;
-    animation: spin 1s infinite reverse linear;
-  }
-  .bike__seat {
-    background: var(--seat);
-    position: absolute;
-    height: 16px;
-    width: 72px;
-    border-radius: 90%;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-95%, -650%) rotate(-20deg);
-            transform: translate(-95%, -650%) rotate(-20deg);
-  }
-  .bike__seat:after {
-    content: '';
-    background: var(--seat);
-    height: 120%;
-    width: 55%;
-    position: absolute;
-    border-radius: 100%;
-  }
-  .bike__stem {
-    background: var(--stem);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 15px;
-    width: 30px;
-    -webkit-transform: translate(380%, -900%) rotate(-12deg);
-            transform: translate(380%, -900%) rotate(-12deg);
-  }
-  .bike__handlebars {
-    background: var(--handlebars);
-    width: 10px;
-    height: 90px;
-    border-radius: 0 10px 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(1250%, -240%) rotate(-8deg);
-            transform: translate(1250%, -240%) rotate(-8deg);
-  }
-  .bike__handlebars:after {
-    content: '';
-    height: 12.5px;
-    width: 20px;
-    background: #000;
-    position: absolute;
-    border-radius: 10px;
-    -webkit-transform-origin: right center;
-            transform-origin: right center;
-    -webkit-transform: translateX(-55%) rotate(10deg);
-            transform: translateX(-55%) rotate(10deg);
-  }
-  .wheel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
-  .wheel--back {
-    -webkit-transform: translate(-125%, -50%);
-            transform: translate(-125%, -50%);
-  }
-  .wheel--front {
-    -webkit-transform: translate(50%, -50%);
-            transform: translate(50%, -50%);
-  }
-  .forks {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(750%, -50%) rotate(-15deg);
-            transform: translate(750%, -50%) rotate(-15deg);
-  }
-  .colorways {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    -webkit-transform: translate(-39%, 0);
-            transform: translate(-39%, 0);
-    width: 300px;
-  }
-  .colorways__choice {
-    cursor: pointer;
-    height: 44px;
-    width: 44px;
-    border: 0;
-    border-radius: 100%;
-    margin: 4px;
-    box-shadow: 1px 1px 1px #000;
-    transition: box-shadow 0.05s ease;
-  }
-  .colorways__choice:hover {
-    box-shadow: 2px 2px 2px #000;
-  }
-  .colorways__choice:active {
-    box-shadow: 0px 0px 2px #000;
-  }
-  .colorways__choice--default {
-    background: linear-gradient(45deg, #000 33%, #f00 33%, #f00 66%, #808080 66%);
-  }
-  .colorways__choice--skyline {
-    background: linear-gradient(45deg, #000 33%, #3af4f8 33%, #3af4f8 66%, #fff 66%);
-  }
-  .colorways__choice--badbarbie {
-    background: linear-gradient(45deg, #000 33%, #ff00ec 33%, #ff00ec 66%, #000 66%);
-  }
-  .colorways__choice--lemonandlime {
-    background: linear-gradient(45deg, #fff 33%, #00f900 33%, #00f900 66%, #fffb00 66%);
-  }
-  .colorways__choice--stealth {
-    background: linear-gradient(45deg, #6e6e6e 33%, #000 33%, #000 66%, #c0c0c0 66%);
-  }
-  .bike__handlebars,
-  .bike__seat,
-  .bike__frame,
-  .bike__stem,
-  .bike__forks,
-  .bike__wheel,
-  .bike__cranks,
-  .bike__tyres,
-  .bike__crank {
-    cursor: pointer;
-  }
-  *,
-  *:after,
-  *:before {
-    box-sizing: border-box;
-    transition: background 0.25s ease 0s;
-  }
+}
+.bike__cranks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+  background: var(--sprocket);
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  -webkit-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+.bike__cranks--foreground .bike__crank {
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-transform: translate(-50%, 5%) rotate(-180deg);
+          transform: translate(-50%, 5%) rotate(-180deg);
+}
+.bike__crank {
+  height: 50px;
+  width: 10px;
+  background: var(--cranks);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -5%);
+          transform: translate(-50%, -5%);
+  border-radius: 30% 30% 50% 50%;
+}
+.bike__crank:after {
+  border-radius: 100%;
+  content: '';
+  height: 8px;
+  width: 8px;
+  background: var(--frame);
+  top: 100%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -110%);
+          transform: translate(-50%, -110%);
+}
+.bike__crank:before {
+  content: '';
+  height: 20%;
+  width: 300%;
+  background: #404040;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -150%;
+  margin-top: -100%;
+  animation: spin 1s infinite reverse linear;
+}
+.bike__seat {
+  background: var(--seat);
+  position: absolute;
+  height: 16px;
+  width: 72px;
+  border-radius: 90%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-95%, -650%) rotate(-20deg);
+          transform: translate(-95%, -650%) rotate(-20deg);
+}
+.bike__seat:after {
+  content: '';
+  background: var(--seat);
+  height: 120%;
+  width: 55%;
+  position: absolute;
+  border-radius: 100%;
+}
+.bike__stem {
+  background: var(--stem);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 15px;
+  width: 30px;
+  -webkit-transform: translate(380%, -900%) rotate(-12deg);
+          transform: translate(380%, -900%) rotate(-12deg);
+}
+.bike__handlebars {
+  background: var(--handlebars);
+  width: 10px;
+  height: 90px;
+  border-radius: 0 10px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(1250%, -240%) rotate(-8deg);
+          transform: translate(1250%, -240%) rotate(-8deg);
+}
+.bike__handlebars:after {
+  content: '';
+  height: 12.5px;
+  width: 20px;
+  background: #000;
+  position: absolute;
+  border-radius: 10px;
+  -webkit-transform-origin: right center;
+          transform-origin: right center;
+  -webkit-transform: translateX(-55%) rotate(10deg);
+          transform: translateX(-55%) rotate(10deg);
+}
+.wheel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.wheel--back {
+  -webkit-transform: translate(-125%, -50%);
+          transform: translate(-125%, -50%);
+}
+.wheel--front {
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.forks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(750%, -50%) rotate(-15deg);
+          transform: translate(750%, -50%) rotate(-15deg);
+}
+.colorways {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-39%, 0);
+          transform: translate(-39%, 0);
+  width: 300px;
+}
+.colorways__choice {
+  cursor: pointer;
+  height: 44px;
+  width: 44px;
+  border: 0;
+  border-radius: 100%;
+  margin: 4px;
+  box-shadow: 1px 1px 1px #000;
+  transition: box-shadow 0.05s ease;
+}
+.colorways__choice:hover {
+  box-shadow: 2px 2px 2px #000;
+}
+.colorways__choice:active {
+  box-shadow: 0px 0px 2px #000;
+}
+.colorways__choice--default {
+  background: linear-gradient(45deg, #000 33%, #f00 33%, #f00 66%, #808080 66%);
+}
+.colorways__choice--skyline {
+  background: linear-gradient(45deg, #000 33%, #3af4f8 33%, #3af4f8 66%, #fff 66%);
+}
+.colorways__choice--badbarbie {
+  background: linear-gradient(45deg, #000 33%, #ff00ec 33%, #ff00ec 66%, #000 66%);
+}
+.colorways__choice--lemonandlime {
+  background: linear-gradient(45deg, #fff 33%, #00f900 33%, #00f900 66%, #fffb00 66%);
+}
+.colorways__choice--stealth {
+  background: linear-gradient(45deg, #6e6e6e 33%, #000 33%, #000 66%, #c0c0c0 66%);
+}
+.bike__handlebars,
+.bike__seat,
+.bike__frame,
+.bike__stem,
+.bike__forks,
+.bike__wheel,
+.bike__cranks,
+.bike__tyres,
+.bike__crank {
+  cursor: pointer;
+}
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  transition: background 0.25s ease 0s;
+}
+.instruction {
+  position: absolute;
+  bottom: 6px;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+}
+@media (max-width: 768px) {
   .instruction {
-    position: absolute;
-    bottom: 6px;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
+    display: none;
   }
-  @media (max-width: 768px) {
-    .instruction {
-      display: none;
-    }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  @-webkit-keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
-              transform: rotate(360deg);
-    }
+}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  @keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
-              transform: rotate(360deg);
-    }
-  }
-  
+}

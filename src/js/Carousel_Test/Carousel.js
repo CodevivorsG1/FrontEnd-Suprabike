@@ -40,41 +40,9 @@ export default class MultipleItems extends React.Component {
             </Slider>
         </div>
         );
-      } 
-      else if (this.props.data.type === 'tech') {
-        settings.slidesToShow = 3;
-        settings.slidesToScroll = 1;
-
-        const listTechs = this.props.data.data.map( item => 
-          <div class="col-md-3 productbox">
-              <img  class="img-responsive thumbnail" src={this.handleImg(item)} alt={item.name} />
-              <div class="producttitle">
-                {item.NameTec + " " + item.SurnameTec}
-                <br/>
-                {"$ " + item.costhourtec}
-                
-              </div>
-              <div class="productprice">
-                <div class="pull-right">
-                  <button href="#" class="btn btn-info btn-sm" onClick={() => this.contact(item)} role="button">Contactar</button>
-                </div>
-                <div class="pricetext">
-                  {(item)  => this.renderStars(item.stars)}
-
-                </div>
-              </div>
-          </div>        
-        )
-        return (
-          <div className="container">          
-            <Slider {...settings}>
-              {listTechs}
-            </Slider>
-          </div>
-        );
-      }
+      }       
       else{
-        settings.slidesToShow = 3;
+        settings.slidesToShow = 2;
         settings.slidesToScroll = 1;
         const listSillas = this.props.data.data.map( item => 
           <div class="col-md-3 productbox">

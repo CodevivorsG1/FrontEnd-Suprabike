@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import '../../css/register.css';
+import './square.css';
 import '../../css/loader.css';
 import AppHeaderComponent from '../AppHeaderComponent';
 import {Redirect} from 'react-router-dom';
+import '../store.js';
 
 class DataBicycle extends Component {
     constructor(props){
@@ -14,13 +15,14 @@ class DataBicycle extends Component {
         }
         
     }
-    handleSubmit = () =>{
+    handleSubmit = () =>{        
         this.setState({filled: true})
     }
     render() {
         if (this.state.filled) {
+          console.log(this.state)          
           return <Redirect to={{
-                  pathname: '/bicycle',
+                  pathname: '/home/bicycle',
                   state: {
                     ...this.state
                   }
@@ -28,15 +30,12 @@ class DataBicycle extends Component {
         }
         return (
             <div>
-          <AppHeaderComponent/>
-            <form onSubmit={this.handleSubmit} noValidate>
-            
             <div class="container-fluid">
-              <div class="panel register-square">
+              <div class="panel square">
                 <div class="panel-heading">
                   <h3 class="panel-heading">Registra tus datos para Armar Tu Bici</h3>
                 </div>
-                <div class="row mt-5">
+                <div class="row ">
                   <div class="col-md-12">
                     <h2 className="text-center">¿Qué tipo de bici quieres?</h2>
                   </div>
@@ -64,7 +63,7 @@ class DataBicycle extends Component {
                   </div>
                 </div>
   
-                <div class="row mt-5">
+                <div class="row ">
                   <div class="col-md-12">
                     <h3 className="text-center"> ¿Escoge una talla? </h3>
                   </div>
@@ -102,15 +101,15 @@ class DataBicycle extends Component {
   
                 <div class="row">
                   <div class="col-md-4"></div>
-                  <div class="col-md-4 col-md-offset-4">
-                    <input type="submit" value="Siguiente" class="btn btn-info btn-block"/>
+                  <div class="col-md-4 col-md-offset-4">                    
+                    <button class="btn btn-info btn-block" onClick={() => this.handleSubmit()}>Siguiente</button>
                   </div>
                 </div>
   
               </div>
   
             </div>
-          </form>
+          
         </div>
         );
     }

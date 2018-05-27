@@ -7,13 +7,12 @@ import Bicycle from './Bicycle';
 import AppHeaderComponent from '../AppHeaderComponent';
 import AppNavigationComponent from '../AppNavigationComponent';
 import '../../css/bicycle-menu.css';
+import { POINT_CONVERSION_HYBRID } from 'constants';
 
 export default class Container extends React.Component {
     constructor() {
         super();
         this.state = {
-            loadedTech: false,
-            tech: [],
             loadedSillas: false,
             sillas: [],
             loadedManubrios: false,
@@ -35,70 +34,118 @@ export default class Container extends React.Component {
     }
 
     componentDidMount() {
+        console.log("props")
+        console.log(this.props)
+
         this.setState({
             ...this.state,
-            size: this.props.location.state.size,
-            type: this.props.location.state.type
-        });
+            size: this.props.data.size,
+            type: this.props.data.type
+        });       
+
     }
 
     chooseLoad = (part) =>{
+        console.log(this.state)
         switch (part){
             case "sillas":
-                console.log("sillas")
+                this.loadData("sillas")
                 return this.loadSillas();
             case "tecnicos":
-                console.log("tecnicos")
+                this.loadData("tecnicos")
                 return this.loadTech();
             case "manubrios":
-                console.log("manubrios")
+                this.loadData("manubrios")
                 return this.loadManubrio();
             case "forks":
-                console.log("forks")
+                this.loadData("forks")
                 return this.loadFork();
             case "tires":
-                console.log("tires")
+                this.loadData("tires")
                 return this.loadTires();
             case "wheels":
-                console.log("wheels")
+                this.loadData("wheels")
                 return this.loadWheels();
             case "frames":
-                console.log("frames")
-                return this.loadFrame();
+                this.loadData("frames")
+                //return this.loadFrame();
             default:
                 //nothing
             
         }
     }
-    loadTech() {
-        if(!this.state.loadedTech) {
-            axios.get(store.getState().globalUrl + 'technicians/')
-                .then((response) => {
-                    for(var x in response.data){
-                        this.state.tech.push(response.data[x])
-                    }								
-                    console.log(this.state);
-                    this.data = {
-                        type: 'tech',
-                        data: this.state.tech
+
+    /* loadData(part) {
+        let currentChoice = part.charAt(0).toUpperCase() + part.substr(1);
+        if (! 'this.state.loaded' + {currentChoice}) {
+            let path = 'components/';
+            switch (part) {
+                case "manubrios":
+                    path += "get_handlebar";
+                    break;
+                case "frames":
+                    path += "get_frame_size";
+                    break;
+                case "wheels":
+                    path += "get_wheel";
+                    break;
+                case "tires":
+                    path += "get_tire";
+                    break;
+                case "forks":
+                    path += "get_fork";
+                    break;
+                case "sillas":
+                    path += "get_seats";
+                    break;
+                default:                            
+            }
+            switch (this.state.type) {
+                case "mountain":
+                     path += '_to_mountain';
+                     break;
+                case "road":
+                     path += '_to_road';
+                     break;
+                case "urban":
+                     path += '_to_urban';
+                     break;
+                case "bmx":
+                     path += '_to_bmx';
+                     break;
+                default:
+            }
+
+            if (part === 'frames') {
+                path += '_' + this.state.size;
+            }
+            path += "/";
+            axios.get(store.getState().globalUrl + path)
+                .then( (response) => {                    
+                    for (let x in response.data) {
+                        console.log("pushing");
+                        this.state[part].push(response.data[x]);
                     }
-                    this.setState({loadedTech: true});
+                    this.data = {
+                        type: part,
+                        data: this.state[part]
+                    }
+                    let aux = `loaded${currentChoice}`;
+                    this.setState({ ${aux} : true });
+                    console.log(this.state)
                 })
-                .catch((error) => {
+                .catch ( (error) => {
                     swal("Error", "Error al obtener datos", "error")
                     console.log("fuck")                    
                 })
         } else {
-            this.data = {
-                type: 'tech',
-                data: this.state.tech
-            }
-            this.setState({loadedTech: true});
+
         }
-    }
+    } */
+        
     loadManubrio = () =>{
         if(!this.state.loadedManubrios) {
-            var path = '/components/get_handlebar'
+            var path = 'components/get_handlebar'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -142,7 +189,7 @@ export default class Container extends React.Component {
     }
     loadFrame = () =>{
         if(!this.state.loadedFrames) {
-            var path = '/components/get_frame_size'
+            var path = 'components/get_frame_size'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -162,7 +209,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.frames.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.frames.length === 0 ? swal("No hay marcos en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'frames',
                         data: this.state.frames
@@ -183,7 +230,7 @@ export default class Container extends React.Component {
     }
     loadWheels = () => {
         if(!this.state.loadedWheels) {
-            var path = '/components/get_wheel'
+            var path = 'components/get_wheel'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -206,7 +253,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.wheels.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.wheels.length === 0 ? swal("No hay llantas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'wheels',
                         data: this.state.wheels
@@ -227,7 +274,7 @@ export default class Container extends React.Component {
     }
     loadFork = () =>{
         if(!this.state.loadedForks) {
-            var path = '/components/get_fork'
+            var path = 'components/get_fork'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -250,7 +297,7 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.forks.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.forks.length === 0 ? swal("No hay horquillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'forks',
                         data: this.state.forks
@@ -271,7 +318,7 @@ export default class Container extends React.Component {
     }
     loadTires = () =>{
         if(!this.state.loadedTires) {
-            var path = '/components/get_tire'
+            var path = 'components/get_tire'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -291,8 +338,8 @@ export default class Container extends React.Component {
                     for(var x in response.data){
                         this.state.tires.push(response.data[x])
                     }								
-                    console.log(this.state);
-                    this.data = {
+                    this.state.tires.length === 0 ? swal("No hay neumaticos en el momento"):  console.log(this.state);
+                        this.data = {
                         type: 'tires',
                         data: this.state.tires
                     }
@@ -313,7 +360,7 @@ export default class Container extends React.Component {
     loadSillas = () => {
         if(!this.state.loadedSillas) {
 
-            var path = '/components/get_seats'
+            var path = 'components/get_seats'
             console.log(this.state)
             switch(this.state.type) {
                 case "mountain":
@@ -328,13 +375,13 @@ export default class Container extends React.Component {
                      break;
                 default:
             }
-            console.log(path)
+            console.log(store.getState().globalUrl + path)
             axios.get(store.getState().globalUrl + path)
                 .then((response) => {
                     for(var x in response.data){
                         this.state.sillas.push(response.data[x])
                     }								
-                    console.log(this.state);
+                    this.state.sillas.length === 0 ? swal("No hay sillas en el momento"):  console.log(this.state);
                     this.data = {
                         type: 'sillas',
                         data: this.state.sillas
@@ -358,19 +405,18 @@ export default class Container extends React.Component {
         
         return(
             <div>
-            <AppHeaderComponent/>
+            
             
           <div className="container-fluid">
             {/*<button onClick={() => this.loadSillas()}>Sillas</button>
             <button onClick={() => this.loadTech()}>Técnicos</button>*/}
             
-            <div className="row menu-navigation">
-            <AppNavigationComponent className=""/>
+            <div className="row menu-navigation">            
             <Bicycle loadChooser={this.chooseLoad}/>
             </div>
-            <div className="row">
-            <Carousel data = {this.data}/>
-            </div>
+            <div className="row"> 
+            <Carousel data = {this.data}/> 
+            </div>            
           </div>  
           </div>
         );
