@@ -54,8 +54,13 @@ class AppContentComponent extends React.Component{
 			console.log("this props")
 			console.log(this.props)
 			return (
-				<div>
-					<BikeBuild />
+				<div class="row">
+					<div class="col-md-8" >	      			
+						<BikeBuild />
+					</div>
+					<div class="col-md-4" >
+						<ShoppingCart />
+					</div>
 				</div>
 			);
 		}
@@ -107,7 +112,7 @@ class AppContentComponent extends React.Component{
 	      	</div>
 	        <div class="row">
 	      		<div class="col-md-8" >
-	      			<h3 class="text-alig">Lista de productos</h3>
+	      			<h3 class="text-align">Lista de productos</h3>
 		        	<ProductList />
 
 		        </div>
