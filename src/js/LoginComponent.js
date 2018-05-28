@@ -215,7 +215,8 @@ class LoginComponent extends React.Component {
                     <div class="row">
                     <div class="col-md-12">
                       <label id="emailLabel">Email</label>
-                      <input id="email" name="email"
+                      <input id="email" name="email" onKeyPress={e => {
+  if (e.key === 'Enter') e.preventDefault(); }} 
                         type="email" class="form-control input-md getIt"
                         placeholder="Email"
                         value={this.state.email} onChange={this.handleChange}
@@ -224,7 +225,9 @@ class LoginComponent extends React.Component {
                       <div class="spacing"></div>
 
                       <label id="passwordLabel">Contraseña</label>
-                      <input id="password" name="password"
+                      <input id="password" onKeyPress={e => {
+  if (e.key === 'Enter') e.preventDefault();
+}} name="password"
                         type="password" placeholder="Contraseña"
                         class="form-control input-md getIt"
                         value={this.state.password} onChange={this.handleChange}
