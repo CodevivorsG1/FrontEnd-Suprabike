@@ -1,7 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import swal from 'sweetalert';
-import store from '../store';
 import Carousel from './Carousel.js';
 import Bicycle from './Bicycle';
 import AppHeaderComponent from '../AppHeaderComponent';
@@ -13,18 +10,7 @@ export default class Container extends React.Component {
     constructor() {
         super();
         this.state = {
-            loadedSillas: false,
-            sillas: [],
-            loadedManubrios: false,
-            manubrios: [],
-            loadedForks: false,
-            forks:[],
-            loadedTires: false,
-            tires: [],
-            loadedWheels: false,
-            wheels: [],
-            loadedFrames: false,
-            frames: []
+            
         }
 
         this.data = {
@@ -45,7 +31,7 @@ export default class Container extends React.Component {
 
     }
 
-    chooseLoad = (part) =>{
+    /* chooseLoad = (part) =>{
         console.log(this.state)
         switch (part){
             case "sillas":
@@ -73,9 +59,9 @@ export default class Container extends React.Component {
                 //nothing
             
         }
-    }
+    } */
 
-    loadData(part) {
+    /* loadData(part) {
         let currentChoice = part.charAt(0).toUpperCase() + part.substr(1);
         let loaded = false;
         switch (part) {
@@ -272,7 +258,7 @@ export default class Container extends React.Component {
                 default:                            
             }
         }
-    } 
+    }  */
     render() {
         
         return(
@@ -282,11 +268,8 @@ export default class Container extends React.Component {
             <button onClick={() => this.loadTech()}>Técnicos</button>*/}
             
             <div className="row menu-navigation">            
-            <Bicycle loadChooser={this.chooseLoad}/>
-            </div>
-            <div className="row"> 
-            <Carousel data = {this.data}/> 
-            </div>            
+            <Bicycle loadChooser={this.props.func}/>
+            </div>           
           </div>  
           </div>
         );
