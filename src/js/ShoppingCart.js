@@ -26,6 +26,7 @@ class ShoppingCart extends Component {
       });
   }
 
+
   render() {
     return (
 
@@ -35,7 +36,13 @@ class ShoppingCart extends Component {
         </div>
          {this.state.cart.map(bike =>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+              {
+                bike.hasOwnProperty("brand_bicy") ? (
+                  <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+                ) : (
+                  <li class="list-group-item">{bike.part_of_bike} {bike.brand_component} ${bike.price_component} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+                )                
+              }
             </ul>
 
                   )}

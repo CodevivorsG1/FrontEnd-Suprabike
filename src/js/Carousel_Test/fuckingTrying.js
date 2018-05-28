@@ -142,7 +142,8 @@ class BuildBike extends React.Component {
             }
             path += "/";
             axios.get(store.getState().globalUrl + path)
-                .then( (response) => {                    
+                .then( (response) => {       
+                    this.data.data = [];             
                     for (let x in response.data) {
                         console.log("pushing");
                         this.data.data.push(response.data[x]);
@@ -210,7 +211,7 @@ class BuildBike extends React.Component {
                             break;
                         default:                            
                     }
-                    console.log(this.state)
+                    console.log(this.data)
                 })
                 .catch ( (error) => {
                     swal("Error", "Error al obtener datos", "error")
@@ -248,23 +249,18 @@ class BuildBike extends React.Component {
                     break;
                 case "forks":
                     this.data = {
-                        ...this.data,
-                        type: "forks"
+                        type: "forks",
+                        data: this.state.forks
+
                     }
-                    this.setState({
-                        forks: this.data.data,
-                        loadedForks: true
-                    });          
+                    this.setState({loadedForks: true});          
                     break;
                 case "sillas":
-                    this.data = {
-                        ...this.data,
-                        type: "sillas"
+                    this.data = {                        
+                        type: "sillas",
+                        data: this.state.sillas
                     }
-                    this.setState({
-                        sillas: this.data.data,
-                        loadedSillas: true
-                    });          
+                    this.setState({loadedSillas: true});          
                     break;
                 default:                            
             }
