@@ -16,7 +16,8 @@ store.subscribe( throttle(() => {
         sectionView:store.getState().sectionView,
         userType: store.getState().userType,
         cart: store.getState().cart,
-        userId: store.getState().userId
+        userId: store.getState().userId,
+        userEmail: store.getState().userEmail
     });
 }, 1000))
 

@@ -62,7 +62,14 @@ class EditUsersComponent extends React.Component {
   }
   componentDidMount(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl + `${store.getState().userType}/${store.getState().userId}`)
+    axios.get(store.getState().globalUrl + `${store.getState().userType}/${store.getState().userId}`,
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
     .then((response) =>{  
     this.setState({ user: response.data})  
     this.setState({ isLoading: false})
@@ -70,7 +77,7 @@ class EditUsersComponent extends React.Component {
     console.log(this.state)
     })
     .catch((error) => {
-    console.log("fuck user")
+    console.log("fuck user, no cargo editar usuario")
     this.setState({ isLoading: false})
     })
     axios.get(store.getState().globalUrl + 'cities')
@@ -86,7 +93,14 @@ class EditUsersComponent extends React.Component {
   saveUser(){
     this.setState({isLoading: true})
     axios.put(store.getState().globalUrl+`${store.getState().userType}/${store.getState().userId}`,
-                this.state.user)
+                this.state.user,
+              {
+                headers:{
+                  'X-User-Token': store.getState().token,
+                  'X-User-Email': store.getState().userEmail
+                }
+              }
+              )
               .then((response) =>{
                   console.info("respuesta edicion",response)
                   //this.setState(response.data[0])    
@@ -124,7 +138,14 @@ class EditUsersComponent extends React.Component {
     }
     console.log(this.state.user)   
     console.log(store.getState().globalUrl+'users/'+this.state.id)
-    axios.put(store.getState().globalUrl+'users/'+this.state.user.id, fd)
+    axios.put(store.getState().globalUrl+'users/'+this.state.user.id, fd,
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
       .then((response) => {
         console.log(response)
         swal("Bien! Tu foto ha sido cambiada!", {

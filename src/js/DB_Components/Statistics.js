@@ -36,7 +36,14 @@ class UserComponent extends React.Component {
   }
   loadUserData(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl+'users')
+    axios.get(store.getState().globalUrl+'users',
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){
@@ -57,7 +64,14 @@ class UserComponent extends React.Component {
               })
   }
   loadBikesData(){
-    axios.get(store.getState().globalUrl+'bicycles')
+    axios.get(store.getState().globalUrl+'bicycles',
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
               .then((response) =>{
                   console.info(response)
                   if( response.statusText == 'OK'){

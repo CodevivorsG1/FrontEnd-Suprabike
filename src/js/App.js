@@ -31,7 +31,7 @@ class App extends Component {
           <Route path='/home/:section' component={AppHomeComponent} />
           <Route path='/home' component={AppHomeComponent} />
           <Route path='/user'component={UserComponent}/>
-          <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={store.getState().token == "" ? RegisterGoogle : AppHomeComponent } />
+          <Route path='/registergoogle/:token/:name/:surname/:email/:id' component={RegisterGoogle} />
           <Route path='/map'component={Map}/>
           <Route path='/pdf'component={MyPdfViewer}/>
           <Route path='/bicycle'component={Carousel}/>

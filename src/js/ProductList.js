@@ -44,7 +44,15 @@ class ProductList extends React.Component {
 	handleFormSubmit (formSubmitEvent) {
 	  this.setState({isLoading: true})
 	  console.log('You have selected:', this.state.selectedOption);
-	  axios.get(store.getState().globalUrl + 'bicycles/' + this.state.selectedOption)
+		axios.get(store.getState().globalUrl + 'bicycles/' + this.state.selectedOption,
+		{
+			headers:{
+				'X-User-Email': store.getState().userEmail,
+				'X-User-Token': store.getState().token
+			}
+		}
+	
+		)
               .then((response) =>{
               					console.log('bicis')
               					console.log(response)
@@ -65,7 +73,14 @@ class ProductList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl + 'bicycles/')
+		axios.get(store.getState().globalUrl + 'bicycles/',
+		{
+			headers:{
+				'X-User-Token': store.getState().token,
+				'X-User-Email': store.getState().userEmail
+			}
+		}
+		)
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){

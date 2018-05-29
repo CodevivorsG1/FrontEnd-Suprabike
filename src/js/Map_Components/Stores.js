@@ -16,7 +16,14 @@ class Stores extends Component {
         this.setState({ score: star })
     }
     newScore = () =>{
-         axios.put(store.getState().globalUrl + `stores/give_grate/${this.props.id}`, {"score":this.state.score})
+         axios.put(store.getState().globalUrl + `stores/give_grate/${this.props.id}`, {"score":this.state.score},
+        {
+            headers:{
+                'X-User-Token': store.getState().token,
+                'X-User-Email': store.getState().userEmail
+            }
+        }
+        )
          .then((response) =>{
             swal("gracias por participar");
          })
