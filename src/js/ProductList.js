@@ -144,7 +144,7 @@ class ProductList extends React.Component {
 				    </div>
 				    <div class="productprice">
 				    	<div class="pull-right">
-					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(product)} role="button">Agregar</button>
+					    	<button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart({...product, price_component: 0})} role="button">Agregar</button>
 				    	</div>
 				    	<div class="pricetext">
 				    		 {(product)  => this.renderStars(product.stars)}

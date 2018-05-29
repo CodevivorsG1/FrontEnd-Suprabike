@@ -66,7 +66,7 @@ export default class MultipleItems extends React.Component {
               </div>              
             </div>
             <div class="center-block padBtn">
-              <button href="#" class="btn btn-info btn-block" onClick={() => this.addToCart(item)} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
+              <button href="#" class="btn btn-info btn-block" onClick={() => this.addToCart({...item, price_bicy: 0})} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
             </div>
           </div>
         )
