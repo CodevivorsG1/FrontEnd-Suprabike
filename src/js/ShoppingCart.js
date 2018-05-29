@@ -26,6 +26,7 @@ class ShoppingCart extends Component {
       });
   }
 
+
   render() {
     return (
 
@@ -35,7 +36,13 @@ class ShoppingCart extends Component {
         </div>
          {this.state.cart.map(bike =>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+              {
+                bike.hasOwnProperty("brand_bicy") ? (
+                  <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+                ) : (
+                  <li class="list-group-item">{bike.part_of_bike} {bike.brand_component} ${bike.price_component} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+                )                
+              }
             </ul>
 
                   )}
@@ -43,7 +50,7 @@ class ShoppingCart extends Component {
         <div class="card-body">
           <h5 class="card-title">Total</h5>
 
-          <p class="card-text"> $ {this.state.cart.reduce((sum, bike) => sum + bike.price_bicy, 0)}</p>
+          <p class="card-text"> $ {this.state.cart.reduce((sum, bike) => sum + bike.price_bicy + bike.price_component, 0)}</p>
           <a href="#" onClick={() => this.comprar()} class="btn btn-primary">Comprar</a>
         </div>
 
@@ -57,7 +64,7 @@ class ShoppingCart extends Component {
       items = items + this.state.cart[i].brand_bicy + " en " + this.state.cart[i].material_bicy + " por $" + this.state.cart[i].price_bicy +" , "
     }
     console.log(this.state.cart)
-    const value = this.state.cart.reduce((sum, bike) => sum + bike.price_bicy, 0)
+    const value = this.state.cart.reduce((sum, bike) => sum + bike.price_bicy + bike.price_component, 0)
     swal({
       title: "Estas seguro?",
       text: "Vas a realizar una compra por $" +   value,

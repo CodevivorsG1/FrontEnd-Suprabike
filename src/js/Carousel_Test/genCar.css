@@ -4,7 +4,7 @@
 
 .container { margin: 0 auto; padding: 20px; width: 80%; color: #333; /*background: #419be0;*/ }
 .container-big { margin: 0 auto; width: 100%; color: #333; /*background: #419be0;*/ }
-
+.container-md { margin: -40px auto 15px auto; width: 100%; color: #333; /*background: #419be0;*/ }
 .waiting {
     background: blue;
     color: #fff;

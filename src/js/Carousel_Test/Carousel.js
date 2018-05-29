@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import './slick.css';
+import store from '../store'
+import './genCar.css';
+import './carouselList.css';
 
 
 
@@ -13,24 +15,23 @@ export default class MultipleItems extends React.Component {
     handleImg(product){
       if(product.hasOwnProperty('img')){
         return product.image;
-      }else{
-        console.log("no img")
-        return '../../img/unknown.jpg'
+      }else{        
+        return '../../img/bolt.png'
       }
     }   
 
     render() {
       console.log(this.props)
       var settings = {
-        dots: true,
+        className: "center",
+        centerMode: true,         
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        centerPadding: 0,
+        slidesToShow: 3        
       };
       if(this.props.data.type === ""){        
-        settings.slidesToShow = 1;
-        settings.slidesToScroll = 1;
+        settings.slidesToShow = 1;        
         return (
           <div className="container">          
             <Slider {...settings}>
@@ -42,32 +43,35 @@ export default class MultipleItems extends React.Component {
         );
       }       
       else{
-        settings.slidesToShow = 2;
-        settings.slidesToScroll = 1;
+        if (this.props.data.data.length >= 3) {
+          settings.slidesToShow = 3;
+        } else if (this.props.data.data.length == 1) {
+          settings.slidesToShow = 1;
+        } else {
+          settings.slidesToShow = 2;
+        }
+        
         const listSillas = this.props.data.data.map( item => 
-          <div class="col-md-3 productbox">
-              <img  class="img-responsive thumbnail" src={this.handleImg(item)} alt={item.name}/>
-              <div class="producttitle">
-                {this.props.data.type}
-                <br/>
-                {item.description_component}
-                <br/>
-                {"$ " + item.price_component}
-                
-              </div>
-              <div class="productprice">
-                <div class="pull-right">
-                  <button href="#" class="btn btn-info btn-sm" onClick={() => this.contact(item)} role="button">Comprar</button>
+          <div class="container-item">
+            <div class="container-item">
+              <img  class="image-item" src={this.handleImg(item)} alt={item.name} style={{width: '100%'}}/>
+              <div class="middle">
+                <div class="text-item">
+                  {this.props.data.type}
+                  <br/>
+                  {item.description_component}
+                  <br/>
+                  {"$ " + item.price_component}
                 </div>
-                <div class="pricetext">
-                  {(item)  => this.renderStars(item.stars)}
-
-                </div>
-              </div>
-          </div>        
+              </div>              
+            </div>
+            <div class="center-block padBtn">
+              <button href="#" class="btn btn-info btn-block" onClick={() => this.addToCart({...item, price_bicy: 0})} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
+            </div>
+          </div>
         )
         return (
-          <div className="container">          
+          <div className="container-md">          
             <Slider {...settings}>
               {listSillas}
             </Slider>
@@ -75,4 +79,10 @@ export default class MultipleItems extends React.Component {
         );
       }      
     }
+    addToCart(bike) {
+	  	store.dispatch({
+	      type: 'ADD_BIKE',
+	      bike: bike
+	    })
+  	}
   }
