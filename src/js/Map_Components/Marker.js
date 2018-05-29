@@ -1,5 +1,6 @@
 import React from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
+import Stores from './Stores';
 
 export default class Markers extends React.Component { 
     state = {
@@ -20,10 +21,7 @@ export default class Markers extends React.Component {
                 {
                     this.state.isOpen &&
                     <InfoWindow onCloseClick={this.onToggleOpen}>
-                        <div>
-                            <h5>{this.props.name}</h5><br/>
-                            <h6>tel: {this.props.phone}</h6>
-                        </div>
+                        <Stores name={this.props.name} phone={this.props.phone} id={this.props.id}/>
                     </InfoWindow>
                 }              
             </Marker>
