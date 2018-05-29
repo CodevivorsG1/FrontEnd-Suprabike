@@ -317,7 +317,7 @@ class BuildBike extends React.Component {
                                     <option value="l">L (Large)</option>
                                     <option value="xl">XL (Extra Large)</option>                                
                                 </select>
-                                <br/><br/>
+                                <br/>
                                 <table>
                                     <tr>
                                         <th>Estatura</th>
