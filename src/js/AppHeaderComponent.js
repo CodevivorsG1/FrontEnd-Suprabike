@@ -69,8 +69,11 @@ class AppHeaderComponent extends React.Component{
             <div class="col-sm">
             <form class="form-inline my-2 my-lg-0 mr-sm-2">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
-              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i>
-              </button>
+              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i></button>
+              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-bell"></i><span class="notification">1</span></button>
+              
+             
+
               <Link to={'/home/user'}>
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" type="submit">
                 <i class="fas fa-user"></i> {this.state.nameUser}</button>
