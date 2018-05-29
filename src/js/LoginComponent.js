@@ -24,7 +24,6 @@ class LoginComponent extends React.Component {
       token: '',
       redirect: false,
       isLoading: false,
-      recaptcha:false,
     };
     console.info(store.getState().globalUrl)
     store.subscribe(() => {
@@ -59,7 +58,7 @@ class LoginComponent extends React.Component {
   }
 
   handleSubmit(e) {
-    if(!this.state.recaptcha){
+    
       
     this.setState({isLoading: true})
     e.preventDefault();
@@ -109,7 +108,7 @@ class LoginComponent extends React.Component {
                   })
 
       }
-    }
+    
   }
 
   showFormErrors() {
