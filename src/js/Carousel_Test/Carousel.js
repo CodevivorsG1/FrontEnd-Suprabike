@@ -23,15 +23,15 @@ export default class MultipleItems extends React.Component {
     render() {
       console.log(this.props)
       var settings = {
-        dots: true,
+        className: "center",
+        centerMode: true,         
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        centerPadding: 0,
+        slidesToShow: 3        
       };
       if(this.props.data.type === ""){        
-        settings.slidesToShow = 1;
-        settings.slidesToScroll = 1;
+        settings.slidesToShow = 1;        
         return (
           <div className="container">          
             <Slider {...settings}>
@@ -50,7 +50,7 @@ export default class MultipleItems extends React.Component {
         } else {
           settings.slidesToShow = 2;
         }
-        settings.slidesToScroll = 1;
+        
         const listSillas = this.props.data.data.map( item => 
           <div class="container-item">
             <div class="container-item">
@@ -65,8 +65,8 @@ export default class MultipleItems extends React.Component {
                 </div>
               </div>              
             </div>
-            <div class="center-block">
-              <button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(item)} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
+            <div class="center-block padBtn">
+              <button href="#" class="btn btn-info btn-block" onClick={() => this.addToCart(item)} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
             </div>
           </div>
         )

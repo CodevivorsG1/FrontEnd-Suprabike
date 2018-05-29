@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import AppHeaderComponent from './AppHeaderComponent.js';
 import AppFooterComponent from './AppFooterComponent.js';
 import AppHomeComponent from './AppHomeComponent.js'
+import Recaptcha from 'react-recaptcha';
 import ReactDOM from 'react-dom';
 import store from './store'
 import axios from 'axios';
@@ -22,7 +23,7 @@ class LoginComponent extends React.Component {
       role:'users',
       token: '',
       redirect: false,
-      isLoading: false
+      isLoading: false,
     };
     console.info(store.getState().globalUrl)
     store.subscribe(() => {
@@ -31,8 +32,14 @@ class LoginComponent extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSmallChange = this.handleSmallChange.bind(this);
+    this.callback = this.callback.bind(this);
   }
-
+  callback  () {
+    this.setState({recaptcha:true})
+    document.getElementById("singlebutton").classList.remove('d-none');
+    this.state.recaptcha = true;
+    console.log("recaptcha")
+  };
   handleChange (e){
     e.target.classList.add('active');
 
@@ -51,6 +58,8 @@ class LoginComponent extends React.Component {
   }
 
   handleSubmit(e) {
+    
+      
     this.setState({isLoading: true})
     e.preventDefault();
 
@@ -98,7 +107,8 @@ class LoginComponent extends React.Component {
                     this.setState({isLoading: false, error: true})
                   })
 
-    }
+      }
+    
   }
 
   showFormErrors() {
@@ -149,13 +159,17 @@ class LoginComponent extends React.Component {
     return true;
   }
 
+  
+  
+
   render() {
+  
      const { redirect } = this.state;
      const section = store.getState().sectionView
      if (redirect) {
        return <Redirect to={'/home/'+section} />;
      }
-    console.log(this.state.token)
+    
     var match = { params:{section:''}};
     if (this.state.isLoading){
       return (
@@ -200,7 +214,8 @@ class LoginComponent extends React.Component {
                     <div class="row">
                     <div class="col-md-12">
                       <label id="emailLabel">Email</label>
-                      <input id="email" name="email"
+                      <input id="email" name="email" onKeyPress={e => {
+  if (e.key === 'Enter') e.preventDefault(); }} 
                         type="email" class="form-control input-md getIt"
                         placeholder="Email"
                         value={this.state.email} onChange={this.handleChange}
@@ -209,7 +224,9 @@ class LoginComponent extends React.Component {
                       <div class="spacing"></div>
 
                       <label id="passwordLabel">Contraseña</label>
-                      <input id="password" name="password"
+                      <input id="password" onKeyPress={e => {
+  if (e.key === 'Enter') e.preventDefault();
+}} name="password"
                         type="password" placeholder="Contraseña"
                         class="form-control input-md getIt"
                         value={this.state.password} onChange={this.handleChange}
@@ -230,7 +247,12 @@ class LoginComponent extends React.Component {
                         <div className="error" id="checkboxError" />
                         <a href="#"><small> Olvidaste la clave?</small></a><br/>
                         <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
-                        <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Entrar</button>
+                        <Recaptcha
+                          sitekey="6LfeyVsUAAAAABStZq31KWq_VcIUnwrWMOKOm5EP"
+                          verifyCallback={this.callback}
+                        />
+                        <button id="singlebutton" name="singlebutton" class="d-none btn btn-info btn-sm pull-right">Entrar</button>
+                        <div class="d-none g-recaptcha" verifyCallback={this.callback} data-sitekey="6LfeyVsUAAAAABStZq31KWq_VcIUnwrWMOKOm5EP"></div>
                     </div>
                 </div>
                 </div>
