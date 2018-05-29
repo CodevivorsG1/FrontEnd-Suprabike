@@ -23,7 +23,15 @@ class AppHeaderComponent extends React.Component{
     this.setState({isLoading: true})
     if (store.getState().token != ""){
       console.log("id del usuario",store.getState().userId)
-      axios.get(store.getState().globalUrl + `${store.getState().userType}/`+ store.getState().userId )
+      axios.get(store.getState().globalUrl + `${store.getState().userType}/`+ store.getState().userId,
+                { headers:{
+                  'X-User-Token': store.getState().token,
+                  'X-User-Email': store.getState().userEmail
+                }
+
+                }
+    
+                )
                 .then((response) =>{
                   
                   this.setState({ isLoading: false,

@@ -41,7 +41,14 @@ class Form extends Component {
         "bicycle_to_assembles": [ ],
         "images": [ ]
       }
-      axios.post(store.getState().globalUrl +'components', component)
+      axios.post(store.getState().globalUrl +'components', component,
+      {
+        headers:{
+				  'X-User-Token': store.getState().token,
+				  'X-User-Email': store.getState().userEmail
+			  }
+      }    
+      )
       .then(response =>{
         console.log("re bien, funciona", response)
       })

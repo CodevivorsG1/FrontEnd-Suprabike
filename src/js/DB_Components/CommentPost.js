@@ -20,7 +20,14 @@ class CommentPost extends Component {
                 "user_id": store.getState().userId,
                 "forum_id": this.props.foroContent.id
             }
-            axios.post(store.getState().globalUrl + `forums/${this.props.foroContent.id}/comments`, comment)
+            axios.post(store.getState().globalUrl + `forums/${this.props.foroContent.id}/comments`, comment,
+            {
+                headers:{
+                    'X-User-Token': store.getState().token,
+                    'X-User-Email': store.getState().userEmail
+                }
+            }
+            )
             .then((response)=>{
                 this.reload()
             })

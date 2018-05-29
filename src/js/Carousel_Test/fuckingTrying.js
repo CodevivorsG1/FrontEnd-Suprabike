@@ -163,7 +163,14 @@ class BuildBike extends React.Component {
                 path += '_' + this.state.size;
             }
             path += "/";
-            axios.get(store.getState().globalUrl + path)
+            axios.get(store.getState().globalUrl + path,
+                {
+                    headers:{
+                        'X-User-Token': store.getState().token,
+                        'X-User-Email': store.getState().userEmail
+                    }
+                }
+            )
                 .then( (response) => {       
                     this.data.data = [];             
                     for (let x in response.data) {
