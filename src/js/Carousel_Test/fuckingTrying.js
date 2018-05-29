@@ -12,6 +12,7 @@ class BuildBike extends React.Component {
     constructor() {
         super();
         this.state = {
+            bikeID:0 ,
             type: "road",
             size: "xs",
             loadedSillas: false,
@@ -29,10 +30,31 @@ class BuildBike extends React.Component {
         }
         this.data = {
             type: "",
-            data:[]
+            data:[],
+            bikeId: this.state.bikeID
         }
         this.handleSmallChange = this.handleSmallChange.bind(this);
     }
+
+    componentDidMount() {
+        let userId = store.getState().userId;
+        const postData = {
+            user_id: userId,
+            total_price: 0
+        }
+        axios.post(store.getState().globalUrl + 'bicycle_to_assembles', postData)
+            .then( (response) => {
+                console.log("response :")
+                console.log(response)
+                this.setState({bikeID: response.data.id})
+                console.log("Nuevo estado:")
+                console.log(this.state)
+            })
+            .catch( (error) => {
+                swal("Error", "Error al obtener id nueva bicicleta", "error")
+            })
+    }
+
 
     handleSmallChange(e) {
         console.log(this.state)
@@ -152,6 +174,7 @@ class BuildBike extends React.Component {
                         case "manubrios":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "manubrios"
                             }
                             this.setState({
@@ -162,6 +185,7 @@ class BuildBike extends React.Component {
                         case "frames":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "frames"
                             }
                             this.setState({
@@ -172,6 +196,7 @@ class BuildBike extends React.Component {
                         case "wheels":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "wheels"
                             }
                             this.setState({
@@ -182,6 +207,7 @@ class BuildBike extends React.Component {
                         case "tires":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "tires"
                             }
                             this.setState({
@@ -192,6 +218,7 @@ class BuildBike extends React.Component {
                         case "forks":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "forks"
                             }
                             this.setState({
@@ -202,6 +229,7 @@ class BuildBike extends React.Component {
                         case "sillas":
                             this.data = {
                                 ...this.data,
+                                bikeId: this.state.bikeID,
                                 type: "sillas"
                             }
                             this.setState({
@@ -221,6 +249,8 @@ class BuildBike extends React.Component {
             switch (part) {
                 case "manubrios":
                     this.data = {
+                        ...this.data,
+                        bikeId: this.state.bikeID,
                         type: 'manubrio',
                         data: this.state.manubrios
                     }
@@ -228,6 +258,8 @@ class BuildBike extends React.Component {
                     break;
                 case "frames":
                     this.data = {
+                        ...this.data,
+                        bikeId: this.state.bikeID,
                         type: 'frames',
                         data: this.state.frames
                     }
@@ -235,6 +267,8 @@ class BuildBike extends React.Component {
                     break;
                 case "wheels":
                     this.data = {
+                        ...this.data,
+                        bikeId: this.state.bikeID,
                         type: 'wheels',
                         data: this.state.wheels
                     }
@@ -242,6 +276,8 @@ class BuildBike extends React.Component {
                     break;
                 case "tires":
                     this.data = {
+                        ...this.data,
+                        bikeId: this.state.bikeID,
                         type: 'tires',
                         data: this.state.tires
                     }
@@ -249,6 +285,8 @@ class BuildBike extends React.Component {
                     break;
                 case "forks":
                     this.data = {
+                        ...this.data,
+                        bikeId: this.state.bikeID,
                         type: "forks",
                         data: this.state.forks
 
@@ -256,7 +294,9 @@ class BuildBike extends React.Component {
                     this.setState({loadedForks: true});          
                     break;
                 case "sillas":
-                    this.data = {                        
+                    this.data = {    
+                        ...this.data,                    
+                        bikeId: this.state.bikeID,
                         type: "sillas",
                         data: this.state.sillas
                     }
@@ -286,7 +326,7 @@ class BuildBike extends React.Component {
                                 <small>Empieza en el siguiente slide ...</small>
                             </p>
                         </div>
-                        <div className="stage yellow">
+                        <div className="stage">
                             <p>
                                 Que tipo de bicicleta buscas ? <br/><br/>
                                 <input type="radio" name="bike"
@@ -306,7 +346,7 @@ class BuildBike extends React.Component {
                                     onChange={() =>this.setState({type: "urban"})} /> Urban
                             </p>                        
                         </div>
-                        <div className="stage purple">
+                        <div className="stage">
                             <p>
                                 Que tamaño de marco buscas ? <br/>
                                 <select name="size" id="size-list"

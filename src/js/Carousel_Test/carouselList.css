@@ -2,6 +2,7 @@
     position: relative;
     width: auto; 
     margin: 10px;
+    opacity: 0.7;
 }
 
 .container-item > .image-item {
@@ -46,4 +47,5 @@
 
 .slick-slide.slick-center .container-item {
   transform: scale(1.08);
+  opacity: 1;
 }
