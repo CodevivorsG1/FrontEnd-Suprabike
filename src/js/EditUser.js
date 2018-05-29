@@ -60,7 +60,9 @@ class EditUser extends React.Component {
     store.dispatch({
       type: 'ADD_TOKEN',
       token: response.data.authentication_token,
-      userType: this.state.role
+      userType: this.state.role,
+      userId: response.data.id,
+      userEmail: response.data.email,
     })
   }
   handleUser = (prevResponse) =>{
@@ -72,6 +74,7 @@ class EditUser extends React.Component {
               , 
               {headers: {
                 'Content-type': 'application/json'
+                
               }
             })
     .then((response) =>

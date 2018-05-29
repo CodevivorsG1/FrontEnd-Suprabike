@@ -33,7 +33,14 @@ class TechnicianList extends React.Component {
 					"technician_id":technician.id, 
 					"user_id": store.getState().userId
 				}
-		  axios.post(store.getState().globalUrl + 'transactions',message)
+		  axios.post(store.getState().globalUrl + 'transactions',message,
+			{
+			  headers:{
+				  'X-User-Token': store.getState().token,
+				  'X-User-Email': store.getState().userEmail
+			  }
+			}
+		)
 		  .then((response)=>{
 			  console.log("respuesta promise a transactions", response)
 		  })
@@ -62,7 +69,15 @@ class TechnicianList extends React.Component {
 
 	componentDidMount(){
 	this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl + 'technicians/')
+	axios.get(store.getState().globalUrl + 'technicians/',
+	{
+		headers:{
+			'X-User-Token': store.getState().token,
+			'X-User-Email': store.getState().userEmail
+		}
+	}
+
+	)
               .then((response) =>{
 								this.setState({isLoading: false});
 								for(var x in response.data){

@@ -54,7 +54,14 @@ class ForumComponent extends React.Component {
 			"topic": message,
 			"user_id": store.getState().userId
 		}
-		axios.post(store.getState().globalUrl + 'forums', forum)
+		axios.post(store.getState().globalUrl + 'forums', forum,
+		{
+			headers:{
+				'X-User-Token': store.getState().token,
+				'X-User-Email': store.getState().userEmail
+			}
+		}
+		)
 		.then((response)=>{
 			window.location.reload()
 		})

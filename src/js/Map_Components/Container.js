@@ -25,7 +25,14 @@ export default class Container extends React.Component {
   }
 
   componentWillMount(){
-    axios.get(store.getState().globalUrl + 'stores/')
+    axios.get(store.getState().globalUrl + 'stores/',
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
         .then((response) => {
             console.log(response);
             for(var x in response.data){    // Obtiene todas las direcciones del pedido
