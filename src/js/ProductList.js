@@ -20,8 +20,26 @@ class ProductList extends React.Component {
 			bikes: [
 			],
 			isLoading: false,
-			redirect: false
+			redirect: false,
+			city:""
 		}
+	}
+	componentWillMount(){
+		console.log("pedir datos del usuario bici")
+		axios.get(store.getState().globalUrl + `users/${store.getState().userId}`,
+		{
+			headers:{
+				'X-User-Email': store.getState().userEmail,
+				'X-User-Token': store.getState().token
+			}
+		}
+		)
+		.then((response) =>{
+			this.setState({city: response.data.city_id})
+		 })
+		.catch((error) =>{
+			console.log("error, se puteo esta vaina", error)
+		 })
 	}
 	handleOptionChange (changeEvent) {
 	  this.setState({
@@ -151,9 +169,12 @@ class ProductList extends React.Component {
 			</form>
 			<div class="row">
 			{bike.map(product =>
-	        	<div class="col-md-4 productbox">
+
+	        	<div class={`col-md-4 productbox ${this.state.city < 7  && product.usetype_bicy === "ruta" ? "Sugerido" : ""} ${this.state.city >= 7  && product.usetype_bicy === "montana" ? "Sugerido2" : ""}`}>
 				    <img  class="img-responsive thumbnail" src={this.handleImg(product)} alt={product.name} />
+						
 				    <div class="producttitle">
+							
 				    	{product.brand_bicy+" "+product.usetype_bicy}<br/>{"$"+product.price_bicy}
 
 				    </div>
