@@ -42,6 +42,18 @@ class AppHeaderComponent extends React.Component{
                   console.log("fuck user")
                   this.setState({ isLoading: false})
                 })
+      axios.get(store.getState().globalUrl + `notifications/get_not/`+ store.getState().userId )
+                .then((response) =>{
+                  console.log('notifications')
+                  console.log(response)
+                  this.setState({ 
+                  })
+                })
+                .catch((error) => {
+                  console.log("fuck user noti")
+                  console.log(error)
+                  this.setState({ isLoading: false})
+                })
     }
       
   }
