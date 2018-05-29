@@ -100,3 +100,7 @@ hr.footer {
     border-color: #FFD322; 
     border-style: solid; 
 }
+.notification{
+  color: red;
+  font-size: 12px;
+}

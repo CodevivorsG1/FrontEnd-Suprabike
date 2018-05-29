@@ -248,7 +248,7 @@ class LoginComponent extends React.Component {
                         <a href="#"><small> Olvidaste la clave?</small></a><br/>
                         <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
                         <Recaptcha
-                          sitekey="6LfeyVsUAAAAABStZq31KWq_VcIUnwrWMOKOm5EP"
+                          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                           verifyCallback={this.callback}
                         />
                         <button id="singlebutton" name="singlebutton" class="d-none btn btn-info btn-sm pull-right">Entrar</button>
