@@ -59,11 +59,7 @@ const persistedState = () =>{
 		userId: currentStore.userId,
 		cart: currentCart,
 		globalUrl:
-<<<<<<< HEAD
-			'http://localhost:4000/'
-=======
 		 'http://localhost:4000/'
->>>>>>> giovanny
 		 //'https://suprabikesbackendd.herokuapp.com/'
 		 
 		//'https://suprabikesbackendd.herokuapp.com/'
