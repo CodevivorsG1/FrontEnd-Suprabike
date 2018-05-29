@@ -15,8 +15,9 @@ export default class MultipleItems extends React.Component {
     }
     
     handleImg(product){
-      if(product.hasOwnProperty('img')){
-        return product.image;
+      console.log(product)
+      if(product.images.length > 0){
+        return store.getState().globalUrl + product.images[0].this_image;
       }else{        
         return '../../img/bolt.png'
       }

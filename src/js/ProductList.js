@@ -52,8 +52,9 @@ class ProductList extends React.Component {
 	  });
 	}
 	handleImg(product){
-		if(product.hasOwnProperty('img')){
-			return product.image;
+		console.log(product)
+		if(product.images.length > 0){
+			return store.getState().globalUrl + product.images[0].this_image;
 		}else{
 			console.log("no img")
 			return '../img/bikeUnknown.gif'
@@ -100,6 +101,8 @@ class ProductList extends React.Component {
 		}
 		)
               .then((response) =>{
+				console.log("response:");
+				  				console.log(response);
 								this.setState({isLoading: false});
 								for(var x in response.data){
 									this.state.bikes.push(response.data[x])
