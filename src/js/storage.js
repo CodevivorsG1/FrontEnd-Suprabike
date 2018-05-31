@@ -9,7 +9,8 @@ export const loadState = () => {
           token: "",
           sectionView: "",
           userType: "",
-          userId: ""
+          userId: "",
+          userEmail: ""
         }
       } 
       return JSON.parse(serializedData) // Si encontramos con exito nuestro storage lo devolvemos.
@@ -18,7 +19,8 @@ export const loadState = () => {
         token: "",
         sectionView: "",
         userType: "",
-        userId: ""
+        userId: "",
+        userEmail: ""
       }
     }
 }
@@ -40,7 +42,8 @@ export const saveState = (state) => {
         token: state.token,
         sectionView: state.sectionView,
         userType: state.userType,
-        userId: state.userId
+        userId: state.userId,
+        userEmail: state.userEmail
       }
       let serializedData = JSON.stringify(varState)
       console.log("serializador", serializedData)

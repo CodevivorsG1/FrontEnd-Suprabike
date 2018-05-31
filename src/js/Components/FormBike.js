@@ -28,7 +28,15 @@ class FormBike extends Component {
         "store_id":"4",
         "images": [ ]
       }
-      axios.post(store.getState().globalUrl +'bicycles', component)
+      axios.post(store.getState().globalUrl +'bicycles', component,
+      {
+        headers:{
+				  'X-User-Token': store.getState().token,
+				  'X-User-Email': store.getState().userEmail
+			  }
+      }
+    
+      )
       .then(response =>{
         swal("Bicicleta agregada")
         console.log("re bien, funciona", response)

@@ -12,7 +12,14 @@ class CommentComponent extends React.Component {
     }
   }
   componentDidMount(){
-    axios.get(store.getState().globalUrl + `users/${this.props.comment.user_id}`)
+    axios.get(store.getState().globalUrl + `users/${this.props.comment.user_id}`,
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
     .then((response) =>{
       this.setState({user: response.data})
     })

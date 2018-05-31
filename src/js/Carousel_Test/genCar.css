@@ -125,17 +125,17 @@
 .purple {
   background-color: #4e0c9e;
 }
-.purple p {
+.stage p {
   margin-top: 8%;
 }
 
-.purple table {
+.stage .table {
   width: 70%;
   border-left: none;
   border-right: none;
 }
 
-.purple th, .purple td {
+.stage th, .stage td {
   border-bottom: 2px solid white;
   border-left: none;
   border-right: none;

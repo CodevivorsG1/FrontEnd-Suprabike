@@ -9,7 +9,8 @@ const reducer = ( state, action) => {
 			...state,
 			token: action.token,
 			userType: action.userType,
-			userId: action.userId
+			userId: action.userId,
+			userEmail: action.userEmail
 		}
 	}
 	if (action.type === "ADD_BIKE") {
@@ -29,7 +30,8 @@ const reducer = ( state, action) => {
 			...state,
 			token: "",
 			userType: "",
-			userId: ""
+			userId: "",
+			userEmail: ""
 		}
 	}
 	if (action.type === "REMOVE_BIKE") {
@@ -58,9 +60,10 @@ const persistedState = () =>{
 		userType: currentStore.userType,
 		userId: currentStore.userId,
 		cart: currentCart,
+		userEmail: currentStore.userEmail,
 		globalUrl:
-		
-		 'https://suprabikesbackendd.herokuapp.com/'
+		 'http://localhost:4000/'
+		 //'https://suprabikesbackendd.herokuapp.com/'
 		 
 		//'https://suprabikesbackendd.herokuapp.com/'
 	}

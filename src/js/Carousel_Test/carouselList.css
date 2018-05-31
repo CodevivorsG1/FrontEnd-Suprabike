@@ -1,6 +1,8 @@
 .container-item {
     position: relative;
-    width: auto;
+    width: auto; 
+    margin: 10px;
+    opacity: 0.7;
 }
 
 .container-item > .image-item {
@@ -10,6 +12,7 @@
   height: 215px;
   transition: .5s ease;
   backface-visibility: hidden;
+  margin: 10px;
 }
 
 .container-item > .middle {
@@ -36,4 +39,13 @@
   color: white;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.padBtn {
+  padding: 0 10px;
+}
+
+.slick-slide.slick-center .container-item {
+  transform: scale(1.08);
+  opacity: 1;
 }

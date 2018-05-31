@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
 import store from '../store'
+import axios from 'axios';
+import swal from 'sweetalert';
 import './genCar.css';
 import './carouselList.css';
 
@@ -13,8 +15,9 @@ export default class MultipleItems extends React.Component {
     }
     
     handleImg(product){
-      if(product.hasOwnProperty('img')){
-        return product.image;
+      console.log(product)
+      if(product.images.length > 0){
+        return store.getState().globalUrl + product.images[0].this_image;
       }else{        
         return '../../img/bolt.png'
       }
@@ -23,15 +26,15 @@ export default class MultipleItems extends React.Component {
     render() {
       console.log(this.props)
       var settings = {
-        dots: true,
+        className: "center",
+        centerMode: true,         
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        centerPadding: 0,
+        slidesToShow: 3        
       };
       if(this.props.data.type === ""){        
-        settings.slidesToShow = 1;
-        settings.slidesToScroll = 1;
+        settings.slidesToShow = 1;        
         return (
           <div className="container">          
             <Slider {...settings}>
@@ -50,7 +53,7 @@ export default class MultipleItems extends React.Component {
         } else {
           settings.slidesToShow = 2;
         }
-        settings.slidesToScroll = 1;
+        
         const listSillas = this.props.data.data.map( item => 
           <div class="container-item">
             <div class="container-item">
@@ -65,8 +68,8 @@ export default class MultipleItems extends React.Component {
                 </div>
               </div>              
             </div>
-            <div class="center-block">
-              <button href="#" class="btn btn-info btn-sm" onClick={() => this.addToCart(item)} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
+            <div class="center-block padBtn">
+              <button href="#" class="btn btn-info btn-block" onClick={() => this.addToCart({...item, price_bicy: 0})} role="button">Agregar<i class="fas fa-cart-arrow-down"></i></button>
             </div>
           </div>
         )
@@ -80,6 +83,19 @@ export default class MultipleItems extends React.Component {
       }      
     }
     addToCart(bike) {
+      console.log(bike)
+      let cData = {
+        component_id: bike.id,
+        bicycle_to_assemble_id: this.props.data.bikeId
+      }
+      console.log("BikeId: " + this.props.data.bikeId)
+      axios.post(store.getState().globalUrl + 'assemble_parts', cData)
+        .then( (response) => {
+          console.log("se logro")
+        })
+        .catch( (error) => {
+          swal("Error", "Error al agregar componente a DB", "error")
+        })
 	  	store.dispatch({
 	      type: 'ADD_BIKE',
 	      bike: bike

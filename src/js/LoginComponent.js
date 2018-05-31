@@ -91,7 +91,8 @@ class LoginComponent extends React.Component {
                       type: 'ADD_TOKEN',
                       token: response.data.authentication_token,
                       userType: this.state.role ,
-                      userId : response.data.id
+                      userId : response.data.id,
+                      userEmail: response.data.email
                     })
                     this.state.token = response.data.authentication_token;
                     this.setState({ redirect: true, isLoading: false });
@@ -248,7 +249,8 @@ class LoginComponent extends React.Component {
                         <a href="#"><small> Olvidaste la clave?</small></a><br/>
                         <Link to="/register"><small>No te has registrado?</small></Link><br/></div>
                         <Recaptcha
-                          sitekey="6LfeyVsUAAAAABStZq31KWq_VcIUnwrWMOKOm5EP"
+                          //sitekey="6LfeyVsUAAAAABStZq31KWq_VcIUnwrWMOKOm5EP"
+                          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                           verifyCallback={this.callback}
                         />
                         <button id="singlebutton" name="singlebutton" class="d-none btn btn-info btn-sm pull-right">Entrar</button>

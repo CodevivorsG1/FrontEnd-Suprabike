@@ -57,7 +57,8 @@ class RegisterGoogle extends Component {
         store.dispatch({
           type: 'ADD_TOKEN',
           token: response.data.authentication_token,
-          userType: 'users' 
+          userType: 'users',
+          userEmail: response.data.email
         })
         this.props.history.push('/home/undefined')
       })
@@ -66,6 +67,7 @@ class RegisterGoogle extends Component {
       })
     }
     registerAccount = () => {
+      console.log("este es el id con que va a hacer la petición", this.props.match.params.id)
       axios.put(store.getState().globalUrl + `users/${this.props.match.params.id}`,
       {
         "email": this.state.email,
@@ -75,6 +77,12 @@ class RegisterGoogle extends Component {
         "phonenumUser": this.state.telephone, 
         "celphoneUser": this.state.cellphone,
         "city_id": this.state.city_id
+      },
+      {
+        headers:{
+          "X-User-Email": store.getState().userEmail,
+          "X-User-Token": store.getState().token
+        }
       }
     )
     .then((response) =>{
