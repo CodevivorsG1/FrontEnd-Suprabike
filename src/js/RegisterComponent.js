@@ -65,7 +65,9 @@ class RegisterComponent extends React.Component {
     store.dispatch({
       type: 'ADD_TOKEN',
       token: response.data.authentication_token,
-      userType: this.state.role
+      userType: this.state.role,
+      userId: response.data.id,
+      userEmail: response.data.email
     })
   }
   handleUser = (prevResponse) =>{
@@ -131,7 +133,7 @@ class RegisterComponent extends React.Component {
       city_id: "1"
     }
 
-    axios.post(store.getState().globalUrl + 'technicians/',
+    .post(store.getState().globalUrl + 'technicians/',
       new_user)
                   .then((response)=>{
                     console.log('Success ...(?)')

@@ -19,7 +19,8 @@ class SocialNetworkComponent extends Component {
               type: 'ADD_TOKEN',
               token: response.data.authentication_token,
               userType: 'users',
-              userId: response.data.id
+              userId: response.data.id,
+              userEmail: response.data.email
             })
             this.props.history.push('/home/undefined')
     }
@@ -31,7 +32,9 @@ class SocialNetworkComponent extends Component {
                   }
               , 
               {headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'X-User-Token': store.getState().token,
+                'X-User-Email': store.getState().userEmail
               }
             })
     .then((response) =>
@@ -41,6 +44,13 @@ class SocialNetworkComponent extends Component {
      console.log("respuesta google", response)   
      if (userName == "yourname"){
         this.props.history.push(`/registergoogle/${userToken}/${userName}/${userSurname}/${userEmail}/${response.data.id}`)
+        store.dispatch({
+            type: 'ADD_TOKEN',
+            token: response.data.authentication_token,
+            userType: 'users',
+            userEmail: userEmail,
+            userId: response.data.id
+        })
      }else{
         this.logingoogle(response)
      }

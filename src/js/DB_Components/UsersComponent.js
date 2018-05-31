@@ -30,7 +30,14 @@ class UserComponent extends React.Component {
 
   componentDidMount(){
     this.setState({isLoading: true})
-    axios.get(store.getState().globalUrl+`users/${store.getState().userId}`)
+    axios.get(store.getState().globalUrl+`users/${store.getState().userId}`,
+    {
+      headers:{
+        'X-User-Token': store.getState().token,
+        'X-User-Email': store.getState().userEmail
+      }
+    }
+    )
               .then((response) =>{
                   
                   if( response.statusText == 'OK'){

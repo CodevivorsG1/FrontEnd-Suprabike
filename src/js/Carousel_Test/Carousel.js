@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
 import store from '../store'
+import axios from 'axios';
+import swal from 'sweetalert';
 import './genCar.css';
 import './carouselList.css';
 
@@ -13,8 +15,9 @@ export default class MultipleItems extends React.Component {
     }
     
     handleImg(product){
-      if(product.hasOwnProperty('img')){
-        return product.image;
+      console.log(product)
+      if(product.images.length > 0){
+        return store.getState().globalUrl + product.images[0].this_image;
       }else{        
         return '../../img/bolt.png'
       }
@@ -80,6 +83,19 @@ export default class MultipleItems extends React.Component {
       }      
     }
     addToCart(bike) {
+      console.log(bike)
+      let cData = {
+        component_id: bike.id,
+        bicycle_to_assemble_id: this.props.data.bikeId
+      }
+      console.log("BikeId: " + this.props.data.bikeId)
+      axios.post(store.getState().globalUrl + 'assemble_parts', cData)
+        .then( (response) => {
+          console.log("se logro")
+        })
+        .catch( (error) => {
+          swal("Error", "Error al agregar componente a DB", "error")
+        })
 	  	store.dispatch({
 	      type: 'ADD_BIKE',
 	      bike: bike
