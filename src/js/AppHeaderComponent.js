@@ -9,7 +9,8 @@ class AppHeaderComponent extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      nameUser: ""
+      nameUser: "",
+      notifications : 5
     }
   }
   closeSession(){
@@ -46,7 +47,7 @@ class AppHeaderComponent extends React.Component{
                 .then((response) =>{
                   console.log('notifications')
                   console.log(response)
-                  this.setState({ 
+                  this.setState({ notifications : response.data.length
                   })
                 })
                 .catch((error) => {
@@ -82,7 +83,7 @@ class AppHeaderComponent extends React.Component{
             <form class="form-inline my-2 my-lg-0 mr-sm-2">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
               <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i></button>
-              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-bell"></i><span class="notification">1</span></button>
+              <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-bell"></i><span class="notification">{this.state.notifications}</span></button>
               
              
 
