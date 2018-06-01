@@ -31,9 +31,9 @@ class DataBicycle extends Component {
         return (
             <div>
             <div class="container-fluid">
-              <div class="panel square">
-                <div class="panel-heading">
-                  <h3 class="panel-heading">Registra tus datos para Armar Tu Bici</h3>
+              <div class="panel-s square">
+                <div class="panel-heading-s">
+                  <h3 class="panel-heading-s">Registra tus datos para Armar Tu Bici</h3>
                 </div>
                 <div class="row ">
                   <div class="col-md-12">

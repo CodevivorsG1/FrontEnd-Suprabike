@@ -1,6 +1,6 @@
 .after-bikes {
-  --frame: #f00;
-  --seat: #000;
+  --frame-color: #f00;
+  --seat-color: #000;
   --handlebars: #f00;
   --forks: #f00;
   --stem: #000;
@@ -10,23 +10,103 @@
   --tyres: #000;
   --cranks: #000;
 }
-.after-wheels{
+.after-wheelsdefault{
 --tyres: #000;
 }
-.after-tyres{
+.after-tyresdefault{
 --mags: #808080;
 }
-.after-forks{
+.after-forksdefault{
 --forks: #f00;
 }
-.after-frames{
+.after-framesdefault{
 --frame: #f00;
 }
-.after-seats{
+.after-seatsdefault{
 --seat: #000;
 }
-.after-handlebar{
+.after-handlebardefault{
 --handlebars: #f00;
+}
+
+/* stealth */
+.after-wheelsstealth{
+--tyres: #000000;
+}
+.after-tyresstealth{
+--mags: #ffffff;
+}
+.after-forksstealth{
+--forks:#6e6e6e;
+}
+.after-framesstealth{
+--frame: #000000;
+}
+.after-seatsstealth{
+--seat:#000000;
+}
+.after-handlebarstealth{
+--handlebars:#6e6e6e;
+}
+
+/*lemanode */
+.after-wheelslemonade{
+  --tyres: #000000;
+  }
+  .after-tyreslemonade{
+  --mags: #c5c5c5;
+  }
+  .after-forkslemonade{
+  --forks:#fffb00;
+  }
+  .after-frameslemonade{
+  --frame: #00f900;
+  }
+  .after-seatslemonade{
+  --seat:#000000;
+  }
+  .after-handlebarlemonade{
+  --handlebars:#fffb00;
+  }
+/*skyline */
+
+.after-wheelsskyline{
+--tyres: #ffffff;
+}
+.after-tyresskyline{
+--mags: #000000;
+}
+.after-forksskyline{
+--forks:#3af4f8;
+}
+.after-framesskyline{
+--frame: #3af4f8;
+}
+.after-seatsskyline{
+--seat:#000000;
+}
+.after-handlebarskyline{
+--handlebars:#3af4f8;
+}
+/* badbarbie */
+
+.after-wheelsbadbarbie{
+--tyres: #000000;
+}
+.after-tyresbadbarbie{
+--mags: #ff00ec;
+}
+.after-forksbadbarbie{
+--forks:#000000;
+}
+.after-framesbadbarbie{
+--frame: #000000;
+}
+.after-seatsbadbarbie{
+--seat:#ff00ec;
+}
+.after-handlebarbadbarbie{
+--handlebars:#ff00ec;
 }
 :root {
 --frame: #606060;
@@ -385,7 +465,6 @@
 }
 .colorways {
   position: absolute;
-  top: 100%;
   left: 50%;
   -webkit-transform: translate(-39%, 0);
           transform: translate(-39%, 0);

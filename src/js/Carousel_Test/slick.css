@@ -110,4 +110,9 @@
     right: 20px !important;
   } */
   
-
+.neat {
+  background-color: blue;
+  color: white;
+  text-align: center;
+  height: 120px;
+}

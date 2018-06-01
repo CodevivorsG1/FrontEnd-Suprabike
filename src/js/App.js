@@ -15,6 +15,7 @@ import Bicycle from './Carousel_Test/Bicycle.js';
 import DataBicycle from './Carousel_Test/DataBicycle.js';
 import ComponentNuevo from './Components/ComponentNuevo.js';
 import Trying from './Carousel_Test/fuckingTrying.js';
+import Validate from './Carousel_Test/Validate.js';
 
 //import {Button} from 'react-bootstrap'
 
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path='/data-bicycle' component ={DataBicycle}/>
           <Route path='/component' component={ComponentNuevo}/>
           <Route path='/trying' component={Trying} />
+          <Route path='/validate' component={Validate} />
         </Switch>
       </BrowserRouter>
     );
