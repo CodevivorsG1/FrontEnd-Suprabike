@@ -11,6 +11,8 @@ import ForumComponent from './DB_Components/ForumComponent.js';
 import Map from './Map_Components/Container.js';
 import Statistics from './DB_Components/Statistics.js';
 import BikeBuild from './Carousel_Test/Build.js';
+import Validate from './Carousel_Test/Validate.js';
+
 
 
 
@@ -71,6 +73,14 @@ class AppContentComponent extends React.Component{
 	        <EditUserComponent />
 	      </div>
 	    );	
+		}
+		if (store.getState().sectionView === "validate") {
+  		return(
+	      <div>
+	        <h3 class="text-center">Valida tu bici</h3>
+	        <Validate />
+	      </div>
+	    );
   	}
   	if (store.getState().sectionView === "technician") {
   		return(

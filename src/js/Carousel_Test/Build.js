@@ -414,12 +414,10 @@ class Build extends React. Component {
                         </div>
                     </div>
                     <div class="row">
-                    <a href= {store.getState().globalUrl+"/bicycles/showpdf.pdf"} target="_blank">
+                    <a href= "/home/validate" >
                         <button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> Pre-validar</button>
                     </a>
-                    <a href= {store.getState().globalUrl+"/bicycles/showpdf.pdf"} target="_blank">
-					    <button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> Genera cotización</button>
-					</a>
+                    
                     </div>
 
 

@@ -2,13 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
 import store from '../store.js';
+import {Redirect} from 'react-router-dom';
 
 class Validate extends React.Component {
     constructor() {
         super();
         this.state = {
             cart: store.getState().cart,
-            bikeId: 0
+            bikeId: 0,
+            done: false
             
         }
         this.handleImg = this.handleImg.bind(this);
@@ -44,30 +46,39 @@ class Validate extends React.Component {
     }
 
     comprar() {
-        swal('guardando')
+        var requests = [];
         console.log("Inicia ciclo:")
-        for (var i in this.state.cart){
-            if(!(this.state.cart[i].hasOwnProperty("brand_bicy"))){
-                console.log(this.state.cart[i])
+        /* var i in this.state.cart */
+        for (var i = 0; i < 2; i++){
+            if(!(this.state.cart[i].hasOwnProperty("brand_bicy"))){                
                 var aux = {
                     component_id: this.state.cart[i].id,
                     bicycle_to_assemble_id: this.state.bikeId
                 }
-                setTimeout(() => {
-                    axios.post(store.getState().globalUrl + 'assemble_parts/', aux )
-                    .then((response) => {
-                        console.log("envio de parte exitoso")
-                    })
-                    .catch((error) => {
-                        swal("Error", "Error al agregar componente a DB", "error")
-                    })
-                }, 1000) 
+                requests.push(axios.post(store.getState().globalUrl + 'assemble_parts/', aux ));                
             }
         }
+        console.log(requests)
+        if (requests.length == 0) {
+            swal('warning', "Debes seleccionar componentes!");
+        } else {
+            Promise.all(requests).then(function(response) {
+                console.log(response)
+            });
+            this.setState({done: true});            
+
+        }
+    }
+    openInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
     }
 
     render() {
-        return(
+        if (this.state.done) {
+            this.openInNewTab('http://localhost:4000/bicycle_to_assembles/showpdf/'+ this.state.bikeId + '.pdf', '_blank')
+        }
+        return(            
             <div>
                 <div class="row">
                 {this.state.cart.map(product =>
@@ -95,12 +106,12 @@ class Validate extends React.Component {
                 )}
                 </div>
                 <div class="row">
-                    <a href= {store.getState().globalUrl+"/bicycles/showpdf.pdf"} target="_blank">
+                    <a href= "/home/bicycle">
                         <button class="btn btn-info btn-sm pdfBtn" role="button"><i class="far fa-file-pdf"></i> Devolver</button>
                     </a>
                     
-					    <button class="btn btn-info btn-sm pdfBtn" role="button" onClick={() => this.comprar()}><i class="far fa-file-pdf"></i> Comprar</button>
-					
+                        <button class="btn btn-info btn-sm pdfBtn" role="button" onClick={() => this.comprar()}><i class="far fa-file-pdf"></i> Comprar</button>
+                    
                 </div>
             </div>
         );
