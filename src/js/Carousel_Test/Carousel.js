@@ -26,9 +26,9 @@ export default class MultipleItems extends React.Component {
     render() {
       console.log(this.props)
       var settings = {
-        className: "center",
-        centerMode: true,         
+        className: "center",        
         infinite: true,
+        vertical: true,
         speed: 500,
         centerPadding: 0,
         slidesToShow: 3        
