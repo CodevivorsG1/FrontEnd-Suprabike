@@ -16,3 +16,6 @@
     margin: auto;
 }
 
+.blackborder {
+    border: 2px black solid;
+}

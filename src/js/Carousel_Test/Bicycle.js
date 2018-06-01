@@ -39,8 +39,7 @@ class Bicycle extends Component {
     }
     render() {
         return (
-            <div className = "container-fluid">
-                
+            <div className = "container-fluid">               
                 
                 <div class="bike">
                 <div class="bike__cranks">

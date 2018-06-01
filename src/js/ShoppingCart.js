@@ -34,18 +34,34 @@ class ShoppingCart extends Component {
         <div class="card-header">
           Carrito de compras
         </div>
+        Bicicletas
          {this.state.cart.map(bike =>
             <ul class="list-group list-group-flush">
               {
                 bike.hasOwnProperty("brand_bicy") ? (
                   <li class="list-group-item">{bike.brand_bicy} ${bike.price_bicy} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
                 ) : (
-                  <li class="list-group-item">{bike.part_of_bike} {bike.brand_component} ${bike.price_component} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+                  null
                 )                
               }
             </ul>
 
                   )}
+        
+        <hr/>
+        Componentes
+        {this.state.cart.map(bike =>
+          <ul class="list-group list-group-flush">
+            {
+              bike.hasOwnProperty("brand_bicy") ? (
+                null
+              ) : (
+                <li class="list-group-item">{bike.part_of_bike} {bike.brand_component} ${bike.price_component} <Button class="btn btn-danger" onClick={() => this.removeFromCart(bike)}><i class="fas fa-trash-alt"></i></Button></li>
+              )                
+            }
+          </ul>
+
+                )}
 
         <div class="card-body">
           <h5 class="card-title">Total</h5>
