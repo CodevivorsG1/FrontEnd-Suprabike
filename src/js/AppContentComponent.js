@@ -10,8 +10,7 @@ import EditUserComponent from './DB_Components/EditUsersComponent.js';
 import ForumComponent from './DB_Components/ForumComponent.js';
 import Map from './Map_Components/Container.js';
 import Statistics from './DB_Components/Statistics.js';
-import BikeData from './Carousel_Test/DataBicycle.js';
-import BikeBuild from './Carousel_Test/fuckingTrying.js';
+import BikeBuild from './Carousel_Test/Build.js';
 
 
 
@@ -54,14 +53,7 @@ class AppContentComponent extends React.Component{
 			console.log("this props")
 			console.log(this.props)
 			return (
-				<div class="row">
-					<div class="col-md-8" >	      			
-						<BikeBuild />
-					</div>
-					<div class="col-md-4" >
-						<ShoppingCart />
-					</div>
-				</div>
+				< BikeBuild />
 			);
 		}
   	if (store.getState().sectionView === "user") {
