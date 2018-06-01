@@ -83,7 +83,11 @@ class AppHeaderComponent extends React.Component{
             <form class="form-inline my-2 my-lg-0 mr-sm-2">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
               <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-search"></i></button>
+              <Link to={'/home/notifications'}>
               <button class="btn btn-outline-primary btn-outline-yellow my-2 my-sm-2 search-btn" type="submit"><i class="fas fa-bell"></i><span class="notification">{this.state.notifications}</span></button>
+              
+
+              </Link>
               
              
 
