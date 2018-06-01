@@ -2,6 +2,7 @@ import React from 'react';
 import "../css/AppContentComponent.css";
 import ProductList from './ProductList.js'
 import TechnicianList from './TechnicianList.js'
+import Notification from './Notification.js'
 import ShoppingCart from './ShoppingCart.js'
 import User from './User.js'
 import store from './store'
@@ -93,6 +94,14 @@ class AppContentComponent extends React.Component{
 	      <div>
 	        <h3 class="text-center">Estadísticas</h3>
 	        <Statistics />
+	      </div>
+	    );
+  	}
+  	if (store.getState().sectionView === "notifications") {
+  		return(
+	      <div>
+	        <h3 class="text-center">Notifications</h3>
+	        <Notification />
 	      </div>
 	    );
   	}

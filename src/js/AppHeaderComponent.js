@@ -91,8 +91,10 @@ class AppHeaderComponent extends React.Component{
                 <button class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" type="submit">
                 <i class="fas fa-user"></i> {this.state.nameUser}</button>
               </Link>
-
-              <button href="#" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" onClick={() => this.closeSession()} ><i class="fas fa-sign-out-alt"></i> </button>
+              
+              <Link to={'/home/bicycle'}>
+                <button href="#" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" onClick={() => this.closeSession()} ><i class="fas fa-sign-out-alt"></i> </button>
+              </Link>
             </form>
             
             
