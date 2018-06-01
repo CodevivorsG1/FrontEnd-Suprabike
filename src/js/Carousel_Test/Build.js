@@ -26,7 +26,7 @@ class Build extends React. Component {
                             <div class="column">
                                 <img src="../../img/MTBIcon.png" />
                                 <div class="text-center">
-                                    <h2>Mountain Bike</h2>
+                                    <h2>MTB</h2>
                                     <input type="radio" name="bike"
                                     value="mountain" checked={this.state.type === "mountain"}
                                     onChange={() =>this.setState({type: "mountain"})}
@@ -39,7 +39,7 @@ class Build extends React. Component {
                             <div class="column">
                                 <img src="../../img/RoadIcon.png" />
                                 <div class="text-center">
-                                    <h2>Road Bike</h2>
+                                    <h2>Road</h2>
                                     <input type="radio" name="bike"
                                     value="road" checked={this.state.type === "road"}
                                     onChange={() =>this.setState({type: "road"})}
@@ -52,7 +52,7 @@ class Build extends React. Component {
                             <div class="column">
                                 <img src="../../img/UrbanIcon.png"  />                        
                                 <div class="text-center">
-                                    <h2>Urban Bike</h2>
+                                    <h2>Urban</h2>
                                     <input type="radio" name="bike"
                                     value="urban" checked={this.state.type === "urban"}
                                     onChange={() =>this.setState({type: "urban"})}
@@ -65,7 +65,7 @@ class Build extends React. Component {
                             <div class="column">
                                 <img src="../../img/BmxIcon.png"  />
                                 <div class="text-center">
-                                    <h2>BMX Bike</h2>
+                                    <h2>BMX</h2>
                                     <input type="radio" name="bike"
                                     value="bmx" checked={this.state.type === "bmx"}
                                     onChange={() =>this.setState({type: "bmx"})}
